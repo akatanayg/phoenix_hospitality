@@ -19,7 +19,8 @@ const Hero = () => {
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden text-white">
       {/* Background Video */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        // className="absolute top-0 left-0 w-full h-full object-cover"
+        className='absolute top-0 left-0 w-full h-full object-cover z-0'
         autoPlay
         loop
         muted
@@ -30,10 +31,11 @@ const Hero = () => {
       </video>
 
       {/* Content */}
-      <div className="relative z-10 flex w-full h-full items-center justify-between px-12">
+      <div className="relative z-10 flex w-full h-full items-center justify-between px-12 shadow-5xl backdrop-blur-md">
       <div className="relative z-10 flex flex-col items-start justify-center h-full pl-12">
-        <h1 className="text-6xl font-bold text-black" style={{ fontFamily: "'Averia Serif Libre', serif" }}>Welcome to </h1><br />
-        <h1 className="text-6xl font-bold text-White" style={{ fontFamily: "'Averia Serif Libre', serif" }}>Phoenix Residency</h1>
+      {/* <div className="w-1/2 flex flex-col justify-center space-y-5 bg-black/30 rounded-2xl p-6 shadow-2xl backdrop-blur-md"> */}
+        <h1 className="text-7xl font-bold text-white drop-shadow-lg" style={{ fontFamily: "'Averia Serif Libre', serif" }}>Welcome to </h1><br />
+        <h1 className="text-7xl font-bold text-white drop-shadow-lg" style={{ fontFamily: "'Averia Serif Libre', serif" }}>Phoenix Residency</h1>
         <p className="text-lg text-black-300 mt-4 max-w-2xl" style={{ fontFamily: "'Averia Serif Libre', serif" }}>
           Comfort in Living
         </p>
