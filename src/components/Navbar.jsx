@@ -249,15 +249,13 @@ const Nav = () => {
   };
 
   return (
-    <nav className="w-full bg-black text-[#F17B00] fixed top-0 left-0 z-50 h-[70px] flex items-center">
+    <nav className="w-full bg-black text-[#F17B00] fixed top-0 left-0 z-50 h-[75px] flex items-center">
       <div className="container mx-auto flex justify-between items-center px-6">
-        {/* Logo - Bigger without stretching navbar */}
-        <div className="flex items-center">
-          <img src="/logo.png" alt="Logo" className="h-[60px] md:h-[70px] object-contain" />
-        </div>
+        {/* Logo - Bigger size */}
+        <img src="/logo.png" alt="Logo" className="h-[65px] md:h-[75px] object-contain" />
 
-        {/* Desktop Links - Evenly distributed */}
-        <div className="hidden md:flex justify-between items-center flex-grow text-xl font-medium">
+        {/* Desktop Links */}
+        <div className="hidden md:flex flex-grow justify-center items-center space-x-6 text-lg font-medium">
           <a href="#home" className="hover:underline">Home</a>
           <a href="#about" className="hover:underline">About Us</a>
 
@@ -266,12 +264,15 @@ const Nav = () => {
             <button className="hover:underline flex items-center gap-1">
               Rooms <ChevronDown size={18} />
             </button>
-            <div className="absolute hidden group-hover:block bg-black rounded-xl mt-1 shadow-xl overflow-hidden">
-              <a href="#deluxe" className="flex items-center gap-3 px-6 py-3 hover:bg-[#F17B00] hover:text-white">
-                <img src={icons.deluxe} alt="Deluxe" className="h-5 w-5" /> Deluxe Room
+            <div className="absolute hidden group-hover:block bg-black rounded-xl mt-1 shadow-2xl overflow-hidden">
+              <a href="#deluxe" className="flex items-center gap-3 px-5 py-3 hover:bg-[#F17B00] hover:text-white">
+                <img src={icons.deluxe} className="h-5 w-5" /> Deluxe Room
               </a>
-              <a href="#suite" className="flex items-center gap-3 px-6 py-3 hover:bg-[#F17B00] hover:text-white">
-                <img src={icons.suite} alt="Suite" className="h-5 w-5" /> Suite Room
+              <a href="#super_deluxe" className="flex items-center gap-3 px-5 py-3 hover:bg-[#F17B00] hover:text-white">
+                <img src={icons.suite} className="h-5 w-5" /> Super Deluxe Room
+              </a>
+              <a href="#suite" className="flex items-center gap-3 px-5 py-3 hover:bg-[#F17B00] hover:text-white">
+                <img src={icons.suite} className="h-5 w-5" /> Suite Room
               </a>
             </div>
           </div>
@@ -284,79 +285,89 @@ const Nav = () => {
               Resources <ChevronDown size={18} />
             </button>
             <div className="absolute hidden group-hover:block bg-black rounded-xl mt-1 shadow-xl overflow-hidden">
-              <a href="#faqs" className="flex items-center gap-3 px-6 py-3 hover:bg-[#F17B00] hover:text-white">
-                <img src={icons.faqs} alt="FAQs" className="h-5 w-5" /> FAQ's
+              <a href="#faqs" className="flex items-center gap-3 px-5 py-3 hover:bg-[#F17B00] hover:text-white">
+                <img src={icons.faqs} className="h-5 w-5" /> FAQ's
               </a>
-              <a href="#blogs" className="flex items-center gap-3 px-6 py-3 hover:bg-[#F17B00] hover:text-white">
-                <img src={icons.blogs} alt="Blogs" className="h-5 w-5" /> Blogs
+              <a href="#blogs" className="flex items-center gap-3 px-5 py-3 hover:bg-[#F17B00] hover:text-white">
+                <img src={icons.blogs} className="h-5 w-5" /> Blogs
               </a>
-              <a href="#gallery" className="flex items-center gap-3 px-6 py-3 hover:bg-[#F17B00] hover:text-white">
-                <img src={icons.gallery} alt="Gallery" className="h-5 w-5" /> Gallery
+              <a href="#gallery" className="flex items-center gap-3 px-5 py-3 hover:bg-[#F17B00] hover:text-white">
+                <img src={icons.gallery} className="h-5 w-5" /> Gallery
               </a>
-              <a href="#testimonials" className="flex items-center gap-3 px-6 py-3 hover:bg-[#F17B00] hover:text-white">
-                <img src={icons.testimonials} alt="Testimonials" className="h-5 w-5" /> Testimonials
+              <a href="#testimonials" className="flex items-center gap-3 px-5 py-3 hover:bg-[#F17B00] hover:text-white">
+                <img src={icons.testimonials} className="h-5 w-5" /> Testimonials
               </a>
             </div>
           </div>
-
-          {/* Contact - Slightly shifted left */}
-          <a href="#contact" className="hover:underline ml-6">Contact Us</a>
         </div>
 
+        {/* Contact Us - Moved 30px from right */}
+        <a href="#contact" className="hidden md:block text-lg font-medium hover:underline absolute right-[170px]">
+          Contact Us
+        </a>
+
         {/* Mobile Menu Button */}
-        <button className="md:hidden" onClick={toggleMenu}>
-          {isOpen ? <X size={32} /> : <Menu size={32} />}
+        <button className="md:hidden z-50" onClick={toggleMenu}>
+          {isOpen ? <X size={32} className="text-[#F17B00]" /> : <Menu size={32} className="text-[#F17B00]" />}
         </button>
       </div>
 
       {/* Mobile Fullscreen Menu */}
       <div className={`fixed inset-0 bg-black text-[#FFB067] z-40 transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className="flex flex-col justify-start items-start h-full p-6 pt-20 space-y-6">
-          <a href="#home" className="flex items-center gap-3 text-2xl" onClick={() => setIsOpen(false)}>
-            <img src={icons.home} alt="Home" className="h-6 w-6" /> Home
+        {/* Close Button */}
+        <div className="absolute top-6 right-6">
+          <button onClick={toggleMenu}>
+            <X size={36} className="text-[#F17B00]" />
+          </button>
+        </div>
+
+        {/* Menu Links */}
+        <div className="flex flex-col justify-start items-start h-full pt-20 pl-6 space-y-6">
+          <a href="#home" className="flex items-center gap-3 text-2xl" onClick={toggleMenu}>
+            <img src={icons.home} className="h-6 w-6" /> Home
           </a>
-          <a href="#about" className="flex items-center gap-3 text-2xl" onClick={() => setIsOpen(false)}>
-            <img src={icons.about} alt="About Us" className="h-6 w-6" /> About Us
+          <a href="#about" className="flex items-center gap-3 text-2xl" onClick={toggleMenu}>
+            <img src={icons.about} className="h-6 w-6" /> About Us
           </a>
 
-          {/* Rooms Dropdown for Mobile */}
-          <div className="w-full">
-            <p className="text-2xl">Rooms</p>
-            <div className="mt-2 pl-6 space-y-3">
-              <a href="#deluxe" className="flex items-center gap-3 text-xl" onClick={() => setIsOpen(false)}>
-                <img src={icons.deluxe} alt="Deluxe" className="h-5 w-5" /> Deluxe Room
+          {/* Rooms */}
+          <div>
+            <p className="text-2xl mb-2">Rooms</p>
+            <div className="pl-6 space-y-3">
+              <a href="#deluxe" className="flex items-center gap-3 text-xl" onClick={toggleMenu}>
+                <img src={icons.deluxe} className="h-5 w-5" /> Deluxe Room
               </a>
-              <a href="#suite" className="flex items-center gap-3 text-xl" onClick={() => setIsOpen(false)}>
-                <img src={icons.suite} alt="Suite" className="h-5 w-5" /> Suite Room
+              <a href="#suite" className="flex items-center gap-3 text-xl" onClick={toggleMenu}>
+                <img src={icons.suite} className="h-5 w-5" /> Suite Room
               </a>
             </div>
           </div>
 
-          <a href="#gallery" className="flex items-center gap-3 text-2xl" onClick={() => setIsOpen(false)}>
-            <img src={icons.gallery} alt="Gallery" className="h-6 w-6" /> Gallery
+          <a href="#gallery" className="flex items-center gap-3 text-2xl" onClick={toggleMenu}>
+            <img src={icons.gallery} className="h-6 w-6" /> Gallery
           </a>
 
-          {/* Resources Dropdown for Mobile */}
-          <div className="w-full">
-            <p className="text-2xl">Resources</p>
-            <div className="mt-2 pl-6 space-y-3">
-              <a href="#faqs" className="flex items-center gap-3 text-xl" onClick={() => setIsOpen(false)}>
-                <img src={icons.faqs} alt="FAQs" className="h-5 w-5" /> FAQ's
+          {/* Resources */}
+          <div>
+            <p className="text-2xl mb-2">Resources</p>
+            <div className="pl-6 space-y-3">
+              <a href="#faqs" className="flex items-center gap-3 text-xl" onClick={toggleMenu}>
+                <img src={icons.faqs} className="h-5 w-5" /> FAQ's
               </a>
-              <a href="#blogs" className="flex items-center gap-3 text-xl" onClick={() => setIsOpen(false)}>
-                <img src={icons.blogs} alt="Blogs" className="h-5 w-5" /> Blogs
+              <a href="#blogs" className="flex items-center gap-3 text-xl" onClick={toggleMenu}>
+                <img src={icons.blogs} className="h-5 w-5" /> Blogs
               </a>
-              <a href="#gallery" className="flex items-center gap-3 text-xl" onClick={() => setIsOpen(false)}>
-                <img src={icons.gallery} alt="Gallery" className="h-5 w-5" /> Gallery
+              <a href="#gallery" className="flex items-center gap-3 text-xl" onClick={toggleMenu}>
+                <img src={icons.gallery} className="h-5 w-5" /> Gallery
               </a>
-              <a href="#testimonials" className="flex items-center gap-3 text-xl" onClick={() => setIsOpen(false)}>
-                <img src={icons.testimonials} alt="Testimonials" className="h-5 w-5" /> Testimonials
+              <a href="#testimonials" className="flex items-center gap-3 text-xl" onClick={toggleMenu}>
+                <img src={icons.testimonials} className="h-5 w-5" /> Testimonials
               </a>
             </div>
           </div>
 
-          <a href="#contact" className="flex items-center gap-3 text-2xl" onClick={() => setIsOpen(false)}>
-            <img src={icons.contact} alt="Contact Us" className="h-6 w-6" /> Contact Us
+          <a href="#contact" className="flex items-center gap-3 text-2xl" onClick={toggleMenu}>
+            <img src={icons.contact} className="h-6 w-6" /> Contact Us
           </a>
         </div>
       </div>
@@ -365,3 +376,4 @@ const Nav = () => {
 };
 
 export default Nav;
+
