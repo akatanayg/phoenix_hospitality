@@ -1,65 +1,53 @@
 
 import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 const Hero = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 2500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    arrows: false,
-  };
-  return (
-    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden text-white">
-      {/* Background Video */}
-      <video
-        // className="absolute top-0 left-0 w-full h-full object-cover"
-        className='absolute top-0 left-0 w-full h-full object-cover z-0'
-        autoPlay
-        loop
-        muted
-        playsInline
-      >
-        <source src="/mainbg_v1.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    return (
+        <section className="relative w-full h-screen flex flex-col md:flex-row items-center justify-center text-white overflow-hidden">
+            {/* Background Video */}
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute top-0 left-0 w-full h-full object-cover"
+            >
+                <source src="/mainbg_v2.mp4" type="video/mp4" />
+            </video>
 
-      {/* Content */}
-      <div className="relative z-10 flex w-full h-full items-center justify-between px-12 shadow-5xl backdrop-blur-md">
-      <div className="relative z-10 flex flex-col items-start justify-center h-full pl-12">
-      {/* <div className="w-1/2 flex flex-col justify-center space-y-5 bg-black/30 rounded-2xl p-6 shadow-2xl backdrop-blur-md"> */}
-        <h1 className="text-7xl font-bold text-white drop-shadow-lg" style={{ fontFamily: "'Averia Serif Libre', serif" }}>Welcome to </h1><br />
-        <h1 className="text-7xl font-bold text-white drop-shadow-lg" style={{ fontFamily: "'Averia Serif Libre', serif" }}>Phoenix Residency</h1>
-        <p className="text-lg text-black-300 mt-4 max-w-2xl" style={{ fontFamily: "'Averia Serif Libre', serif" }}>
-          Comfort in Living
-        </p>
-      </div>
+            {/* Left Text Section (Center on Mobile, Left on Desktop) */}
+            <div className="relative z-10 w-full md:w-1/2 flex flex-col items-center md:items-start justify-center text-center md:text-left px-6 md:px-12 lg:pl-16 py-24 md:py-0">
+                <h1
+                    className="text-4xl md:text-6xl font-bold leading-tight"
+                    style={{textShadow: '2px 2px 10px rgba(0,0,0,0.9)' }}
+                >
+                    Welcome to <br />Phoenix Residency
+                </h1>
+                <p className="text-lg md:text-2xl mt-2">
+                    Comfort in Living
+                </p>
+                <div className="mt-6 flex space-x-4">
+                    <button className="px-6 py-2 border border-white bg-white text-black hover:bg-transparent hover:text-white">
+                        Learn More
+                    </button>
+                    <button className="px-6 py-2 border border-white bg-white text-black hover:bg-transparent hover:text-white">
+                        Enquire Now
+                    </button>
+                </div>
+            </div>
 
-      {/* Right Side - Carousel */}
-      <div className="w-1/2 flex items-center justify-center">
-          <div className="w-[90%] h-[450px] overflow-hidden rounded-xl shadow-xl">
-            <Slider {...settings} className="w-full h-full">
-              <div className="w-full h-full">
-                <img src="/image2.png" alt="Carousel 1" className="w-full h-full object-cover" />
-              </div>
-              <div className="w-full h-full">
-                <img src="/c1.jpg" alt="Carousel 2" className="w-full h-full object-cover" />
-              </div>
-              <div className="w-full h-full">
-                <img src="/c3.jpg" alt="Carousel 3" className="w-full h-full object-cover" />
-              </div>
-            </Slider>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+            {/* Right Animation Section */}
+            <div className="relative z-10 w-full md:w-1/2 hidden md:flex items-center justify-center">
+                <div className="text-center space-y-4 animate-fadeIn">
+                    <p className="text-xl md:text-2xl font-light italic opacity-80">"Experience luxury like never before"</p>
+                    <p className="text-lg">Discover elegance, heritage, and comfort</p>
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default Hero;
+
+
+
