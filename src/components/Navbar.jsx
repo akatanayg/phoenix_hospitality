@@ -57,55 +57,174 @@
 
 
 
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+// import React, { useState } from 'react';
+// import { Menu, X } from 'lucide-react';
 
-const Nav = () => {
-  const [isOpen, setIsOpen] = useState(false);
+// const Nav = () => {
+//   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+//   const toggleMenu = () => setIsOpen(!isOpen);
 
-  return (
-    <nav className="w-full bg-black text-[#F17B00] fixed top-0 left-0 z-50">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        {/* Logo */}
-        <div className="text-3xl font-bold tracking-wider">
-          <img src="/logo.png" alt="Logo" className="h-14 md:h-20 ml-2" />
-        </div>
+//   return (
+//     <nav className="w-full bg-black text-[#F17B00] fixed top-0 left-0 z-50">
+//       <div className="container mx-auto flex justify-between items-center py-4 px-6">
+//         {/* Logo */}
+//         <div className="text-3xl font-bold tracking-wider">
+//           <img src="/logo.png" alt="Logo" className="h-14 md:h-20 ml-2" />
+//         </div>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-8 text-lg ">
-          <a href="#home" className="hover:underline">Home</a>
-          <a href="#about" className="hover:underline">About Us</a>
-          <a href="#rooms" className="hover:underline">Rooms</a>
-          <a href="#gallery" className="hover:underline">Gallery</a>
-          <a href="#resources" className="hover:underline">Resources</a>
-        </div>
+//         {/* Desktop Links */}
+//         <div className="hidden md:flex items-center space-x-8 text-lg ">
+//           <a href="#home" className="hover:underline">Home</a>
+//           <a href="#about" className="hover:underline">About Us</a>
+//           <a href="#rooms" className="hover:underline">Rooms</a>
+//           <a href="#gallery" className="hover:underline">Gallery</a>
+//           <a href="#resources" className="hover:underline">Resources</a>
+//         </div>
 
-        {/* Contact Us (Separately Aligned) */}
-        <div className="hidden md:block text-lg  ml-8">
-          <a href="#contact" className="hover:underline">Contact Us</a>
-        </div>
+//         {/* Contact Us (Separately Aligned) */}
+//         <div className="hidden md:block text-lg  ml-8">
+//           <a href="#contact" className="hover:underline">Contact Us</a>
+//         </div>
 
-        {/* Mobile Menu Button */}
-        <button className="md:hidden" onClick={toggleMenu}>
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
+//         {/* Mobile Menu Button */}
+//         <button className="md:hidden" onClick={toggleMenu}>
+//           {isOpen ? <X size={28} /> : <Menu size={28} />}
+//         </button>
+//       </div>
 
-      {/* Mobile Menu Links */}
-      {isOpen && (
-        <div className="md:hidden bg-[#D35400]">
-          <a href="#home" className="block py-2 px-6 text-lg ">Home</a>
-          <a href="#about" className="block py-2 px-6 text-lg ">About Us</a>
-          <a href="#rooms" className="block py-2 px-6 text-lg " >Rooms</a>
-          <a href="#gallery" className="block py-2 px-6 text-lg " >Gallery</a>
-          <a href="#resources" className="block py-2 px-6 text-lg " >Resources</a>
-          <a href="#contact" className="block py-2 px-6 text-lg " >Contact Us</a>
-        </div>
-      )}
-    </nav>
-  );
-};
+//       {/* Mobile Menu Links */}
+//       {isOpen && (
+//         <div className="md:hidden bg-[#D35400]">
+//           <a href="#home" className="block py-2 px-6 text-lg ">Home</a>
+//           <a href="#about" className="block py-2 px-6 text-lg ">About Us</a>
+//           <a href="#rooms" className="block py-2 px-6 text-lg " >Rooms</a>
+//           <a href="#gallery" className="block py-2 px-6 text-lg " >Gallery</a>
+//           <a href="#resources" className="block py-2 px-6 text-lg " >Resources</a>
+//           <a href="#contact" className="block py-2 px-6 text-lg " >Contact Us</a>
+//         </div>
+//       )}
+//     </nav>
+//   );
+// };
 
-export default Nav;
+// export default Nav;
+
+
+// import React, { useState } from 'react';
+// import { Menu, X, ChevronDown } from 'lucide-react';
+
+// const Nav = () => {
+//   const [isOpen, setIsOpen] = useState(false);
+//   const [activeDropdown, setActiveDropdown] = useState(null);
+
+//   const toggleMenu = () => setIsOpen(!isOpen);
+
+//   const handleDropdownToggle = (menu) => {
+//     setActiveDropdown(activeDropdown === menu ? null : menu);
+//   };
+
+//   return (
+//     <nav className="w-full bg-black text-[#F17B00] fixed top-0 left-0 z-50 h-[60px] flex items-center">
+//       <div className="container mx-auto flex justify-between items-center px-6">
+//         {/* Logo */}
+//         <div className="text-2xl font-bold tracking-wider">
+//           <img src="/logo.png" alt="Logo" className="h-12 md:h-16 ml-2" />
+//         </div>
+
+//         {/* Desktop Links */}
+//         <div className="hidden md:flex items-center space-x-6 text-xl font-medium">
+//           <a href="#home" className="hover:underline">Home</a>
+//           <a href="#about" className="hover:underline">About Us</a>
+          
+//           <div className="relative group">
+//             <a href="#rooms" className="hover:underline cursor-pointer">
+//               Rooms
+//             </a>
+//             {/* Submenu for Rooms (on hover) */}
+//             <div className="absolute left-0 top-full hidden group-hover:block bg-black text-[#F17B00] w-48 shadow-lg">
+//               <a href="#deluxe" className="block px-4 py-2 hover:bg-[#F17B00] hover:text-black">Deluxe Room</a>
+//               <a href="#suite" className="block px-4 py-2 hover:bg-[#F17B00] hover:text-black">Suite Room</a>
+//             </div>
+//           </div>
+
+//           <a href="#gallery" className="hover:underline">Gallery</a>
+
+//           <div className="relative group">
+//             <a href="#resources" className="hover:underline cursor-pointer">
+//               Resources
+//             </a>
+//             {/* Submenu for Resources (on hover) */}
+//             <div className="absolute left-0 top-full hidden group-hover:block bg-black text-[#F17B00] w-48 shadow-lg">
+//               <a href="#faqs" className="block px-4 py-2 hover:bg-[#F17B00] hover:text-black">FAQ's</a>
+//               <a href="#blogs" className="block px-4 py-2 hover:bg-[#F17B00] hover:text-black">Blogs</a>
+//               <a href="#gallery" className="block px-4 py-2 hover:bg-[#F17B00] hover:text-black">Gallery</a>
+//               <a href="#testimonials" className="block px-4 py-2 hover:bg-[#F17B00] hover:text-black">Testimonials</a>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Contact Us */}
+//         <div className="hidden md:block text-xl font-medium">
+//           <a href="#contact" className="hover:underline">Contact Us</a>
+//         </div>
+
+//         {/* Mobile Menu Button */}
+//         <button className="md:hidden" onClick={toggleMenu}>
+//           {isOpen ? <X size={28} /> : <Menu size={28} />}
+//         </button>
+//       </div>
+
+//       {/* Mobile Full Screen Menu */}
+//       <div
+//         className={`fixed top-0 left-0 w-full h-full bg-black text-[#F17B00] transition-transform duration-500 ${
+//           isOpen ? 'translate-x-0' : 'translate-x-full'
+//         } flex flex-col justify-center items-center space-y-4 text-xl font-medium z-40`}
+//       >
+//         <a href="#home" className="py-3 w-full text-center border-b border-[#F17B00]" onClick={toggleMenu}>Home</a>
+//         <a href="#about" className="py-3 w-full text-center border-b border-[#F17B00]" onClick={toggleMenu}>About Us</a>
+
+//         {/* Rooms with Dropdown */}
+//         <div className="w-full">
+//           <div
+//             className="py-3 w-full text-center border-b border-[#F17B00] flex justify-center items-center gap-2 cursor-pointer"
+//             onClick={() => handleDropdownToggle('rooms')}
+//           >
+//             Rooms <ChevronDown size={20} />
+//           </div>
+//           {activeDropdown === 'rooms' && (
+//             <div className="flex flex-col bg-black">
+//               <a href="#deluxe" className="py-2 border-b border-[#F17B00]" onClick={toggleMenu}>Deluxe Room</a>
+//               <a href="#suite" className="py-2 border-b border-[#F17B00]" onClick={toggleMenu}>Suite Room</a>
+//             </div>
+//           )}
+//         </div>
+
+//         <a href="#gallery" className="py-3 w-full text-center border-b border-[#F17B00]" onClick={toggleMenu}>Gallery</a>
+
+//         {/* Resources with Dropdown */}
+//         <div className="w-full">
+//           <div
+//             className="py-3 w-full text-center border-b border-[#F17B00] flex justify-center items-center gap-2 cursor-pointer"
+//             onClick={() => handleDropdownToggle('resources')}
+//           >
+//             Resources <ChevronDown size={20} />
+//           </div>
+//           {activeDropdown === 'resources' && (
+//             <div className="flex flex-col bg-black">
+//               <a href="#faqs" className="py-2 border-b border-[#F17B00]" onClick={toggleMenu}>FAQ's</a>
+//               <a href="#blogs" className="py-2 border-b border-[#F17B00]" onClick={toggleMenu}>Blogs</a>
+//               <a href="#gallery" className="py-2 border-b border-[#F17B00]" onClick={toggleMenu}>Gallery</a>
+//               <a href="#testimonials" className="py-2 border-b border-[#F17B00]" onClick={toggleMenu}>Testimonials</a>
+//             </div>
+//           )}
+//         </div>
+
+//         <a href="#contact" className="py-3 w-full text-center border-b border-[#F17B00]" onClick={toggleMenu}>Contact Us</a>
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default Nav;
+

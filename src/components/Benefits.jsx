@@ -3,27 +3,27 @@ import React, { useState } from 'react';
 const Benefits = () => {
   const benefits = [
     {
-      title: 'TIMELESS',
+      title: 'NEARBY ATTRACTIONS',
       description: 'A legacy of timeless elegance and luxury hospitality.',
-      image: '/image1.jpg',
+      image: '/card1.png',
       backgroundImage: '/image2.png'
     },
     {
-      title: 'ICONIC',
+      title: 'SUPPORT',
       description: 'An iconic destination known for its impeccable service.',
-      image: '/image2.png',
+      image: '/card2.png',
       backgroundImage: '/hover-bg2.jpg'
     },
     {
-      title: 'AUTHENTIC',
+      title: 'PRIME LOCATION',
       description: 'Experience the authenticity of local culture & charm.',
-      image: '/c3.jpg',
+      image: '/card3.png',
       backgroundImage: '/hover-bg3.jpg'
     },
     {
-      title: 'SOULFUL',
+      title: 'SMOOTH CHECK-IN/OUT',
       description: 'A soulful retreat that touches your spirit and senses.',
-      image: '/c1.jpg',
+      image: '/card4.png',
       backgroundImage: '/hover-bg4.jpg'
     }
   ];
@@ -42,13 +42,13 @@ const Benefits = () => {
               <div className="absolute left-0 bottom-[-8px] w-[50px] h-[3px] bg-orange-500"></div>
             </h2>
           </div>
-          <p className="mt-4 md:mt-0 md:ml-8 text-gray-700 leading-relaxed max-w-2xl">
+          <p className="mt-4 md:mt-0 md:ml-8 text-gray-700 leading-relaxed max-w-2xl text-black">
             Experience a range of exceptional benefits that redefine your stay, blending luxury, authenticity, and timeless comfort.
           </p>
         </div>
 
         {/* Desktop - 4 Column Grid with Hover Effect */}
-        <div className="hidden md:grid grid-cols-4 gap-0 w-full h-[450px]">
+        <div className="hidden md:grid grid-cols-4 gap-0 w-full h-[450px] border-2 border-orange-500">
           {benefits.map((benefit, index) => (
             <div
               key={index}
@@ -62,7 +62,7 @@ const Benefits = () => {
 
               {/* Only show heading when NOT hovered */}
               {activeIndex !== index && (
-                <div className="absolute bottom-4 left-0 w-full text-center text-white text-lg font-serif uppercase tracking-wide bg-black/30 py-2">
+                <div className="absolute bottom-4 left-0 w-full text-center text-black text-lg font-serif uppercase tracking-wide py-2">
                   {benefit.title}
                 </div>
               )}
@@ -86,7 +86,7 @@ const Benefits = () => {
             return (
               <div
                 key={index}
-                className="relative w-[80%] shrink-0 snap-center h-[400px] rounded-xl overflow-hidden cursor-pointer"
+                className="relative w-[80%] shrink-0 snap-center h-[400px] rounded-xl overflow-hidden cursor-pointer border-2 border-orange-500"
                 onClick={() => setActiveIndex(isActive ? null : index)}
               >
                 <img
