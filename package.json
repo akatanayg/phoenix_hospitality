@@ -2,10 +2,10 @@
   "name": "hotel-website",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://gitname.github.io/phoenix_hospitality",
+  "homepage": "https://akatanayg.github.io/phoenix_hospitality",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
