@@ -211,7 +211,7 @@ const AboutUs = () => {
   };
 
   return (
-    <section className="relative w-full bg-cover bg-center py-16 px-4 md:px-16">
+    <section id = "about" className="relative w-full bg-cover bg-center py-16 px-4 md:px-16">
       {/* Container */}
       <div className="relative z-10 max-w-5xl mx-auto text-black text-center space-y-6">
         
