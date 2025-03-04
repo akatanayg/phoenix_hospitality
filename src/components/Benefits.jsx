@@ -1,4 +1,128 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+
+// const Benefits = () => {
+//   const benefits = [
+//     {
+//       title: 'NEARBY ATTRACTIONS',
+//       description: 'A legacy of timeless elegance and luxury hospitality.',
+//       image: '/card1.png',
+//       backgroundImage: '/image2.png'
+//     },
+//     {
+//       title: 'SUPPORT',
+//       description: 'An iconic destination known for its impeccable service.',
+//       image: '/card2.png',
+//       backgroundImage: '/hover-bg2.jpg'
+//     },
+//     {
+//       title: 'PRIME LOCATION',
+//       description: 'Experience the authenticity of local culture & charm.',
+//       image: '/card3.png',
+//       backgroundImage: '/hover-bg3.jpg'
+//     },
+//     {
+//       title: 'SMOOTH CHECK-IN/OUT',
+//       description: 'A soulful retreat that touches your spirit and senses.',
+//       image: '/card4.png',
+//       backgroundImage: '/hover-bg4.jpg'
+//     }
+//   ];
+
+//   const [activeIndex, setActiveIndex] = useState(null);
+
+//   return (
+//     <section className="w-full py-16 px-4 md:px-16 shadow-2xl" style={{ backgroundImage: "url('/benefitsbg_1.png')" }}>
+//       <div className="max-w-6xl mx-auto">
+
+//         {/* Benefits Header */}
+//         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
+//           <div className="relative">
+//             <h2 className="text-4xl font-[Shafarik] uppercase tracking-wider relative">
+//               Benefits
+//               <div className="absolute left-0 bottom-[-8px] w-[50px] h-[3px] bg-orange-500"></div>
+//             </h2>
+//           </div>
+//           <p className="mt-4 md:mt-0 md:ml-8 text-gray-700 leading-relaxed max-w-2xl text-black">
+//             Experience a range of exceptional benefits that redefine your stay, blending luxury, authenticity, and timeless comfort.
+//           </p>
+//         </div>
+
+//         {/* Desktop - 4 Column Grid with Hover Effect */}
+//         <div className="hidden md:grid grid-cols-4 gap-0 w-full h-[450px] border-2 border-orange-500">
+//           {benefits.map((benefit, index) => (
+//             <div
+//               key={index}
+//               className="relative h-full overflow-hidden group cursor-pointer"
+//               onMouseEnter={() => setActiveIndex(index)}
+//               onMouseLeave={() => setActiveIndex(null)}
+//             >
+//               <img src={benefit.image} alt={benefit.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+
+//               {index > 0 && <div className="absolute left-0 top-0 h-full w-[1px] bg-white"></div>}
+
+//               {/* Only show heading when NOT hovered */}
+//               {activeIndex !== index && (
+//                 <div className="absolute bottom-4 left-0 w-full text-center text-black text-lg font-serif uppercase tracking-wide py-2">
+//                   {benefit.title}
+//                 </div>
+//               )}
+
+//               {/* Hover Overlay with Description */}
+//               {activeIndex === index && (
+//                 <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-white text-center p-4 transition-opacity duration-300">
+//                   <h3 className="text-2xl font-serif uppercase">{benefit.title}</h3>
+//                   <p className="text-sm mt-2">{benefit.description}</p>
+//                 </div>
+//               )}
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* Mobile - Horizontal Carousel with Tap Effect */}
+//         <div className="md:hidden flex overflow-x-auto space-x-4 snap-x snap-mandatory">
+//           {benefits.map((benefit, index) => {
+//             const isActive = activeIndex === index;
+
+//             return (
+//               <div
+//                 key={index}
+//                 className="relative w-[80%] shrink-0 snap-center h-[400px] rounded-xl overflow-hidden cursor-pointer border-2 border-orange-500"
+//                 onClick={() => setActiveIndex(isActive ? null : index)}
+//               >
+//                 <img
+//                   src={isActive ? benefit.backgroundImage : benefit.image}
+//                   alt={benefit.title}
+//                   className="w-full h-full object-cover"
+//                 />
+
+//                 {/* Heading (Only if not tapped) */}
+//                 {!isActive && (
+//                   <div className="absolute bottom-4 left-0 w-full text-center text-white text-lg font-serif uppercase tracking-wide bg-black/30 py-2">
+//                     {benefit.title}
+//                   </div>
+//                 )}
+
+//                 {/* On Tap - Show Full Overlay with Description */}
+//                 {isActive && (
+//                   <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-white text-center p-4">
+//                     <h3 className="text-2xl font-serif uppercase">{benefit.title}</h3>
+//                     <p className="text-sm mt-2">{benefit.description}</p>
+//                   </div>
+//                 )}
+//               </div>
+//             );
+//           })}
+//         </div>
+
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default Benefits;
+
+
+import React, { useState, useEffect, useRef } from 'react';
 
 const Benefits = () => {
   const benefits = [
@@ -29,26 +153,68 @@ const Benefits = () => {
   ];
 
   const [activeIndex, setActiveIndex] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  // Observe section visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => sectionRef.current && observer.unobserve(sectionRef.current);
+  }, []);
 
   return (
-    <section className="w-full py-16 px-4 md:px-16 shadow-2xl" style={{ backgroundImage: "url('/benefitsbg_1.png')" }}>
+    <section
+      ref={sectionRef}
+      className="w-full py-16 px-4 md:px-16 shadow-2xl bg-cover bg-center"
+      style={{ backgroundImage: "url('/benefitsbg_2.png')" }}
+    >
       <div className="max-w-6xl mx-auto">
 
         {/* Benefits Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
           <div className="relative">
-            <h2 className="text-4xl font-[Shafarik] uppercase tracking-wider relative">
+            <h2
+              className={`text-5xl font-extrabold uppercase text-orange-500 transition-all duration-1000 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              }`}
+              style={{
+                fontFamily: 'Arial, sans-serif',
+                lineHeight: '1',
+                letterSpacing: '-1px',
+                color: isVisible ? 'white' : 'black',
+              }}
+            >
               Benefits
               <div className="absolute left-0 bottom-[-8px] w-[50px] h-[3px] bg-orange-500"></div>
             </h2>
           </div>
-          <p className="mt-4 md:mt-0 md:ml-8 text-gray-700 leading-relaxed max-w-2xl text-black">
+
+          <p
+            className={`mt-4 md:mt-0 md:ml-8 leading-relaxed max-w-2xl text-white transition-all duration-1000 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
+            style={{
+              color: isVisible ? 'white' : 'black',
+              transitionDelay: '200ms'
+            }}
+          >
             Experience a range of exceptional benefits that redefine your stay, blending luxury, authenticity, and timeless comfort.
           </p>
         </div>
+        <br /><br />
 
         {/* Desktop - 4 Column Grid with Hover Effect */}
-        <div className="hidden md:grid grid-cols-4 gap-0 w-full h-[450px] border-2 border-orange-500">
+        <div
+          className={`hidden md:grid grid-cols-4 gap-0 w-full h-[250px] border-2 border-orange-500 transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+          style={{ transitionDelay: '400ms' }}
+        >
           {benefits.map((benefit, index) => (
             <div
               key={index}
@@ -60,7 +226,7 @@ const Benefits = () => {
 
               {index > 0 && <div className="absolute left-0 top-0 h-full w-[1px] bg-white"></div>}
 
-              {/* Only show heading when NOT hovered */}
+              {/* Heading shown when NOT hovered */}
               {activeIndex !== index && (
                 <div className="absolute bottom-4 left-0 w-full text-center text-black text-lg font-serif uppercase tracking-wide py-2">
                   {benefit.title}
@@ -79,7 +245,12 @@ const Benefits = () => {
         </div>
 
         {/* Mobile - Horizontal Carousel with Tap Effect */}
-        <div className="md:hidden flex overflow-x-auto space-x-4 snap-x snap-mandatory">
+        <div
+          className={`md:hidden flex overflow-x-auto space-x-4 snap-x snap-mandatory transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+          style={{ transitionDelay: '600ms' }}
+        >
           {benefits.map((benefit, index) => {
             const isActive = activeIndex === index;
 
@@ -102,7 +273,7 @@ const Benefits = () => {
                   </div>
                 )}
 
-                {/* On Tap - Show Full Overlay with Description */}
+                {/* On Tap - Full Overlay with Description */}
                 {isActive && (
                   <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-white text-center p-4">
                     <h3 className="text-2xl font-serif uppercase">{benefit.title}</h3>
@@ -120,3 +291,4 @@ const Benefits = () => {
 };
 
 export default Benefits;
+
