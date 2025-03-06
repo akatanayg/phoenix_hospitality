@@ -134,90 +134,113 @@ const Hero = () => {
   const isMobile = windowWidth < 768;
 
   return (
-    <section className="relative w-full h-screen bg-black flex overflow-hidden">
-      {/* Left Side Text */}
-      <div
-        className={`flex flex-col justify-center ${
-          isMobile
-            ? "items-center text-center w-full"
-            : "items-start text-left w-[50%] pl-16"
-        }`}
-      >
-        {/* Animated Heading */}
-        <motion.h1
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className={`uppercase font-bold text-transparent bg-clip-text animate-gradient ${
-            isMobile ? "text-5xl" : "text-8xl"
-          }`}
-          style={{
-            fontFamily: "shafarik",
-            backgroundImage:
-              "linear-gradient(270deg, #f97316,rgb(255, 255, 255), #f97316)",
-            backgroundSize: "400% 400%",
-          }}
-        >
-          Phoenix
-        </motion.h1>
-
-        <motion.h1
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4, duration: 1 }}
-          className={`font-bold uppercase text-orange-500 ${
-            isMobile ? "text-5xl" : "text-8xl"
-          }`}
-          style={{ fontFamily: "shafarik" }}
-        >
-          Hospitality
-        </motion.h1>
-
-        {/* Typing Subtext */}
-        <p
-          className={`mt-4 font-sans text-white leading-relaxed tracking-wide ${
-            isMobile ? "text-base" : "text-xl"
-          } max-w-md`}
-        >
-          {typedText}
-          <span className="animate-blink">|</span>
-        </p>
-
-        {/* Enquire Now Button */}
-        <motion.button
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          className="mt-6 px-6 py-3 rounded-full bg-black text-orange-500 border-2 border-orange-500 font-bold uppercase tracking-wider hover:bg-orange-500 hover:text-white transition duration-300"
-          onClick={() => (window.location.href = "#enquiry")}
-        >
-          Enquire Now
-        </motion.button>
-      </div>
-
-      {/* Right Side - Video (Desktop Only) */}
-      {!isMobile && (
-        <div className="relative w-[50%] h-full flex justify-center items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.2, duration: 1 }}
-            className="relative w-[650px] h-[500px] overflow-hidden rounded-xl shadow-xl"
-          >
-            <video
-              className="w-full h-full object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-              src="/v1.mov"
-              ref={(video) => {
-                if (video) video.playbackRate = 1.5; // This makes it 1.5x faster
-              }}
-            />
-          </motion.div>
+    <section className="relative w-full h-screen overflow-hidden bg-black">
+      {/* Background Video for Mobile */}
+      {isMobile && (
+        <div className="absolute inset-0 flex justify-center items-center z-0">
+          <video
+            className="w-[90%] h-[50%] object-cover opacity-50"
+            autoPlay
+            loop
+            muted
+            playsInline
+            src="/v1.mov"
+            ref={(video) => {
+              if (video) video.playbackRate = 1.5;
+            }}
+          />
         </div>
       )}
+
+      {/* Content Wrapper */}
+      <div
+        className={`relative z-10 w-full h-full flex ${
+          isMobile
+            ? "flex-col items-center justify-center text-center"
+            : "flex-row"
+        }`}
+      >
+        {/* Left Side Text */}
+        <div
+          className={`flex flex-col justify-center ${
+            isMobile ? "w-full p-4" : "w-[50%] pl-16"
+          }`}
+        >
+          {/* Animated Heading */}
+          <motion.h1
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className={`uppercase font-bold text-transparent bg-clip-text animate-gradient ${
+              isMobile ? "text-5xl" : "text-5xl"
+            }`}
+            style={{
+              fontFamily: "open-serif",
+              backgroundImage:
+                "linear-gradient(270deg, #f97316, #fbbf24, #f97316)",
+              backgroundSize: "400% 400%",
+            }}
+          >
+            Phoenix
+          </motion.h1>
+
+          <motion.h1
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 1 }}
+            className={`font-sans font-bold uppercase text-orange-500 ${
+              isMobile ? "text-5xl" : "text-5xl"
+            }`}
+            style={{ fontFamily: "open-serif" }}
+          >
+            Hospitality
+          </motion.h1>
+
+          {/* Typing Subtext */}
+          <p
+            className={`mt-4 font-sans text-white leading-relaxed tracking-wide ${
+              isMobile ? "text-base" : "text-xl"
+            } max-w-md`}
+          >
+            {typedText}
+            <span className="animate-blink">|</span>
+          </p>
+
+          {/* Enquire Now Button */}
+          <motion.button
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.8 }}
+            className="mt-6 px-6 py-3 rounded-full bg-black text-orange-500 border-2 border-orange-500 font-bold uppercase tracking-wider hover:bg-orange-500 hover:text-white transition duration-300"
+            onClick={() => (window.location.href = "#enquiry")}
+          >
+            Enquire Now
+          </motion.button>
+        </div>
+
+        {/* Right Side - Video (Desktop Only) */}
+        {!isMobile && (
+          <div className="relative w-[50%] h-full flex justify-center items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.2, duration: 1 }}
+              className="relative w-[650px] h-[500px] overflow-hidden rounded-xl shadow-xl"
+            >
+              <video
+                className="w-full h-full object-cover"
+                autoPlay
+                muted
+                playsInline
+                src="/v1.mov"
+                ref={(video) => {
+                  if (video) video.playbackRate = 1;
+                }}
+              />
+            </motion.div>
+          </div>
+        )}
+      </div>
 
       {/* Gradient Animation CSS */}
       <style>

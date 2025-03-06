@@ -141,12 +141,12 @@
 // };
 
 // export default Nav;
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [hoveredMenu, setHoveredMenu] = useState(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -169,104 +169,155 @@ const Nav = () => {
   ];
 
   const rooms = [
-    { name: "Deluxe Room", link: "#deluxe", icon: "deluxe" },
-    { name: "Super Deluxe Room", link: "#super-deluxe", icon: "super" },
-    { name: "Suite Room", link: "#suite", icon: "suite" },
+    {
+      name: "Deluxe Room",
+      link: "#deluxe",
+      icon: "deluxe",
+      subtext: "Comfort & elegance",
+    },
+    {
+      name: "Super Deluxe Room",
+      link: "#super-deluxe",
+      icon: "super",
+      subtext: "Luxury & style",
+    },
+    {
+      name: "Suite Room",
+      link: "#suite",
+      icon: "suite",
+      subtext: "Premium experience",
+    },
   ];
 
   const resources = [
-    { name: "FAQ's", link: "#faqs", icon: "faqs" },
-    { name: "Blogs", link: "#blogs", icon: "blogs" },
-    { name: "Testimonials", link: "#testimonials", icon: "testimonials" },
+    {
+      name: "FAQ's",
+      link: "#faqs",
+      icon: "faqs",
+      subtext: "Frequently asked questions",
+    },
+    {
+      name: "Blogs",
+      link: "#blogs",
+      icon: "blogs",
+      subtext: "Our latest updates",
+    },
+    {
+      name: "Testimonials",
+      link: "#testimonials",
+      icon: "testimonials",
+      subtext: "What guests say",
+    },
   ];
 
+  const renderMegaMenu = (title, items) => (
+    <div className="absolute left-[-150px] grid grid-cols-2 w-[500px] bg-transparent rounded-xl mt-2 backdrop-blur-lg bg-opacity-80 p-4 gap-4 border border-orange-500">
+      <p className="col-span-2 font-bold text-lg text-orange-500 border-b border-orange-500 pb-2">
+        {title}
+      </p>
+      {items.map(({ name, link, icon, subtext }) => (
+        <a
+          key={name}
+          href={link}
+          className="flex items-start gap-3 p-3 rounded-lg text-orange-500 hover:bg-orange-500 hover:text-black transition duration-200"
+        >
+          {getIcon(icon)}
+          <div>
+            <p className="font-semibold">{name}</p>
+            <p className="text-xs text-white group-hover:text-gray-400">
+              {subtext}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+  );
+
   return (
-    <nav className="w-full fixed top-0 left-0 z-50 h-[75px] flex items-center bg-black">
+    <nav className="w-full fixed top-0 left-0 z-50 h-[90px] flex items-center bg-black">
       <div className="container mx-auto flex justify-between items-center px-6 relative">
         <img
           src="/logo.png"
           alt="Logo"
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 h-[100px] md:h-[230px] object-contain"
+          className="absolute top-1/2 transform -translate-y-1/2 h-[90px] md:h-[250px] object-contain"
+          style={{ left: "30px" }}
         />
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex flex-grow justify-center items-center space-x-[40px] text-lg font-medium text-[#F17B00] relative left-[60px]">
+        <div className="hidden md:flex flex-grow justify-center items-center space-x-[40px] text-lg font-medium text-orange-500 relative left-[90px]">
           {links.map(({ name, link }) => (
             <a key={name} href={link} className="group relative">
               {name}
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#F17B00] transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
 
-          {/* Rooms Dropdown */}
-          <div className="relative group">
-            <button className="flex items-center gap-2 group">
-              Rooms <ChevronDown size={18} />
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#F17B00] transition-all duration-300 group-hover:w-full"></span>
+          {/* Rooms Mega Menu Wrapper */}
+          <div
+            className="relative"
+            onMouseEnter={() => setHoveredMenu("rooms")}
+            onMouseLeave={() => setHoveredMenu(null)}
+          >
+            <button className="flex items-center gap-2 text-orange-500">
+              Rooms
+              <ChevronDown
+                size={18}
+                className={`transform transition-transform duration-300 ${
+                  hoveredMenu === "rooms" ? "rotate-180" : ""
+                }`}
+              />
             </button>
-            <div className="absolute hidden group-hover:block bg-black rounded-xl mt-1 shadow-xl overflow-hidden w-60 text-[#F17B00]">
-              {rooms.map(({ name, link, icon }) => (
-                <a
-                  key={name}
-                  href={link}
-                  className="flex items-center gap-3 px-6 py-4 hover:bg-[#F17B00] hover:text-black"
-                >
-                  {getIcon(icon)} {name}
-                </a>
-              ))}
-            </div>
+            {hoveredMenu === "rooms" &&
+              renderMegaMenu("Explore Our Rooms", rooms)}
           </div>
 
-          {/* Resources Dropdown */}
-          <div className="relative group">
-            <button className="flex items-center gap-2 group">
-              Resources <ChevronDown size={18} />
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#F17B00] transition-all duration-300 group-hover:w-full"></span>
+          {/* Resources Mega Menu Wrapper */}
+          <div
+            className="relative"
+            onMouseEnter={() => setHoveredMenu("resources")}
+            onMouseLeave={() => setHoveredMenu(null)}
+          >
+            <button className="flex items-center gap-2 text-orange-500">
+              Resources
+              <ChevronDown
+                size={18}
+                className={`transform transition-transform duration-300 ${
+                  hoveredMenu === "resources" ? "rotate-180" : ""
+                }`}
+              />
             </button>
-            <div className="absolute hidden group-hover:block bg-black rounded-xl mt-1 shadow-xl overflow-hidden w-72 text-[#F17B00]">
-              {resources.map(({ name, link, icon }) => (
-                <a
-                  key={name}
-                  href={link}
-                  className="flex items-center gap-3 px-6 py-4 hover:bg-[#F17B00] hover:text-black"
-                >
-                  {getIcon(icon)} {name}
-                </a>
-              ))}
-            </div>
+            {hoveredMenu === "resources" &&
+              renderMegaMenu("Explore Our Resources", resources)}
           </div>
         </div>
 
-        {/* Contact Us Button */}
         <a
           href="#contact"
-          className="hidden md:block px-6 py-3 rounded-full bg-black border-2 border-[#F17B00] text-[#F17B00] font-bold uppercase tracking-wider hover:bg-[#F17B00] hover:text-white transition duration-300"
+          className="hidden md:block px-6 py-3 rounded-full bg-orange-500 border-2 border-orange-500 text-black font-bold uppercase tracking-wider hover:bg-[#F17B00] hover:text-white transition duration-300"
         >
           Contact Us
         </a>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu */}
         <button
           className="md:hidden z-50 absolute right-6 top-1/2 transform -translate-y-1/2"
           onClick={toggleMenu}
         >
           {isOpen ? (
-            <X size={32} className="text-[#F17B00]" />
+            <X size={32} className="text-orange-500" />
           ) : (
-            <Menu size={32} className="text-[#F17B00]" />
+            <Menu size={32} className="text-orange-500" />
           )}
         </button>
       </div>
 
-      {/* Mobile Fullscreen Menu */}
       <div
-        className={`fixed inset-0 bg-black text-[#F17B00] z-40 transition-transform duration-500 ${
+        className={`fixed inset-0 bg-black text-orange-500 z-40 transition-transform duration-500 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="absolute top-6 right-6">
           <button onClick={toggleMenu}>
-            <X size={36} className="text-[#F17B00]" />
+            <X size={36} className="text-orange-500" />
           </button>
         </div>
 
@@ -309,15 +360,6 @@ const Nav = () => {
               </a>
             ))}
           </div>
-
-          {/* Contact Us (no icon) */}
-          <a
-            href="#contact"
-            className="text-2xl font-bold uppercase tracking-wider border-2 border-[#F17B00] px-6 py-3 rounded-full hover:bg-[#F17B00] hover:text-black transition duration-300"
-            onClick={toggleMenu}
-          >
-            Contact Us
-          </a>
         </div>
       </div>
     </nav>

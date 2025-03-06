@@ -1,294 +1,131 @@
-// import React, { useState } from 'react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  FaConciergeBell,
+  FaWifi,
+  FaSwimmingPool,
+  FaUtensils,
+} from "react-icons/fa";
 
-// const Benefits = () => {
-//   const benefits = [
-//     {
-//       title: 'NEARBY ATTRACTIONS',
-//       description: 'A legacy of timeless elegance and luxury hospitality.',
-//       image: '/card1.png',
-//       backgroundImage: '/image2.png'
-//     },
-//     {
-//       title: 'SUPPORT',
-//       description: 'An iconic destination known for its impeccable service.',
-//       image: '/card2.png',
-//       backgroundImage: '/hover-bg2.jpg'
-//     },
-//     {
-//       title: 'PRIME LOCATION',
-//       description: 'Experience the authenticity of local culture & charm.',
-//       image: '/card3.png',
-//       backgroundImage: '/hover-bg3.jpg'
-//     },
-//     {
-//       title: 'SMOOTH CHECK-IN/OUT',
-//       description: 'A soulful retreat that touches your spirit and senses.',
-//       image: '/card4.png',
-//       backgroundImage: '/hover-bg4.jpg'
-//     }
-//   ];
-
-//   const [activeIndex, setActiveIndex] = useState(null);
-
-//   return (
-//     <section className="w-full py-16 px-4 md:px-16 shadow-2xl" style={{ backgroundImage: "url('/benefitsbg_1.png')" }}>
-//       <div className="max-w-6xl mx-auto">
-
-//         {/* Benefits Header */}
-//         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
-//           <div className="relative">
-//             <h2 className="text-4xl font-[Shafarik] uppercase tracking-wider relative">
-//               Benefits
-//               <div className="absolute left-0 bottom-[-8px] w-[50px] h-[3px] bg-orange-500"></div>
-//             </h2>
-//           </div>
-//           <p className="mt-4 md:mt-0 md:ml-8 text-gray-700 leading-relaxed max-w-2xl text-black">
-//             Experience a range of exceptional benefits that redefine your stay, blending luxury, authenticity, and timeless comfort.
-//           </p>
-//         </div>
-
-//         {/* Desktop - 4 Column Grid with Hover Effect */}
-//         <div className="hidden md:grid grid-cols-4 gap-0 w-full h-[450px] border-2 border-orange-500">
-//           {benefits.map((benefit, index) => (
-//             <div
-//               key={index}
-//               className="relative h-full overflow-hidden group cursor-pointer"
-//               onMouseEnter={() => setActiveIndex(index)}
-//               onMouseLeave={() => setActiveIndex(null)}
-//             >
-//               <img src={benefit.image} alt={benefit.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-
-//               {index > 0 && <div className="absolute left-0 top-0 h-full w-[1px] bg-white"></div>}
-
-//               {/* Only show heading when NOT hovered */}
-//               {activeIndex !== index && (
-//                 <div className="absolute bottom-4 left-0 w-full text-center text-black text-lg font-serif uppercase tracking-wide py-2">
-//                   {benefit.title}
-//                 </div>
-//               )}
-
-//               {/* Hover Overlay with Description */}
-//               {activeIndex === index && (
-//                 <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-white text-center p-4 transition-opacity duration-300">
-//                   <h3 className="text-2xl font-serif uppercase">{benefit.title}</h3>
-//                   <p className="text-sm mt-2">{benefit.description}</p>
-//                 </div>
-//               )}
-//             </div>
-//           ))}
-//         </div>
-
-//         {/* Mobile - Horizontal Carousel with Tap Effect */}
-//         <div className="md:hidden flex overflow-x-auto space-x-4 snap-x snap-mandatory">
-//           {benefits.map((benefit, index) => {
-//             const isActive = activeIndex === index;
-
-//             return (
-//               <div
-//                 key={index}
-//                 className="relative w-[80%] shrink-0 snap-center h-[400px] rounded-xl overflow-hidden cursor-pointer border-2 border-orange-500"
-//                 onClick={() => setActiveIndex(isActive ? null : index)}
-//               >
-//                 <img
-//                   src={isActive ? benefit.backgroundImage : benefit.image}
-//                   alt={benefit.title}
-//                   className="w-full h-full object-cover"
-//                 />
-
-//                 {/* Heading (Only if not tapped) */}
-//                 {!isActive && (
-//                   <div className="absolute bottom-4 left-0 w-full text-center text-white text-lg font-serif uppercase tracking-wide bg-black/30 py-2">
-//                     {benefit.title}
-//                   </div>
-//                 )}
-
-//                 {/* On Tap - Show Full Overlay with Description */}
-//                 {isActive && (
-//                   <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-white text-center p-4">
-//                     <h3 className="text-2xl font-serif uppercase">{benefit.title}</h3>
-//                     <p className="text-sm mt-2">{benefit.description}</p>
-//                   </div>
-//                 )}
-//               </div>
-//             );
-//           })}
-//         </div>
-
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Benefits;
-
-
-import React, { useState, useEffect, useRef } from 'react';
+const cardData = [
+  {
+    icon: <FaConciergeBell size={32} />,
+    title: "24/7 Service",
+    description: "Round-the-clock service ensuring all your needs are met.",
+  },
+  {
+    icon: <FaWifi size={32} />,
+    title: "Free Wi-Fi",
+    description:
+      "Stay connected with high-speed internet access throughout your stay.",
+  },
+  {
+    icon: <FaSwimmingPool size={32} />,
+    title: "Luxury Pool",
+    description:
+      "Relax and unwind in our temperature-controlled swimming pool.",
+  },
+  {
+    icon: <FaUtensils size={32} />,
+    title: "Gourmet Dining",
+    description: "Savor gourmet cuisine crafted by top chefs.",
+  },
+];
 
 const Benefits = () => {
-  const benefits = [
-    {
-      title: 'NEARBY ATTRACTIONS',
-      description: 'A legacy of timeless elegance and luxury hospitality.',
-      image: '/card1.png',
-      backgroundImage: '/image2.png'
-    },
-    {
-      title: 'SUPPORT',
-      description: 'An iconic destination known for its impeccable service.',
-      image: '/card2.png',
-      backgroundImage: '/hover-bg2.jpg'
-    },
-    {
-      title: 'PRIME LOCATION',
-      description: 'Experience the authenticity of local culture & charm.',
-      image: '/card3.png',
-      backgroundImage: '/hover-bg3.jpg'
-    },
-    {
-      title: 'SMOOTH CHECK-IN/OUT',
-      description: 'A soulful retreat that touches your spirit and senses.',
-      image: '/card4.png',
-      backgroundImage: '/hover-bg4.jpg'
-    }
-  ];
-
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  // Observe section visibility
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => sectionRef.current && observer.unobserve(sectionRef.current);
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
-      className="w-full py-16 px-4 md:px-16 shadow-2xl bg-cover bg-center"
-      style={{ backgroundImage: "url('/benefitsbg_2.png')" }}
+      className="relative w-full pt-16 pb-16 px-4 md:px-16 bg-cover bg-center shadow-2xl"
+      style={{ backgroundImage: "url('/aboutusbg_4.png')" }}
     >
-      <div className="max-w-6xl mx-auto">
-
-        {/* Benefits Header */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
-          <div className="relative">
-            <h2
-              className={`text-5xl font-extrabold uppercase text-orange-500 transition-all duration-1000 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-              }`}
-              style={{
-                fontFamily: 'Arial, sans-serif',
-                lineHeight: '1',
-                letterSpacing: '-1px',
-                color: isVisible ? 'white' : 'black',
-              }}
-            >
-              Benefits
-              <div className="absolute left-0 bottom-[-8px] w-[50px] h-[3px] bg-orange-500"></div>
-            </h2>
+      {/* Content Wrapper */}
+      <div className="relative z-10 max-w-6xl mx-auto w-full flex flex-col-reverse md:grid md:grid-cols-2 gap-8 items-center">
+        {/* Left - Cards Grid */}
+        <div className="relative grid grid-cols-2 gap-6 md:gap-8 w-full max-w-md mx-auto md:max-w-none">
+          {/* Center Cross Lines */}
+          <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+            <div className="w-1 h-full bg-orange-500 animate-pulse"></div>
+          </div>
+          <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none">
+            <div className="h-1 w-full bg-orange-500 animate-pulse"></div>
           </div>
 
-          <p
-            className={`mt-4 md:mt-0 md:ml-8 leading-relaxed max-w-2xl text-white transition-all duration-1000 ease-out ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-            }`}
-            style={{
-              color: isVisible ? 'white' : 'black',
-              transitionDelay: '200ms'
-            }}
-          >
-            Experience a range of exceptional benefits that redefine your stay, blending luxury, authenticity, and timeless comfort.
-          </p>
-        </div>
-        <br /><br />
-
-        {/* Desktop - 4 Column Grid with Hover Effect */}
-        <div
-          className={`hidden md:grid grid-cols-4 gap-0 w-full h-[250px] border-2 border-orange-500 transition-all duration-1000 ease-out ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}
-          style={{ transitionDelay: '400ms' }}
-        >
-          {benefits.map((benefit, index) => (
-            <div
+          {cardData.map((card, index) => (
+            <motion.div
               key={index}
-              className="relative h-full overflow-hidden group cursor-pointer"
-              onMouseEnter={() => setActiveIndex(index)}
-              onMouseLeave={() => setActiveIndex(null)}
+              className="group relative bg-white/10 backdrop-blur-lg rounded-xl border border-gray-400 shadow-xl p-6 flex flex-col items-center space-y-4 hover:shadow-orange-500/50 transition-shadow"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
             >
-              <img src={benefit.image} alt={benefit.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-
-              {index > 0 && <div className="absolute left-0 top-0 h-full w-[1px] bg-white"></div>}
-
-              {/* Heading shown when NOT hovered */}
-              {activeIndex !== index && (
-                <div className="absolute bottom-4 left-0 w-full text-center text-black text-lg font-serif uppercase tracking-wide py-2">
-                  {benefit.title}
-                </div>
-              )}
-
-              {/* Hover Overlay with Description */}
-              {activeIndex === index && (
-                <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-white text-center p-4 transition-opacity duration-300">
-                  <h3 className="text-2xl font-serif uppercase">{benefit.title}</h3>
-                  <p className="text-sm mt-2">{benefit.description}</p>
-                </div>
-              )}
-            </div>
+              <div className="p-4 rounded-full bg-orange-500 text-black">
+                {card.icon}
+              </div>
+              <h3 className="text-lg font-semibold text-white">{card.title}</h3>
+              <p className="text-center text-xs text-gray-300">
+                {card.description}
+              </p>
+            </motion.div>
           ))}
         </div>
 
-        {/* Mobile - Horizontal Carousel with Tap Effect */}
-        <div
-          className={`md:hidden flex overflow-x-auto space-x-4 snap-x snap-mandatory transition-all duration-1000 ease-out ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}
-          style={{ transitionDelay: '600ms' }}
-        >
-          {benefits.map((benefit, index) => {
-            const isActive = activeIndex === index;
+        {/* Right - Heading + Description */}
+        <div className="flex flex-col items-center md:items-end text-center md:text-right space-y-4 w-full">
+          <motion.h2
+            className="text-orange-500"
+            style={{
+              fontFamily: "sans-serif",
+              fontWeight: "normal",
+              lineHeight: "1.1",
+              letterSpacing: "-1px",
+              position: "relative",
+              display: "inline-block",
+            }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <span className="text-6xl sm:text-6xl md:text-6xl">Benefits</span>
+            <motion.div
+              className="h-[3px] bg-orange-500 absolute right-0 bottom-[-8px]"
+              initial={{ width: 0 }}
+              whileInView={{ width: "100px" }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: true }}
+            />
+          </motion.h2>
 
-            return (
-              <div
-                key={index}
-                className="relative w-[80%] shrink-0 snap-center h-[400px] rounded-xl overflow-hidden cursor-pointer border-2 border-orange-500"
-                onClick={() => setActiveIndex(isActive ? null : index)}
-              >
-                <img
-                  src={isActive ? benefit.backgroundImage : benefit.image}
-                  alt={benefit.title}
-                  className="w-full h-full object-cover"
-                />
-
-                {/* Heading (Only if not tapped) */}
-                {!isActive && (
-                  <div className="absolute bottom-4 left-0 w-full text-center text-white text-lg font-serif uppercase tracking-wide bg-black/30 py-2">
-                    {benefit.title}
-                  </div>
-                )}
-
-                {/* On Tap - Full Overlay with Description */}
-                {isActive && (
-                  <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-white text-center p-4">
-                    <h3 className="text-2xl font-serif uppercase">{benefit.title}</h3>
-                    <p className="text-sm mt-2">{benefit.description}</p>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+          <motion.p
+            className="text-white max-w-xs sm:max-w-md text-xs sm:text-sm md:text-base leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            Experience a range of exceptional benefits that redefine your stay,
+            blending luxury, authenticity, and timeless comfort.
+          </motion.p>
         </div>
+      </div>
 
+      {/* Bottom Bulge */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <svg
+          className="relative block w-full h-16 md:h-24"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            className="fill-black"
+            d="M0,32L48,26.7C96,21,192,11,288,21.3C384,32,480,64,576,80C672,96,768,96,864,85.3C960,75,1056,53,1152,53.3C1248,53,1344,75,1392,85.3L1440,96L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"
+          ></path>
+        </svg>
       </div>
     </section>
   );
 };
 
 export default Benefits;
-
