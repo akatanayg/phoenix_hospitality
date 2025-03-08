@@ -1,3 +1,5 @@
+//HERO SECTION WITH *VIDEO*
+
 // import React, { useEffect, useState } from "react";
 
 // const words = [
@@ -99,6 +101,9 @@
 // };
 
 // export default Hero;
+
+
+//DARK THEME
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
