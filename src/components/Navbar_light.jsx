@@ -9,6 +9,7 @@ import {
   FaCommentDots,
   FaPenNib,
 } from "react-icons/fa";
+import { Link } from "react-router-dom"; // Import Link
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -45,6 +46,8 @@ const Navbar = () => {
           icon: <FaQuestionCircle />,
           title: "FAQ's",
           subtext: "Frequently asked questions",
+          // Correct Link for FAQ page
+          link: "/faq", // Updated URL for FAQ page
         },
         {
           icon: <FaCommentDots />,
@@ -90,9 +93,9 @@ const Navbar = () => {
                     {link.label}
                   </h3>
                   {link.submenu.map((item, index) => (
-                    <a
+                    <Link
                       key={index}
-                      href={`#${item.title.replace(/\s+/g, "").toLowerCase()}`}
+                      to={item.link ? item.link : `#${item.title.replace(/\s+/g, "").toLowerCase()}`}
                       className="flex items-center space-x-3 py-2 border-b last:border-none hover:bg-[#FAF1EB] transition duration-300"
                     >
                       <div className="text-[#E63946] text-xl">{item.icon}</div>
@@ -100,7 +103,7 @@ const Navbar = () => {
                         <p className="text-sm font-semibold">{item.title}</p>
                         <p className="text-xs text-gray-500">{item.subtext}</p>
                       </div>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -149,22 +152,18 @@ const Navbar = () => {
                     <span className="text-[#E63946]">{link.label}</span>
                     <div className="space-y-2">
                       {link.submenu.map((item, index) => (
-                        <a
+                        <Link
                           key={index}
-                          href={`#${item.title
-                            .replace(/\s+/g, "")
-                            .toLowerCase()}`}
+                          to={item.link ? item.link : `#${item.title.replace(/\s+/g, "").toLowerCase()}`}
                           className="flex items-center space-x-3 text-lg text-gray-700 hover:text-[#E63946] transition duration-300"
                           onClick={toggleMobileMenu}
                         >
                           <span className="text-[#E63946]">{item.icon}</span>
                           <div className="flex flex-col items-start">
                             <p className="font-semibold">{item.title}</p>
-                            <p className="text-sm text-gray-500">
-                              {item.subtext}
-                            </p>
+                            <p className="text-sm text-gray-500">{item.subtext}</p>
                           </div>
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>

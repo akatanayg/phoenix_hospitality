@@ -6,11 +6,22 @@ import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
 
 const Inquiry = () => {
-  // Variables for Supabase later
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
-  const [numRooms, setNumRooms] = useState(1);
-  const [message, setMessage] = useState("");
+  const today = new Date();
+
+  const isDateDisabled = (date) => date < today; // Disable past dates
+
+  const handleDateChange = (date) => {
+    if (!checkInDate || (checkInDate && checkOutDate)) {
+      // If check-in is not set or both dates are set, reset selection
+      setCheckInDate(date);
+      setCheckOutDate(null);
+    } else if (!checkOutDate && date > checkInDate) {
+      // Allow check-out selection only after check-in
+      setCheckOutDate(date);
+    }
+  };
 
   const handleClearDates = () => {
     setCheckInDate(null);
@@ -41,7 +52,7 @@ const Inquiry = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 max-w-[1200px] mx-auto"
+          className="flex flex-row gap-2 mt-10 max-w-[1200px] mx-auto"
         >
           {/* Left Section - Note & Phone Numbers */}
           <div className="text-center md:text-left flex flex-col justify-center items-center md:items-start">
@@ -54,47 +65,40 @@ const Inquiry = () => {
             <p className="text-xl font-bold text-[#E63946]">📞 +91 91234 56789</p>
           </div>
 
-          {/* Middle Section - Calendar (Transparent) */}
-          <div className="relative flex flex-col items-center">
-            <div className="absolute top-0 right-0">
-              <button
-                onClick={handleClearDates}
-                className="text-sm text-[#E63946] font-bold hover:underline"
-              >
-                Clear Dates
-              </button>
-            </div>
-            <div className="custom-calendar">
-              <DatePicker
-                selected={checkInDate}
-                onChange={(date) => setCheckInDate(date)}
-                selectsStart
-                startDate={checkInDate}
-                endDate={checkOutDate}
-                minDate={new Date()} // Prevents past dates
-                inline
-                className="w-full"
-              />
-            </div>
-          </div>
+          {/* Vertical Line Divider with Animation */}
+          <motion.div
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={{ opacity: 1, scaleY: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="hidden md:block border-l-4 border-[#E63946] mx-2"
+            style={{
+              transformOrigin: "center center",
+              transform: "scaleY(1)",
+              height: "100%",
+            }}
+          ></motion.div>
 
-          {/* Right Section - Input Fields */}
+          {/* Right Section (Input Fields) - Moved to the second column */}
           <div className="flex flex-col gap-4">
             {/* Check-in & Check-out */}
             <div className="flex flex-col gap-2">
               <DatePicker
                 selected={checkInDate}
-                onChange={(date) => setCheckInDate(date)}
+                onChange={handleDateChange}
                 selectsStart
                 startDate={checkInDate}
                 endDate={checkOutDate}
-                minDate={new Date()}
+                minDate={today}
                 placeholderText="Select Check-in Date"
                 className="px-4 py-2 rounded-lg border border-gray-400 text-center bg-transparent text-gray-700 w-full"
               />
               <DatePicker
                 selected={checkOutDate}
-                onChange={(date) => setCheckOutDate(date)}
+                onChange={(date) => {
+                  if (checkInDate && date > checkInDate) {
+                    setCheckOutDate(date);
+                  }
+                }}
                 selectsEnd
                 startDate={checkInDate}
                 endDate={checkOutDate}
@@ -109,8 +113,6 @@ const Inquiry = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.8 }}
-              value={numRooms}
-              onChange={(e) => setNumRooms(e.target.value)}
               className="px-4 py-2 rounded-lg border border-gray-400 text-center bg-transparent text-gray-700"
             >
               {[1, 2, 3, 4, 5].map((num) => (
@@ -125,8 +127,6 @@ const Inquiry = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 1 }}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
               placeholder="Enter your message..."
               className="px-4 py-2 rounded-lg border border-gray-400 bg-transparent text-gray-700 h-[100px] resize-none"
             ></motion.textarea>
@@ -144,6 +144,38 @@ const Inquiry = () => {
             >
               Submit Inquiry
             </motion.button>
+          </div>
+
+          {/* Middle Section (Calendar) - Moved to the third column */}
+          <div className="relative flex flex-col items-center mt-[80px]">
+            <div className="absolute top-0 right-0">
+              <button
+                onClick={handleClearDates}
+                className="text-sm text-[#E63946] font-bold hover:underline"
+              >
+                Clear Dates
+              </button>
+            </div>
+            <div className="custom-calendar transform translate-x-[-50px] scale-[1.2]">
+              <DatePicker
+                selected={checkInDate}
+                onChange={handleDateChange}
+                selectsRange={false}
+                startDate={checkInDate}
+                endDate={checkOutDate}
+                minDate={today}
+                highlightDates={
+                  checkInDate && checkOutDate
+                    ? [{ start: checkInDate, end: checkOutDate }]
+                    : checkInDate
+                    ? [checkInDate]
+                    : []
+                }
+                filterDate={isDateDisabled}
+                inline
+                className="w-full"
+              />
+            </div>
           </div>
         </motion.div>
       </motion.section>

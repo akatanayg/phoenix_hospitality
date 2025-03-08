@@ -21,4 +21,32 @@ html, body {
       transform: translateY(0);
     }
   }
+  .custom-calendar .react-datepicker {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  .custom-calendar .react-datepicker__header {
+    background: transparent !important;
+    border-bottom: none !important;
+  }
+  
+  .custom-calendar .react-datepicker__day {
+    color: #333 !important;
+  }
+  
+  .custom-calendar .react-datepicker__day--selected {
+    background-color: rgba(230, 57, 70, 0.8) !important;
+    color: white !important;
+    border-radius: 50%;
+  }
+  
+  .custom-calendar .react-datepicker__day--in-range {
+    background-color: rgba(230, 57, 70, 0.3) !important;
+  }
+  
+  .custom-calendar .react-datepicker__day:hover {
+    background-color: rgba(230, 57, 70, 0.5) !important;
+  }
   
