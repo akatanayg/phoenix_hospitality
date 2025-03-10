@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
@@ -32,6 +32,20 @@ const faqs = [
 
 const FAQPage = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const [typedText, setTypedText] = useState("");
+  const typingText = "Questions!";
+  const typingSpeed = 100; // Speed of typing effect (milliseconds per letter)
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setTypedText(typingText.slice(0, index));
+      index++;
+      if (index > typingText.length) clearInterval(interval);
+    }, typingSpeed);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -40,7 +54,8 @@ const FAQPage = () => {
   return (
     <div className="bg-[#FAF1EB] min-h-screen flex flex-col">
       {/* Navbar */}
-      <Navbar /> <br /><br />
+      <Navbar /> <br />
+      <br />
 
       {/* FAQ Content */}
       <div className="flex flex-col items-center p-6 md:p-12 flex-grow">
@@ -49,9 +64,21 @@ const FAQPage = () => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-[100px] leading-[107px] font-black uppercase text-black text-center tracking-[5px] mb-6"
+          className="text-[50px] font-black text-black text-center mb-6"
+          style={{ fontFamily: "sans-serif" }}
         >
-          PHOENIX <br /> hospitality
+          Frequently asked{" "}
+          <br />
+          <span
+            style={{
+              background: "linear-gradient(to right, #FF5733,rgb(236, 45, 112), #8B0000)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontWeight: "bold",
+            }}
+          >
+            {typedText}
+          </span>
         </motion.h1>
 
         {/* Subtext */}
@@ -62,7 +89,13 @@ const FAQPage = () => {
         {/* FAQs Section */}
         <div className="mt-10 max-w-4xl w-full space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-gray-300 pb-4">
+            <motion.div
+              key={index}
+              className="border-b border-gray-300 pb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
               <button
                 onClick={() => toggleFAQ(index)}
                 className="w-full text-left flex justify-between items-center py-4 text-lg font-semibold text-[#333333] transition"
@@ -78,7 +111,7 @@ const FAQPage = () => {
               >
                 {faq.answer}
               </motion.p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

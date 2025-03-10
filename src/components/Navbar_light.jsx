@@ -17,8 +17,8 @@ const Navbar = () => {
   const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
 
   const menuLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About Us", href: "#about" },
+    { label: "Home", href:"/" },
+    { label: "About Us", href: "/AboutUs_light" },
     {
       label: "Rooms",
       submenu: [
@@ -26,16 +26,19 @@ const Navbar = () => {
           icon: <FaBed />,
           title: "Deluxe Room",
           subtext: "Cozy and comfortable stay",
+          link: "/DeluxeRoom_light",
         },
         {
           icon: <FaBed />,
           title: "Super Deluxe Room",
           subtext: "Luxury with elegance",
+          link: "/SuperDeluxeRoom_light",
         },
         {
           icon: <FaBed />,
           title: "Suite Room",
           subtext: "Experience ultimate luxury",
+          link: "/SuitRoom_light",
         },
       ],
     },
@@ -46,19 +49,25 @@ const Navbar = () => {
           icon: <FaQuestionCircle />,
           title: "FAQ's",
           subtext: "Frequently asked questions",
-          // Correct Link for FAQ page
-          link: "/faq", // Updated URL for FAQ page
+          link: "/faq", //
         },
         {
           icon: <FaCommentDots />,
           title: "Testimonials",
           subtext: "What our guests say",
+          link: "/Testimonials_light",
         },
-        { icon: <FaImages />, title: "Gallery", subtext: "See our property" },
+        {
+          icon: <FaImages />,
+          title: "Gallery",
+          subtext: "See our property",
+          link: "/Gallery_light",
+        },
         {
           icon: <FaPenNib />,
           title: "Blogs",
           subtext: "Travel stories & tips",
+          link: "/Blogs_light",
         },
       ],
     },
@@ -95,7 +104,11 @@ const Navbar = () => {
                   {link.submenu.map((item, index) => (
                     <Link
                       key={index}
-                      to={item.link ? item.link : `#${item.title.replace(/\s+/g, "").toLowerCase()}`}
+                      to={
+                        item.link
+                          ? item.link
+                          : `#${item.title.replace(/\s+/g, "").toLowerCase()}`
+                      }
                       className="flex items-center space-x-3 py-2 border-b last:border-none hover:bg-[#FAF1EB] transition duration-300"
                     >
                       <div className="text-[#E63946] text-xl">{item.icon}</div>
@@ -154,14 +167,22 @@ const Navbar = () => {
                       {link.submenu.map((item, index) => (
                         <Link
                           key={index}
-                          to={item.link ? item.link : `#${item.title.replace(/\s+/g, "").toLowerCase()}`}
+                          to={
+                            item.link
+                              ? item.link
+                              : `#${item.title
+                                  .replace(/\s+/g, "")
+                                  .toLowerCase()}`
+                          }
                           className="flex items-center space-x-3 text-lg text-gray-700 hover:text-[#E63946] transition duration-300"
                           onClick={toggleMobileMenu}
                         >
                           <span className="text-[#E63946]">{item.icon}</span>
                           <div className="flex flex-col items-start">
                             <p className="font-semibold">{item.title}</p>
-                            <p className="text-sm text-gray-500">{item.subtext}</p>
+                            <p className="text-sm text-gray-500">
+                              {item.subtext}
+                            </p>
                           </div>
                         </Link>
                       ))}
