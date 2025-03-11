@@ -72,7 +72,7 @@ const BlogsCarousel = () => {
           {/* Read All Blogs Button */}
           <div className="pt-4">
             <a
-              href="#"
+              href="/blogs"
               className={`inline-block py-3 px-6 rounded-full font-medium tracking-wide transition duration-300 ${darkMode ? "bg-red-500 text-white hover:bg-red-600" : "bg-[#E63946] text-white hover:bg-[#D62828]"}`}
             >
               Read All Blogs

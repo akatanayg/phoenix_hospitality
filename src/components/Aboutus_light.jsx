@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useDarkMode } from "../DarkModeContext"; // Import global dark mode state
+import { useDarkMode } from "../DarkModeContext";
+import { Link } from "react-router-dom"; // Import global dark mode state
 
 const AboutUs = () => {
   const { darkMode } = useDarkMode(); // Get dark mode state directly
@@ -52,7 +53,7 @@ const AboutUs = () => {
                   darkMode ? "text-red-400" : ""
                 }`}
               >
-                Look on the map
+                <Link to="/aboutus">Read More</Link>
               </span>
             </p>
           </div>

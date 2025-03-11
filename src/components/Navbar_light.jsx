@@ -94,7 +94,7 @@ const Navbar = () => {
       } ${isScrolled ? "shadow-md" : ""}`}
     >
       {/* Logo with Homepage Link */}
-      <Link to="/" className="h-[60px] flex items-center md:ml-[80px]">
+      <Link to="/" className="h-[75px] flex items-center md:ml-[80px]">
         <img
           src="/logo.png"
           alt="Phoenix Logo"
@@ -105,12 +105,17 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <ul className="hidden md:flex space-x-10 font-medium text-base tracking-wide">
         {menuLinks.map((link) => (
-          <li key={link.label} className="relative group cursor-pointer">
+          <li
+            key={link.label}
+            className="relative group cursor-pointer hover:scale-105 transition-transform duration-300"
+          >
             {link.submenu ? (
               <div className="group relative">
-                <span className="cursor-pointer">{link.label}</span>
+                <span className="cursor-pointer relative hover:text-[#E63946] transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#E63946] after:transition-all after:duration-300 group-hover:after:w-full">
+                  {link.label}
+                </span>
                 <div
-                  className={`absolute top-full left-0 w-[280px] shadow-lg rounded-lg p-4 hidden group-hover:block z-50 ${
+                  className={`absolute top-full left-0 w-[280px] shadow-lg rounded-lg p-4 hidden group-hover:block z-50 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 backdrop-blur-md bg-opacity-80 ${
                     darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
                   }`}
                 >
@@ -121,7 +126,7 @@ const Navbar = () => {
                     <Link
                       key={index}
                       to={item.link}
-                      className="flex items-center space-x-3 py-2 border-b last:border-none"
+                      className="flex items-center space-x-3 py-2 border-b last:border-none relative hover:text-[#E63946] transition-colors duration-300"
                     >
                       <div className="text-[#E63946] text-xl">{item.icon}</div>
                       <div>
@@ -139,7 +144,12 @@ const Navbar = () => {
                 </div>
               </div>
             ) : (
-              <a href={link.href}>{link.label}</a>
+              <a
+                href={link.href}
+                className="relative hover:text-[#E63946] transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#E63946] after:transition-all after:duration-300 hover:after:w-full"
+              >
+                {link.label}
+              </a>
             )}
           </li>
         ))}
@@ -148,16 +158,19 @@ const Navbar = () => {
       {/* Dark Mode Toggle - Positioned 10px left of Contact Us */}
       <button
         onClick={toggleDarkMode}
-        className="hidden md:flex items-center justify-center w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-800 relative transition-all duration-300 mr-[-380px]"
+        className="hidden md:flex items-center justify-between w-14 h-7 rounded-full transition-all duration-300 ease-in-out shadow-md hover:scale-105 active:scale-95
+    bg-gray-300 dark:bg-gray-800 dark:shadow-yellow-400/30 relative mr-[-380px]"
       >
+        {/* Toggle Ball */}
         <div
-          className={`absolute left-1 w-5 h-5 flex items-center justify-center rounded-full shadow-md transform transition-all duration-300 ${
-            darkMode
-              ? "translate-x-6 bg-yellow-400 text-gray-900"
-              : "bg-white text-gray-600"
-          }`}
+          className={`absolute top-[2px] left-[2px] w-6 h-6 flex items-center justify-center rounded-full shadow-md transform transition-all duration-300 ease-in-out
+      ${
+        darkMode
+          ? "translate-x-full bg-yellow-400 text-gray-900 shadow-yellow-400/50 rotate-[360deg]"
+          : "bg-white text-gray-600 shadow-gray-400/50 rotate-0"
+      }`}
         >
-          {darkMode ? <FaMoon size={12} /> : <FaSun size={12} />}
+          {darkMode ? <FaMoon size={14} /> : <FaSun size={14} />}
         </div>
       </button>
 
@@ -176,16 +189,24 @@ const Navbar = () => {
         {/* Mobile Dark Mode Toggle */}
         <button
           onClick={toggleDarkMode}
-          className="mr-4 w-12 h-6 flex items-center justify-center rounded-full bg-gray-300 dark:bg-gray-800 relative transition-all duration-300"
+          className={`relative right-[35px] w-14 h-7 flex items-center rounded-full transition-all duration-300 ease-in-out shadow-md hover:scale-105 active:scale-95
+    ${
+      darkMode
+        ? "bg-gray-700 shadow-yellow-400/30"
+        : "bg-gradient-to-r from-gray-200 to-gray-300 shadow-gray-400/30"
+    }
+  `}
         >
+          {/* Toggle Ball */}
           <div
-            className={`absolute left-1 w-5 h-5 flex items-center justify-center rounded-full shadow-md transform transition-all duration-300 ${
-              darkMode
-                ? "translate-x-6 bg-yellow-400 text-gray-900"
-                : "bg-white text-gray-600"
-            }`}
+            className={`absolute left-1 w-6 h-6 flex items-center justify-center rounded-full shadow-lg transform transition-all duration-300 ease-in-out
+      ${
+        darkMode
+          ? "translate-x-7 bg-yellow-400 text-gray-900 shadow-yellow-400/50 rotate-[360deg]"
+          : "bg-white text-gray-600 shadow-gray-400/50 rotate-0"
+      }`}
           >
-            {darkMode ? <FaMoon size={12} /> : <FaSun size={12} />}
+            {darkMode ? <FaMoon size={14} /> : <FaSun size={14} />}
           </div>
         </button>
 
