@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
+import { useDarkMode } from "../DarkModeContext";
 
 const faqs = [
   {
@@ -31,6 +32,7 @@ const faqs = [
 ];
 
 const FAQPage = () => {
+  const { darkMode } = useDarkMode();
   const [openIndex, setOpenIndex] = useState(null);
   const [typedText, setTypedText] = useState("");
   const typingText = "Questions!";
@@ -46,13 +48,20 @@ const FAQPage = () => {
 
     return () => clearInterval(interval);
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="bg-[#FAF1EB] min-h-screen flex flex-col">
+    <div
+      className={`min-h-screen flex flex-col transition-colors duration-300 ${
+        darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
+      }`}
+    >
       {/* Navbar */}
       <Navbar /> <br />
       <br />
@@ -64,14 +73,14 @@ const FAQPage = () => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-[50px] font-black text-black text-center mb-6"
+          className="text-[50px] font-black text-center mb-6"
           style={{ fontFamily: "sans-serif" }}
         >
-          Frequently asked{" "}
-          <br />
+          Frequently asked <br />
           <span
             style={{
-              background: "linear-gradient(to right, #FF5733,rgb(236, 45, 112), #8B0000)",
+              background:
+                "linear-gradient(to right, #FF5733,rgb(236, 45, 112), #8B0000)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               fontWeight: "bold",
@@ -82,7 +91,11 @@ const FAQPage = () => {
         </motion.h1>
 
         {/* Subtext */}
-        <p className="text-xl font-semibold text-[#E63946] text-center max-w-2xl">
+        <p
+          className={`text-xl font-semibold text-center max-w-2xl ${
+            darkMode ? "text-red-400" : "text-[#E63946]"
+          }`}
+        >
           Everything you need to know before booking your stay.
         </p>
 
@@ -91,23 +104,35 @@ const FAQPage = () => {
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              className="border-b border-gray-300 pb-4"
+              className={`border-b pb-4 ${
+                darkMode ? "border-gray-600" : "border-gray-300"
+              }`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full text-left flex justify-between items-center py-4 text-lg font-semibold text-[#333333] transition"
+                className={`w-full text-left flex justify-between items-center py-4 text-lg font-semibold transition ${
+                  darkMode ? "text-white" : "text-[#333333]"
+                }`}
               >
                 {faq.question}
-                <span className="text-[#E63946]">{openIndex === index ? "-" : "+"}</span>
+                <span className={darkMode ? "text-red-400" : "text-[#E63946]"}>
+                  {openIndex === index ? "-" : "+"}
+                </span>
               </button>
               <motion.p
                 initial={{ opacity: 0, height: 0 }}
-                animate={openIndex === index ? { opacity: 1, height: "auto" } : { opacity: 0, height: 0 }}
+                animate={
+                  openIndex === index
+                    ? { opacity: 1, height: "auto" }
+                    : { opacity: 0, height: 0 }
+                }
                 transition={{ duration: 0.3 }}
-                className="text-[#555] text-base"
+                className={`text-base ${
+                  darkMode ? "text-gray-300" : "text-[#555]"
+                }`}
               >
                 {faq.answer}
               </motion.p>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
+import { useDarkMode } from "../DarkModeContext";
 
 const sections = [
   {
@@ -37,31 +38,42 @@ const sections = [
 ];
 
 const GalleryPage = () => {
+  const { darkMode } = useDarkMode();
   const [typedText, setTypedText] = useState("");
   const fullText = "Gallery";
   const typingSpeed = 150; // Speed of typing effect
 
   useEffect(() => {
     let i = 0;
-    setTypedText(""); // Reset before starting
+    setTypedText("");
+    
 
     const interval = setInterval(() => {
       if (i < fullText.length) {
-        setTypedText(fullText.substring(0, i + 1)); // Properly update text
+        setTypedText(fullText.substring(0, i + 1));
         i++;
       } else {
         clearInterval(interval);
       }
     }, typingSpeed);
+    
 
     return () => clearInterval(interval);
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="bg-[#FAF1EB] min-h-screen flex flex-col items-center">
+    <div
+      className={`min-h-screen flex flex-col items-center transition-colors duration-300 ${
+        darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
+      }`}
+    >
       {/* Navbar */}
       <Navbar /> <br />
       <br />
+
       {/* Centered Heading with Typing Effect */}
       <motion.div
         className="w-full text-center mt-10 mb-10"
@@ -70,37 +82,42 @@ const GalleryPage = () => {
         transition={{ duration: 1 }}
       >
         <h1
-          className="text-[50px] font-black text-black leading-tight"
+          className="text-[50px] font-black leading-tight"
           style={{ fontFamily: "sans-serif" }}
         >
-          A glimpse into our <br />
+          A Glimpse into our <br />
           <span
             style={{
               background:
                 "linear-gradient(to right, #FF5733, rgb(236, 45, 112), #8B0000)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-              fontWeight: "bold", // Unbolded text
+              fontWeight: "bold",
             }}
           >
             {typedText}
           </span>
         </h1>
       </motion.div>
+
       {/* Gallery Sections */}
       <div className="max-w-5xl w-full px-6">
         {sections.map((section, index) => (
           <div key={index} className="mb-12">
-            {/* Section Heading with Smaller Animated Underline */}
+            {/* Section Heading with Animated Underline */}
             <motion.h2
-              className="text-3xl font-bold text-[#333] relative mb-6"
+              className={`text-3xl font-bold relative mb-6 ${
+                darkMode ? "text-white" : "text-[#333]"
+              }`}
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: index * 0.3 }}
             >
               {section.title}
               <motion.div
-                className="absolute bottom-[-5px] left-0 h-[2px] bg-[#E63946] w-[40px]"
+                className={`absolute bottom-[-5px] left-0 h-[2px] ${
+                  darkMode ? "bg-red-400" : "bg-[#E63946]"
+                } w-[40px]`}
                 initial={{ width: "0px" }}
                 animate={{ width: "40px" }}
                 transition={{ duration: 1, delay: index * 0.3 }}
@@ -112,7 +129,9 @@ const GalleryPage = () => {
               {section.images.map((src, imgIndex) => (
                 <motion.div
                   key={imgIndex}
-                  className="overflow-hidden rounded-lg shadow-md"
+                  className={`overflow-hidden rounded-lg shadow-md ${
+                    darkMode ? "shadow-gray-800" : "shadow-lg"
+                  }`}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: imgIndex * 0.1 }}
@@ -129,6 +148,7 @@ const GalleryPage = () => {
           </div>
         ))}
       </div>
+
       {/* Footer */}
       <Footer />
     </div>

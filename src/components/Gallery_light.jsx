@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
+import { useDarkMode } from "../DarkModeContext";
 
-// Gallery Images - Replace with your actual images
 const images = [
   "/c1.jpg",
   "/c3.jpg",
@@ -10,15 +10,13 @@ const images = [
   "/c1.jpg",
   "/c3.jpg",
 ];
-
-// Duplicate images to create the seamless loop
 const infiniteImages = [...images, ...images];
 
 const Gallery = () => {
+  const { darkMode } = useDarkMode();
   const carouselRef = useRef(null);
   const controls = useAnimation();
 
-  // Start infinite scroll animation
   useEffect(() => {
     controls.start({
       x: ["0%", "-50%"],
@@ -27,7 +25,11 @@ const Gallery = () => {
   }, [controls]);
 
   return (
-    <section className="bg-[#FAF1EB] w-full py-16 px-4 sm:px-6 md:px-16 overflow-hidden">
+    <section
+      className={`w-full py-16 px-4 sm:px-6 md:px-16 transition-colors duration-300 ${
+        darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
+      }`}
+    >
       <div className="max-w-6xl mx-auto relative flex flex-col space-y-8">
         {/* Heading Block (Right-aligned) */}
         <motion.div
@@ -38,10 +40,14 @@ const Gallery = () => {
           className="w-full flex justify-end"
         >
           <div className="text-right">
-            <h2 className="text-[36px] sm:text-[50px] md:text-[80px] leading-none font-extrabold uppercase text-black tracking-[5px]">
+            <h2 className="text-[36px] sm:text-[50px] md:text-[80px] font-extrabold uppercase tracking-[5px]">
               Gallery
             </h2>
-            <p className="text-[#E63946] text-[18px] sm:text-[22px] font-medium mt-3 max-w-sm ml-auto">
+            <p
+              className={`text-[18px] sm:text-[22px] font-medium mt-3 max-w-sm ml-auto ${
+                darkMode ? "text-red-400" : "text-[#E63946]"
+              }`}
+            >
               A glimpse into the beauty and charm of our property.
             </p>
           </div>
@@ -50,32 +56,42 @@ const Gallery = () => {
         {/* Carousel Wrapper with Fades */}
         <div className="relative w-full overflow-hidden">
           {/* Left Fade */}
-          <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-[#FAF1EB] to-transparent pointer-events-none z-10"></div>
+          <div
+            className={`absolute left-0 top-0 h-full w-16 pointer-events-none z-10 ${
+              darkMode
+                ? "bg-gradient-to-r from-gray-900 to-transparent"
+                : "bg-gradient-to-r from-[#FAF1EB] to-transparent"
+            }`}
+          ></div>
 
           {/* Right Fade */}
-          <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-[#FAF1EB] to-transparent pointer-events-none z-10"></div>
+          <div
+            className={`absolute right-0 top-0 h-full w-16 pointer-events-none z-10 ${
+              darkMode
+                ? "bg-gradient-to-l from-gray-900 to-transparent"
+                : "bg-gradient-to-l from-[#FAF1EB] to-transparent"
+            }`}
+          ></div>
 
           {/* Infinite Scrolling Carousel */}
-          <div className="w-full overflow-hidden">
-            <motion.div
-              ref={carouselRef}
-              animate={controls}
-              className="flex space-x-4"
-            >
-              {infiniteImages.map((src, idx) => (
-                <div
-                  key={idx}
-                  className="flex-shrink-0 w-[300px] h-[200px] sm:w-[400px] sm:h-[300px] rounded-lg overflow-hidden shadow-xl"
-                >
-                  <img
-                    src={src}
-                    alt={`Gallery image ${idx % images.length + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-            </motion.div>
-          </div>
+          <motion.div
+            ref={carouselRef}
+            animate={controls}
+            className="flex space-x-4"
+          >
+            {infiniteImages.map((src, idx) => (
+              <div
+                key={idx}
+                className="flex-shrink-0 w-[300px] h-[200px] sm:w-[400px] sm:h-[300px] rounded-lg overflow-hidden shadow-lg"
+              >
+                <img
+                  src={src}
+                  alt={`Gallery image ${(idx % images.length) + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

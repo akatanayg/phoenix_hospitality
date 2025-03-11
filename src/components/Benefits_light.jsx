@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useDarkMode } from "../DarkModeContext";
 
 const amenities = [
   {
@@ -45,6 +46,7 @@ const amenities = [
 ];
 
 const Amenities = () => {
+  const { darkMode } = useDarkMode();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -54,10 +56,8 @@ const Amenities = () => {
     return () => clearInterval(autoSwitch);
   }, []);
 
-  const handleClick = (index) => setCurrent(index);
-
   return (
-    <section className="w-full bg-[#FAF1EB] py-8 px-4 sm:px-6 md:px-16">
+    <section className={`w-full py-8 px-4 sm:px-6 md:px-16 transition-colors duration-300 ${darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"}`}>
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Heading + Subtext */}
         <motion.div
@@ -67,31 +67,30 @@ const Amenities = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-[50px] sm:text-[80px] font-extrabold uppercase leading-none text-black tracking-[2px] md:tracking-[5px]"><br />
+          <h2 className="text-[50px] sm:text-[80px] font-extrabold uppercase leading-none tracking-[2px] md:tracking-[5px]">
             AMENITIES
           </h2>
-          <p className="text-[#E63946] font-medium mt-1 text-[14px] sm:text-[16px]">
+          <p className={`font-medium mt-1 text-[14px] sm:text-[16px] ${darkMode ? "text-red-400" : "text-[#E63946]"}`}>
             Discover the range of facilities we offer
-          </p><br />
+          </p>
         </motion.div>
 
-        {/* Split Layout */}
+        {/* Content */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start md:items-stretch">
           {/* Left Side - Links + Text */}
           <div className="col-span-5 flex flex-col">
-            {/* Links (Forced to Top with larger gap) */}
             <div className="flex flex-wrap justify-center gap-12 md:justify-start">
               {amenities.map((item, index) => (
                 <motion.button
                   key={index}
-                  onClick={() => handleClick(index)}
+                  onClick={() => setCurrent(index)}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={`text-[14px] sm:text-[16px] font-medium transition-all duration-300 ${
                     index === current
-                      ? "text-black font-bold underline decoration-[#E63946] underline-offset-4 decoration-2"
-                      : "text-[#888] hover:text-black"
+                      ? `font-bold underline decoration-2 ${darkMode ? "text-white decoration-red-400" : "text-black decoration-[#E63946]"}`
+                      : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
                   {item.title}
@@ -99,7 +98,7 @@ const Amenities = () => {
               ))}
             </div>
 
-            {/* Text (30px below links) */}
+            {/* Text */}
             <div className="mt-6 md:mt-[30px]">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -108,7 +107,7 @@ const Amenities = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ duration: 0.6 }}
-                  className="text-[12px] sm:text-[14px] text-[#555] space-y-3 leading-relaxed"
+                  className={`text-[12px] sm:text-[14px] space-y-3 leading-relaxed ${darkMode ? "text-gray-300" : "text-[#555]"}`}
                 >
                   <p>{amenities[current].description[0]}</p>
                   <p>{amenities[current].description[1]}</p>
@@ -116,7 +115,8 @@ const Amenities = () => {
               </AnimatePresence>
             </div>
           </div>
-          {/* Right Side - Shortened Image with Gap */}
+
+          {/* Right Side - Image */}
           <div className="col-span-7 flex justify-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -125,7 +125,7 @@ const Amenities = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6 }}
-                className="relative w-[80%] max-w-[450px] h-[180px] sm:h-[250px] md:h-[300px] overflow-hidden rounded-lg shadow-lg"
+                className={`relative w-[80%] max-w-[450px] h-[180px] sm:h-[250px] md:h-[300px] overflow-hidden rounded-lg shadow-lg ${darkMode ? "shadow-gray-800" : "shadow-lg"}`}
               >
                 <img
                   src={amenities[current].image}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
+import { useDarkMode } from "../DarkModeContext";
 
 const testimonials = [
   {
@@ -67,9 +68,10 @@ const testimonials = [
 ];
 
 const typingText = "Testimonials";
-const typingSpeed = 100; // Speed of typing effect (milliseconds per letter)
+const typingSpeed = 100;
 
 const Testimonials = () => {
+  const { darkMode } = useDarkMode();
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
@@ -79,12 +81,20 @@ const Testimonials = () => {
       index++;
       if (index > typingText.length) clearInterval(interval);
     }, typingSpeed);
+    
 
     return () => clearInterval(interval);
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="bg-[#FAF1EB] min-h-screen flex flex-col items-center">
+    <div
+      className={`min-h-screen flex flex-col items-center transition-colors duration-300 ${
+        darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
+      }`}
+    >
       {/* Navbar */}
       <Navbar />
 
@@ -120,7 +130,9 @@ const Testimonials = () => {
               {testimonials.slice(colIndex * 4, colIndex * 4 + 4).map((testimonial, index) => (
                 <motion.div
                   key={index}
-                  className="p-6 rounded-xl text-center border border-gray-300 shadow-md bg-transparent flex flex-col items-center transition-transform w-[90%] md:w-full"
+                  className={`p-6 rounded-xl text-center border shadow-md bg-transparent flex flex-col items-center transition-transform w-[90%] md:w-full ${
+                    darkMode ? "border-gray-600 bg-gray-800 text-white shadow-gray-700" : "border-gray-300 bg-white text-black"
+                  }`}
                   whileHover={{
                     scale: 1.05,
                     boxShadow: "0px 0px 20px rgba(255, 87, 51, 0.8)",
@@ -135,13 +147,24 @@ const Testimonials = () => {
                     alt={testimonial.name}
                     className="w-16 h-16 rounded-full mb-4 border-2 border-[#FF5733]"
                   />
-                  <p className="text-lg font-semibold text-gray-800">"{testimonial.review}"</p>
-                  <p className="mt-2 text-sm text-gray-600">- {testimonial.name}</p>
+                  <p className={`text-lg font-semibold ${darkMode ? "text-gray-300" : "text-gray-800"}`}>"{testimonial.review}"</p>
+                  <p className={`mt-2 text-sm ${darkMode ? "text-gray-400" : "text-gray-600"}`}>- {testimonial.name}</p>
                 </motion.div>
               ))}
             </div>
           ))}
       </div>
+
+      {/* "And more....." Text */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="mt-12 text-[40px] font-black text-center"
+        style={{ fontFamily: "sans-serif" }}
+      >
+        and more.....
+      </motion.p>
 
       {/* Footer */}
       <Footer />

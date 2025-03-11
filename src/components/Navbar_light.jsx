@@ -1,24 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaBars,
   FaTimes,
   FaBed,
-  FaBookOpen,
   FaQuestionCircle,
   FaImages,
   FaCommentDots,
   FaPenNib,
+  FaMoon,
+  FaSun,
 } from "react-icons/fa";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
+import { useDarkMode } from "../DarkModeContext";
 
 const Navbar = () => {
+  const { darkMode, setDarkMode } = useDarkMode();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
+  const toggleDarkMode = () => setDarkMode((prev) => !prev);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const menuLinks = [
-    { label: "Home", href:"/" },
-    { label: "About Us", href: "/AboutUs_light" },
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/aboutus" },
     {
       label: "Rooms",
       submenu: [
@@ -26,19 +40,19 @@ const Navbar = () => {
           icon: <FaBed />,
           title: "Deluxe Room",
           subtext: "Cozy and comfortable stay",
-          link: "/DeluxeRoom_light",
+          link: "/deluxeroom",
         },
         {
           icon: <FaBed />,
           title: "Super Deluxe Room",
           subtext: "Luxury with elegance",
-          link: "/SuperDeluxeRoom_light",
+          link: "/superdeluxeroom",
         },
         {
           icon: <FaBed />,
           title: "Suite Room",
           subtext: "Experience ultimate luxury",
-          link: "/SuitRoom_light",
+          link: "/suiteroom",
         },
       ],
     },
@@ -49,167 +63,198 @@ const Navbar = () => {
           icon: <FaQuestionCircle />,
           title: "FAQ's",
           subtext: "Frequently asked questions",
-          link: "/faq", //
+          link: "/faq",
         },
         {
           icon: <FaCommentDots />,
           title: "Testimonials",
           subtext: "What our guests say",
-          link: "/Testimonials_light",
+          link: "/testimonials",
         },
         {
           icon: <FaImages />,
           title: "Gallery",
           subtext: "See our property",
-          link: "/Gallery_light",
+          link: "/gallery",
         },
         {
           icon: <FaPenNib />,
           title: "Blogs",
           subtext: "Travel stories & tips",
-          link: "/Blogs_light",
+          link: "/blogs",
         },
       ],
     },
   ];
 
   return (
-    <nav className="absolute top-0 left-0 w-full flex items-center justify-between px-6 md:px-12 h-[90px] bg-transparent z-50">
-      {/* Logo */}
-      <div
-        className="h-[60px] flex items-center"
-        style={{ marginLeft: "80px" }}
-      >
+    <nav
+      className={`fixed top-0 left-0 w-full flex items-center justify-between px-6 md:px-12 h-[90px] z-50 transition-all duration-300 ${
+        darkMode ? "bg-gray-900 text-white" : "bg-[#faf1eb] text-black"
+      } ${isScrolled ? "shadow-md" : ""}`}
+    >
+      {/* Logo with Homepage Link */}
+      <Link to="/" className="h-[60px] flex items-center md:ml-[80px]">
         <img
           src="/logo.png"
           alt="Phoenix Logo"
           className="h-full object-contain"
         />
-      </div>
+      </Link>
 
-      {/* Desktop Links */}
-      <ul className="hidden md:flex space-x-10 text-black font-medium text-base tracking-wide">
+      {/* Desktop Menu */}
+      <ul className="hidden md:flex space-x-10 font-medium text-base tracking-wide">
         {menuLinks.map((link) => (
           <li key={link.label} className="relative group cursor-pointer">
             {link.submenu ? (
               <div className="group relative">
-                <span className="cursor-pointer relative after:block after:h-[2px] after:w-full after:scale-x-0 after:bg-[#E63946] after:transition-transform after:duration-300 group-hover:after:scale-x-100">
-                  {link.label}
-                </span>
-                {/* Submenu Dropdown */}
-                <div className="absolute top-full left-0 w-[280px] bg-white shadow-lg rounded-lg p-4 hidden group-hover:block z-50">
+                <span className="cursor-pointer">{link.label}</span>
+                <div
+                  className={`absolute top-full left-0 w-[280px] shadow-lg rounded-lg p-4 hidden group-hover:block z-50 ${
+                    darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+                  }`}
+                >
                   <h3 className="text-lg font-bold text-[#E63946] mb-2">
                     {link.label}
                   </h3>
                   {link.submenu.map((item, index) => (
                     <Link
                       key={index}
-                      to={
-                        item.link
-                          ? item.link
-                          : `#${item.title.replace(/\s+/g, "").toLowerCase()}`
-                      }
-                      className="flex items-center space-x-3 py-2 border-b last:border-none hover:bg-[#FAF1EB] transition duration-300"
+                      to={item.link}
+                      className="flex items-center space-x-3 py-2 border-b last:border-none"
                     >
                       <div className="text-[#E63946] text-xl">{item.icon}</div>
                       <div>
                         <p className="text-sm font-semibold">{item.title}</p>
-                        <p className="text-xs text-gray-500">{item.subtext}</p>
+                        <p
+                          className={`text-xs ${
+                            darkMode ? "text-gray-400" : "text-gray-500"
+                          }`}
+                        >
+                          {item.subtext}
+                        </p>
                       </div>
                     </Link>
                   ))}
                 </div>
               </div>
             ) : (
-              <a
-                href={link.href}
-                className="relative after:block after:h-[2px] after:w-full after:scale-x-0 after:bg-[#E63946] after:transition-transform after:duration-300 hover:after:scale-x-100"
-              >
-                {link.label}
-              </a>
+              <a href={link.href}>{link.label}</a>
             )}
           </li>
         ))}
       </ul>
 
-      {/* Desktop Contact Button */}
+      {/* Dark Mode Toggle - Positioned 10px left of Contact Us */}
       <button
-        className="hidden md:block bg-[#E63946] text-white font-semibold py-2 px-6 rounded-full hover:bg-[#d6303f] transition duration-300"
-        style={{ marginRight: "20px" }}
+        onClick={toggleDarkMode}
+        className="hidden md:flex items-center justify-center w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-800 relative transition-all duration-300 mr-[-380px]"
       >
-        Contact Us
+        <div
+          className={`absolute left-1 w-5 h-5 flex items-center justify-center rounded-full shadow-md transform transition-all duration-300 ${
+            darkMode
+              ? "translate-x-6 bg-yellow-400 text-gray-900"
+              : "bg-white text-gray-600"
+          }`}
+        >
+          {darkMode ? <FaMoon size={12} /> : <FaSun size={12} />}
+        </div>
       </button>
 
-      {/* Mobile Menu Icon */}
+      {/* Contact Us Button */}
+      <Link to="/inquiry" className="h-[60px] flex items-center md:ml-[80px]">
+        <button
+          className="hidden md:block bg-[#E63946] text-white font-semibold py-2 px-6 rounded-full hover:bg-[#d6303f] transition duration-300"
+          style={{ marginRight: "20px" }}
+        >
+          Contact Us
+        </button>
+      </Link>
+
+      {/* Mobile Menu Button */}
       <div className="md:hidden flex items-center">
-        <button onClick={toggleMobileMenu} className="text-3xl text-black">
+        {/* Mobile Dark Mode Toggle */}
+        <button
+          onClick={toggleDarkMode}
+          className="mr-4 w-12 h-6 flex items-center justify-center rounded-full bg-gray-300 dark:bg-gray-800 relative transition-all duration-300"
+        >
+          <div
+            className={`absolute left-1 w-5 h-5 flex items-center justify-center rounded-full shadow-md transform transition-all duration-300 ${
+              darkMode
+                ? "translate-x-6 bg-yellow-400 text-gray-900"
+                : "bg-white text-gray-600"
+            }`}
+          >
+            {darkMode ? <FaMoon size={12} /> : <FaSun size={12} />}
+          </div>
+        </button>
+
+        <button onClick={toggleMobileMenu} className="text-3xl">
           {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
       </div>
 
-      {/* Fullscreen Mobile Menu */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-[#FAF1EB] flex flex-col justify-center items-center z-50">
+        <div
+          className={`fixed top-0 left-0 w-full h-full overflow-y-auto flex flex-col items-start p-8 z-50 ${
+            darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
+          }`}
+        >
           <button
             onClick={toggleMobileMenu}
             className="absolute top-6 right-6 text-4xl text-[#E63946]"
           >
             <FaTimes />
           </button>
-
-          <ul className="text-center space-y-8">
+          <ul className="space-y-5 w-full">
             {menuLinks.map((link) => (
-              <li key={link.label} className="text-2xl font-bold text-black">
+              <li key={link.label} className="text-2xl font-bold pl-1">
                 {link.submenu ? (
-                  <div className="flex flex-col items-center space-y-3">
-                    <span className="text-[#E63946]">{link.label}</span>
-                    <div className="space-y-2">
+                  <>
+                    <span className="block mb-2">{link.label}</span>
+                    <ul className="space-y-4 pl-5">
                       {link.submenu.map((item, index) => (
-                        <Link
-                          key={index}
-                          to={
-                            item.link
-                              ? item.link
-                              : `#${item.title
-                                  .replace(/\s+/g, "")
-                                  .toLowerCase()}`
-                          }
-                          className="flex items-center space-x-3 text-lg text-gray-700 hover:text-[#E63946] transition duration-300"
-                          onClick={toggleMobileMenu}
-                        >
-                          <span className="text-[#E63946]">{item.icon}</span>
-                          <div className="flex flex-col items-start">
-                            <p className="font-semibold">{item.title}</p>
-                            <p className="text-sm text-gray-500">
+                        <li key={index}>
+                          <Link
+                            to={item.link}
+                            className="flex flex-col items-start space-y-1 text-lg"
+                            onClick={toggleMobileMenu}
+                          >
+                            <span className="text-xl text-[#E63946]">
+                              {item.icon}
+                            </span>
+                            <span>{item.title}</span>
+                            <span className="text-sm text-gray-400">
                               {item.subtext}
-                            </p>
-                          </div>
-                        </Link>
+                            </span>
+                          </Link>
+                        </li>
                       ))}
-                    </div>
-                  </div>
+                    </ul>
+                  </>
                 ) : (
-                  <a
-                    href={link.href}
-                    className="hover:text-[#E63946] transition duration-300"
+                  <Link
+                    to={link.href}
+                    className="hover:text-[#E63946]"
                     onClick={toggleMobileMenu}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 )}
               </li>
             ))}
-
-            {/* Contact Us Button (Mobile View) */}
-            <li className="pt-6">
-              <a
-                href="#contact"
-                className="bg-[#E63946] text-white font-semibold py-3 px-8 rounded-full hover:bg-[#d6303f] transition duration-300"
-              >
-                Contact Us
-              </a>
-            </li>
           </ul>
+
+          {/* Contact Us Button in Mobile Menu */}
+          <button
+            onClick={toggleMobileMenu}
+            className="mt-8 bg-[#E63946] text-white font-semibold py-3 px-8 rounded-full hover:bg-[#d6303f] transition duration-300 w-full"
+          >
+            <Link to="/inquiry" className="w-full h-full flex justify-center">
+              Contact Us
+            </Link>
+          </button>
         </div>
       )}
     </nav>

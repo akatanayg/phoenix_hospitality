@@ -1,44 +1,64 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
+import { useDarkMode } from "../DarkModeContext";
 
 const blogs = [
   {
+    id: "unveiling-hidden-gems",
     title: "Unveiling Hidden Gems: The Best Offbeat Travel Destinations",
-    description: "Explore the most underrated travel spots that offer unique experiences and breathtaking views.",
+    description:
+      "Explore the most underrated travel spots that offer unique experiences and breathtaking views.",
     image: "/images/blog1.jpg",
     date: "March 9, 2025",
+    author: "John Doe",
   },
   {
+    id: "luxury-vs-budget",
     title: "Luxury vs. Budget Stays: What's Worth Your Money?",
-    description: "A deep dive into what makes a hotel worth the price and whether budget stays can match luxury.",
+    description:
+      "A deep dive into what makes a hotel worth the price and whether budget stays can match luxury.",
     image: "/images/blog2.jpg",
     date: "March 5, 2025",
+    author: "Jane Smith",
   },
   {
+    id: "hotel-hacks",
     title: "Top 5 Hotel Hacks to Elevate Your Stay Experience",
-    description: "From free upgrades to secret amenities, discover how to make the most of your hotel stay.",
+    description:
+      "From free upgrades to secret amenities, discover how to make the most of your hotel stay.",
     image: "/images/blog3.jpg",
     date: "March 1, 2025",
+    author: "Emily Brown",
   },
   {
-    title: "The Art of Packing: Travel Light, Stay Comfortable",
-    description: "Master the art of packing efficiently while keeping style and comfort in mind.",
+    id: "hotel-history",
+    title: "The History Behind Our Boutique Hotel",
+    description:
+      "Learn about the rich history of our hotel and how it has evolved into a luxurious retreat.",
     image: "/images/blog4.jpg",
-    date: "February 25, 2025",
+    date: "February 20, 2025",
+    author: "Michael Carter",
   },
   {
-    title: "How to Choose the Perfect Hotel for Your Next Trip",
-    description: "Key factors to consider while booking a hotel for a memorable and hassle-free stay.",
+    id: "wellness-travel",
+    title: "Wellness Travel: How to Relax and Recharge on Your Trip",
+    description:
+      "Tips and tricks to make the most of your travels while keeping wellness in mind.",
     image: "/images/blog5.jpg",
-    date: "February 18, 2025",
+    date: "February 10, 2025",
+    author: "Sophia Lee",
   },
   {
-    title: "The Science Behind a Good Night’s Sleep in Hotels",
-    description: "Explore how hotels design their rooms to ensure guests get the best sleep possible.",
+    id: "choosing-perfect-hotel",
+    title: "A Guide to Choosing the Perfect Hotel for Your Vacation",
+    description:
+      "Factors to consider when booking a hotel to ensure the best experience possible.",
     image: "/images/blog6.jpg",
-    date: "February 10, 2025",
+    date: "January 28, 2025",
+    author: "David Wilson",
   },
 ];
 
@@ -46,6 +66,7 @@ const typingText = "Blogs";
 const typingSpeed = 150;
 
 const Blogs = () => {
+  const { darkMode } = useDarkMode();
   const [displayText, setDisplayText] = useState("");
 
   useEffect(() => {
@@ -57,13 +78,17 @@ const Blogs = () => {
     }, typingSpeed);
     return () => clearInterval(interval);
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="bg-[#FAF1EB] min-h-screen flex flex-col">
-      <Navbar />
-      <br />
-      <br />
-      <br />
+    <div
+      className={`min-h-screen flex flex-col transition-colors duration-300 ${
+        darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
+      }`}
+    >
+      <Navbar /><br /><br />
       <motion.section
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -75,7 +100,7 @@ const Blogs = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="text-left text-[70px] font-extrabold text-black leading-[1.1] font-sans"
+          className="text-left text-[50px] md:text-[70px] font-extrabold leading-[1.1] font-sans"
         >
           Stay Curious, Stay Inspired! <br />
           <span className="bg-gradient-to-r from-[#FF5733] via-[#EC2D70] to-[#8B0000] text-transparent bg-clip-text">
@@ -90,21 +115,47 @@ const Blogs = () => {
           transition={{ duration: 1, delay: 0.4 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
         >
-          {blogs.map((blog, index) => (
+          {blogs.map((blog) => (
             <motion.div
-              key={index}
+              key={blog.id}
               whileHover={{ scale: 1.07 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="relative bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transform transition-transform duration-300"
+              className={`relative rounded-2xl shadow-lg overflow-hidden cursor-pointer transform transition-transform duration-300 ${
+                darkMode ? "bg-gray-800 text-white" : "bg-white"
+              }`}
             >
-              <img src={blog.image} alt={blog.title} className="w-full h-56 object-cover" />
+              <img
+                src={blog.image}
+                alt={blog.title}
+                className="w-full h-56 object-cover"
+              />
               <div className="p-6">
-                <p className="text-gray-500 text-sm">{blog.date}</p>
-                <h2 className="text-2xl font-bold text-gray-900 mt-2">{blog.title}</h2>
-                <p className="text-gray-600 mt-2">{blog.description}</p>
-                <button className="mt-4 px-4 py-2 bg-[#E63946] text-white rounded-full text-sm hover:bg-[#C72F3C] transition duration-300">
-                  Read More →
-                </button>
+                <p
+                  className={`text-sm italic ${
+                    darkMode ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  {blog.date}
+                </p>
+                <h2
+                  className={`text-2xl font-bold mt-2 ${
+                    darkMode ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  {blog.title}
+                </h2>
+                <p
+                  className={`mt-2 ${
+                    darkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
+                  {blog.description}
+                </p>
+                <Link to={`/blog/${blog.id}`}>
+                  <button className="mt-4 px-4 py-2 rounded-full text-sm transition duration-300 bg-red-500 text-white hover:bg-red-600">
+                    Read More →
+                  </button>
+                </Link>
               </div>
             </motion.div>
           ))}
