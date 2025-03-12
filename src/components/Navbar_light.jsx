@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   FaBars,
   FaTimes,
@@ -9,6 +10,7 @@ import {
   FaPenNib,
   FaMoon,
   FaSun,
+  FaChevronDown,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../DarkModeContext";
@@ -17,6 +19,7 @@ const Navbar = () => {
   const { darkMode, setDarkMode } = useDarkMode();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openMenus, setOpenMenus] = useState({});
 
   const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
@@ -57,7 +60,7 @@ const Navbar = () => {
       ],
     },
     {
-      label: "Resources",
+      label: "More",
       submenu: [
         {
           icon: <FaQuestionCircle />,
@@ -106,16 +109,34 @@ const Navbar = () => {
       <ul className="hidden md:flex space-x-10 font-medium text-base tracking-wide">
         {menuLinks.map((link) => (
           <li
-            key={link.label}
-            className="relative group cursor-pointer hover:scale-105 transition-transform duration-300"
-          >
-            {link.submenu ? (
-              <div className="group relative">
-                <span className="cursor-pointer relative hover:text-[#E63946] transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#E63946] after:transition-all after:duration-300 group-hover:after:w-full">
-                  {link.label}
-                </span>
-                <div
-                  className={`absolute top-full left-0 w-[280px] shadow-lg rounded-lg p-4 hidden group-hover:block z-50 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 backdrop-blur-md bg-opacity-80 ${
+          key={link.label}
+          className="relative group cursor-pointer hover:scale-105 transition-transform duration-300"
+          onMouseEnter={() => setOpenMenus({ [link.label]: true })}
+          onMouseLeave={() => setOpenMenus({ [link.label]: false })}
+        >
+          {link.submenu ? (
+            <div className="group relative">
+              {/* Main Menu Item with Hoverable Dropdown */}
+              <div
+                className="flex items-center gap-1 cursor-pointer relative hover:text-[#E63946] transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#E63946] after:transition-all after:duration-300 group-hover:after:w-full"
+              >
+                {link.label}
+                {/* Arrow Icon with Animation */}
+                <motion.div
+                  animate={{ rotate: openMenus[link.label] ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <FaChevronDown />
+                </motion.div>
+              </div>
+        
+              {/* Submenu Dropdown */}
+              {openMenus[link.label] && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className={`absolute top-full left-0 w-[280px] shadow-lg rounded-lg p-4 z-50 opacity-100 translate-y-0 transition-all duration-300 backdrop-blur-md bg-opacity-80 ${
                     darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
                   }`}
                 >
@@ -141,17 +162,19 @@ const Navbar = () => {
                       </div>
                     </Link>
                   ))}
-                </div>
-              </div>
-            ) : (
-              <a
-                href={link.href}
-                className="relative hover:text-[#E63946] transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#E63946] after:transition-all after:duration-300 hover:after:w-full"
-              >
-                {link.label}
-              </a>
-            )}
-          </li>
+                </motion.div>
+              )}
+            </div>
+          ) : (
+            <a
+              href={link.href}
+              className="relative hover:text-[#E63946] transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#E63946] after:transition-all after:duration-300 hover:after:w-full"
+            >
+              {link.label}
+            </a>
+          )}
+        </li>
+        
         ))}
       </ul>
 

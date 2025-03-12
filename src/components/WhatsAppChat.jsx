@@ -36,7 +36,7 @@ export default function WhatsAppChat() {
             className="mt-3 flex items-center bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg font-semibold transition-transform transform hover:scale-105"
           >
             <Send className="mr-2" size={20} /> {/* ✅ New icon added */}
-            Phoenic Hospitality <br />
+            Phoenix Hospitality <br />
           </a>
         </motion.div>
       )}

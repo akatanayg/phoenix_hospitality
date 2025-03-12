@@ -5,17 +5,83 @@ import "react-datepicker/dist/react-datepicker.css";
 import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
 import { useDarkMode } from "../DarkModeContext";
+import { createClient } from "@supabase/supabase-js";
 
 const Inquiry = () => {
   const { darkMode } = useDarkMode();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [numRooms, setNumRooms] = useState(1);
   const [numAdults, setNumAdults] = useState(1);
   const [numChildren, setNumChildren] = useState(0);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const fullText = "Enquire Now!";
   const [typedText, setTypedText] = useState("");
+
+  const [errors, setErrors] = useState({});
+
+  const supabaseUrl = "https://npreybuhbxhefzmyensx.supabase.co"; // Replace with your actual Supabase URL
+  const supabaseAnonKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5wcmV5YnVoYnhoZWZ6bXllbnN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3Njg5MTQsImV4cCI6MjA1NzM0NDkxNH0.4c9fItZxifsBzxA2PFhGnCWCAQPHbIr90Zt_n4rKMOs"; // Replace with your actual Supabase Key
+
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+  // console.log("Supabase Initialized:", supabase);
+
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const handleSubmit = async () => {
+    let newErrors = {};
+
+    if (!name) newErrors.name = "Full name is required.";
+    if (!email) newErrors.email = "Email is required.";
+    if (!phone) newErrors.phone = "Phone number is required.";
+    if (!checkInDate) newErrors.checkInDate = "Check-in date is required.";
+    if (!message) newErrors.message = "Message cannot be empty.";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const { data, error } = await supabase.from("inquiries").insert([
+        {
+          name,
+          email,
+          phone,
+          checkInDate,
+          checkOutDate,
+          numRooms,
+          numAdults,
+          numChildren,
+          message,
+        },
+      ]);
+
+      if (error) {
+        console.error("Error inserting data:", error);
+      } else {
+        console.log("Success:", data);
+
+        // Show success modal
+        setShowSuccessModal(true);
+
+        // Hide modal after 3 seconds
+        setTimeout(() => {
+          setShowSuccessModal(false);
+        }, 3000);
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     let index = 0;
@@ -29,6 +95,15 @@ const Inquiry = () => {
       }
     }, 150);
     return () => clearInterval(interval);
+    async function testSupabase() {
+      const { data, error } = await supabase
+        .from("your-table-name")
+        .select("*")
+        .limit(1);
+      console.log("Test Data:", data);
+      console.log("Test Error:", error);
+    }
+    testSupabase();
   }, []);
 
   useEffect(() => {
@@ -141,16 +216,33 @@ const Inquiry = () => {
               <input
                 type="text"
                 placeholder="Full Name"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (errors.name) {
+                    setErrors((prevErrors) => ({ ...prevErrors, name: "" }));
+                  }
+                }}
                 className={`px-4 py-2 rounded-lg border focus:outline-none ${
                   darkMode
                     ? "border-gray-600 bg-gray-700 text-white"
                     : "border-gray-300 bg-transparent"
                 }`}
               />
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name}</p>
+              )}
 
               <input
                 type="email"
                 placeholder="Email Address"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (errors.email) {
+                    setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
+                  }
+                }}
                 className={`px-4 py-2 rounded-lg border focus:outline-none ${
                   darkMode
                     ? "border-gray-600 bg-gray-700 text-white"
@@ -158,15 +250,30 @@ const Inquiry = () => {
                 }`}
               />
 
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email}</p>
+              )}
+
               <input
                 type="tel"
                 placeholder="Phone Number"
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  if (errors.phone) {
+                    setErrors((prevErrors) => ({ ...prevErrors, phone: "" }));
+                  }
+                }}
                 className={`px-4 py-2 rounded-lg border focus:outline-none ${
                   darkMode
                     ? "border-gray-600 bg-gray-700 text-white"
                     : "border-gray-300 bg-transparent"
                 }`}
               />
+
+              {errors.phone && (
+                <p className="text-red-500 text-sm">{errors.phone}</p>
+              )}
 
               {/* Date Pickers */}
               <div className="flex gap-4">
@@ -174,17 +281,25 @@ const Inquiry = () => {
                   <label className="text-sm">Check-in Date</label>
                   <DatePicker
                     selected={checkInDate}
-                    onChange={(date) => setCheckInDate(date)}
+                    onChange={(date) => {
+                      setCheckInDate(date);
+                      if (errors.checkInDate) {
+                        setErrors((prevErrors) => ({
+                          ...prevErrors,
+                          checkInDate: "",
+                        }));
+                      }
+                    }}
                     minDate={new Date()}
                     className={`w-full px-4 py-2 rounded-lg border ${
                       darkMode
                         ? "border-gray-600 bg-gray-700 text-white"
                         : "border-gray-300 bg-transparent"
                     }`}
-                    calendarClassName={`custom-datepicker ${
-                      darkMode ? "dark-datepicker" : ""
-                    }`}
-                  />
+                  />{" "}
+                  {errors.checkInDate && (
+                    <p className="text-red-500 text-sm">{errors.checkInDate}</p>
+                  )}
                 </div>
 
                 <div className="w-1/2">
@@ -205,6 +320,11 @@ const Inquiry = () => {
                     disabled={!checkInDate}
                     calendarClassName="custom-datepicker"
                   />
+                  {errors.checkOutDate && (
+                    <p className="text-red-500 text-sm">
+                      {errors.checkOutDate}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -259,33 +379,57 @@ const Inquiry = () => {
                 <textarea
                   placeholder="Enter your message..."
                   value={message}
-                  onChange={handleMessageChange}
+                  onChange={(e) => {
+                    setMessage(e.target.value);
+                    setErrors((prev) => ({ ...prev, message: "" }));
+                  }}
                   className={`px-4 py-2 rounded-lg border h-[100px] resize-none focus:outline-none w-full ${
                     darkMode
                       ? "border-gray-600 bg-gray-700 text-white"
                       : "border-gray-300 bg-transparent"
                   }`}
-                ></textarea>
+                />
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                )}
                 <span className="absolute bottom-2 right-3 text-xs text-gray-400">
                   {wordCount} / {maxWords} words
                 </span>
               </div>
+              {errors.form && (
+                <p className="text-red-500 text-sm text-center">
+                  {errors.form}
+                </p>
+              )}
 
               {/* Submit Button */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
+                onClick={handleSubmit}
+                disabled={loading}
                 className={`px-6 py-3 font-bold rounded-lg transition duration-300 ${
                   darkMode
                     ? "bg-red-500 text-white hover:bg-red-600"
                     : "bg-[#E63946] text-white hover:bg-[#C72F3C]"
                 }`}
               >
-                Submit Inquiry
+                {loading ? "Submitting..." : "Submit Inquiry"}
               </motion.button>
             </div>
           </motion.div>
         </div>
       </motion.section>
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white text-black w-96 p-8 rounded-lg shadow-xl text-center">
+            <h2 className="text-xl font-bold">✅ Inquiry Submitted!</h2>
+            <p className="text-gray-600 mt-3 text-lg">
+              We'll get back to you soon.
+            </p>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

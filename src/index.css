@@ -10,6 +10,24 @@ html, body {
 .custom-datepicker {
   font-size: 16px !important;
 }
+/* Make dates after the selected check-in date white in dark mode */
+.dark-datepicker .react-datepicker__day {
+  color: #a0aec0 !important; /* Default gray text */
+}
+
+.dark-datepicker .react-datepicker__day--disabled {
+  color: #4a5568 !important; /* Disabled dates (before check-in) are darker */
+}
+
+.dark-datepicker .react-datepicker__day--available {
+  color: white !important; /* Dates after check-in are white */
+}
+
+/* Apply white color only for dates after the selected check-in date */
+.dark-datepicker .react-datepicker__day:not(.react-datepicker__day--disabled) {
+  color: white !important;
+}
+
 
 .dark-datepicker .react-datepicker {
   background-color: #2d3748 !important; /* Darker background */
