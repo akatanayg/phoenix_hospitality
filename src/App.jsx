@@ -13,6 +13,7 @@ import SuitRoom_light from "./pages/SuitRoom";
 import AboutUs from "./pages/AboutUs";
 import { DarkModeProvider, useDarkMode } from "./DarkModeContext.jsx";
 import BlogPage from "./pages/BlogPage.jsx";
+import WhatsAppChat from "./components/WhatsAppChat"; // ✅ Import WhatsApp Chat
 
 function AppContent() {
   const { darkMode } = useDarkMode(); // Ensure darkMode is accessed
@@ -35,8 +36,11 @@ function AppContent() {
         <Route path="/superdeluxeroom" element={<SuperDeluxeRoom_light />} />
         <Route path="/suiteroom" element={<SuitRoom_light />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/blog/:blogId" element={<BlogPage />} />  {/* ✅ Fixed path */}
+        <Route path="/blog/:blogId" element={<BlogPage />} />
       </Routes>
+
+      {/* ✅ Add WhatsApp Chatbot */}
+      <WhatsAppChat />
     </div>
   );
 }

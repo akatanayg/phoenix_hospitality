@@ -30,10 +30,22 @@ const Inquiry = () => {
     }, 150);
     return () => clearInterval(interval);
   }, []);
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const maxWords = 300;
+  const wordCount = message
+    .trim()
+    .split(/\s+/)
+    .filter((word) => word.length > 0).length;
+
+  const handleMessageChange = (e) => {
+    const words = e.target.value.trim().split(/\s+/);
+    if (words.length <= maxWords) {
+      setMessage(e.target.value);
+    }
+  };
 
   return (
     <div
@@ -46,7 +58,11 @@ const Inquiry = () => {
         className="absolute top-0 left-0 w-full h-[400px] bg-cover bg-center opacity-50"
         style={{ backgroundImage: "url('/enbg_1.jpg')" }}
       >
-        <div className={`absolute inset-0 ${darkMode ? "bg-gray-900 opacity-70" : "bg-white opacity-50"}`}></div>
+        <div
+          className={`absolute inset-0 ${
+            darkMode ? "bg-gray-900 opacity-70" : "bg-white opacity-50"
+          }`}
+        ></div>
       </div>
 
       {/* Navbar */}
@@ -84,13 +100,24 @@ const Inquiry = () => {
               <br />
               <br />
               <br />
-              Experience the finest hospitality with our comfortable and luxurious rooms.
+              Experience the finest hospitality with our comfortable and
+              luxurious rooms.
             </p>
-            <p className="text-lg font-medium">For inquiries, contact us 24/7:</p>
-            <p className={`text-xl font-bold flex items-center gap-2 ${darkMode ? "text-red-400" : "text-[#E63946]"}`}>
+            <p className="text-lg font-medium">
+              For inquiries, contact us 24/7:
+            </p>
+            <p
+              className={`text-xl font-bold flex items-center gap-2 ${
+                darkMode ? "text-red-400" : "text-[#E63946]"
+              }`}
+            >
               📞 +91 98765 43210
             </p>
-            <p className={`text-xl font-bold flex items-center gap-2 ${darkMode ? "text-red-400" : "text-[#E63946]"}`}>
+            <p
+              className={`text-xl font-bold flex items-center gap-2 ${
+                darkMode ? "text-red-400" : "text-[#E63946]"
+              }`}
+            >
               📞 +91 91234 56789
             </p>
           </div>
@@ -101,17 +128,23 @@ const Inquiry = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
             className={`p-6 border-2 shadow-lg rounded-xl ${
-              darkMode ? "border-gray-600 bg-gray-800 text-white shadow-gray-700" : "border-gray-300 bg-white text-black"
+              darkMode
+                ? "border-gray-600 bg-gray-800 text-white shadow-gray-700"
+                : "border-gray-300 bg-white text-black"
             }`}
           >
-            <h2 className="text-lg font-semibold text-center mb-4">Fill in details</h2>
+            <h2 className="text-lg font-semibold text-center mb-4">
+              Fill in details
+            </h2>
 
             <div className="flex flex-col gap-4">
               <input
                 type="text"
                 placeholder="Full Name"
                 className={`px-4 py-2 rounded-lg border focus:outline-none ${
-                  darkMode ? "border-gray-600 bg-gray-700 text-white" : "border-gray-300 bg-transparent"
+                  darkMode
+                    ? "border-gray-600 bg-gray-700 text-white"
+                    : "border-gray-300 bg-transparent"
                 }`}
               />
 
@@ -119,7 +152,9 @@ const Inquiry = () => {
                 type="email"
                 placeholder="Email Address"
                 className={`px-4 py-2 rounded-lg border focus:outline-none ${
-                  darkMode ? "border-gray-600 bg-gray-700 text-white" : "border-gray-300 bg-transparent"
+                  darkMode
+                    ? "border-gray-600 bg-gray-700 text-white"
+                    : "border-gray-300 bg-transparent"
                 }`}
               />
 
@@ -127,7 +162,9 @@ const Inquiry = () => {
                 type="tel"
                 placeholder="Phone Number"
                 className={`px-4 py-2 rounded-lg border focus:outline-none ${
-                  darkMode ? "border-gray-600 bg-gray-700 text-white" : "border-gray-300 bg-transparent"
+                  darkMode
+                    ? "border-gray-600 bg-gray-700 text-white"
+                    : "border-gray-300 bg-transparent"
                 }`}
               />
 
@@ -140,9 +177,13 @@ const Inquiry = () => {
                     onChange={(date) => setCheckInDate(date)}
                     minDate={new Date()}
                     className={`w-full px-4 py-2 rounded-lg border ${
-                      darkMode ? "border-gray-600 bg-gray-700 text-white" : "border-gray-300 bg-transparent"
+                      darkMode
+                        ? "border-gray-600 bg-gray-700 text-white"
+                        : "border-gray-300 bg-transparent"
                     }`}
-                    calendarClassName="custom-datepicker"
+                    calendarClassName={`custom-datepicker ${
+                      darkMode ? "dark-datepicker" : ""
+                    }`}
                   />
                 </div>
 
@@ -151,9 +192,15 @@ const Inquiry = () => {
                   <DatePicker
                     selected={checkOutDate}
                     onChange={(date) => setCheckOutDate(date)}
-                    minDate={checkInDate ? new Date(checkInDate.getTime() + 86400000) : new Date()}
+                    minDate={
+                      checkInDate
+                        ? new Date(checkInDate.getTime() + 86400000)
+                        : new Date()
+                    }
                     className={`w-full px-4 py-2 rounded-lg border ${
-                      darkMode ? "border-gray-600 bg-gray-700 text-white" : "border-gray-300 bg-transparent"
+                      darkMode
+                        ? "border-gray-600 bg-gray-700 text-white"
+                        : "border-gray-300 bg-transparent"
                     }`}
                     disabled={!checkInDate}
                     calendarClassName="custom-datepicker"
@@ -161,21 +208,76 @@ const Inquiry = () => {
                 </div>
               </div>
 
-              {/* Message Box */}
-              <textarea
-                placeholder="Enter your message..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className={`px-4 py-2 rounded-lg border h-[100px] resize-none focus:outline-none ${
-                  darkMode ? "border-gray-600 bg-gray-700 text-white" : "border-gray-300 bg-transparent"
-                }`}
-              ></textarea>
+              {/* Rooms, Adults, Children Section (Horizontal Layout) */}
+              <div className="flex justify-around items-center gap-6 mt-4">
+                {[
+                  {
+                    label: "Rooms",
+                    state: numRooms,
+                    setter: setNumRooms,
+                    min: 1,
+                    max: 5,
+                  },
+                  {
+                    label: "Adults",
+                    state: numAdults,
+                    setter: setNumAdults,
+                    min: 1,
+                    max: 10,
+                  },
+                  {
+                    label: "Children",
+                    state: numChildren,
+                    setter: setNumChildren,
+                    min: 0,
+                    max: 5,
+                  },
+                ].map(({ label, state, setter, min, max }) => (
+                  <div key={label} className="flex flex-col items-center">
+                    <span className="text-md font-medium mb-2">{label}</span>
+                    <span className="text-lg font-bold">{state}</span>
+                    <div className="flex mt-2 gap-2">
+                      <button
+                        onClick={() => setter(state > min ? state - 1 : min)}
+                        className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all"
+                      >
+                        -
+                      </button>
+                      <button
+                        onClick={() => setter(state < max ? state + 1 : max)}
+                        className="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Message Box with Word Count */}
+              <div className="relative">
+                <textarea
+                  placeholder="Enter your message..."
+                  value={message}
+                  onChange={handleMessageChange}
+                  className={`px-4 py-2 rounded-lg border h-[100px] resize-none focus:outline-none w-full ${
+                    darkMode
+                      ? "border-gray-600 bg-gray-700 text-white"
+                      : "border-gray-300 bg-transparent"
+                  }`}
+                ></textarea>
+                <span className="absolute bottom-2 right-3 text-xs text-gray-400">
+                  {wordCount} / {maxWords} words
+                </span>
+              </div>
 
               {/* Submit Button */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 className={`px-6 py-3 font-bold rounded-lg transition duration-300 ${
-                  darkMode ? "bg-red-500 text-white hover:bg-red-600" : "bg-[#E63946] text-white hover:bg-[#C72F3C]"
+                  darkMode
+                    ? "bg-red-500 text-white hover:bg-red-600"
+                    : "bg-[#E63946] text-white hover:bg-[#C72F3C]"
                 }`}
               >
                 Submit Inquiry
