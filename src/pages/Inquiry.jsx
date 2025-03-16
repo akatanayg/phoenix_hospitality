@@ -20,22 +20,50 @@ const Inquiry = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const fullText = "Enquire Now!";
+
   const [typedText, setTypedText] = useState("");
-
   const [errors, setErrors] = useState({});
-
-  const supabaseUrl = "https://npreybuhbxhefzmyensx.supabase.co"; // Replace with your actual Supabase URL
-  const supabaseAnonKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5wcmV5YnVoYnhoZWZ6bXllbnN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3Njg5MTQsImV4cCI6MjA1NzM0NDkxNH0.4c9fItZxifsBzxA2PFhGnCWCAQPHbIr90Zt_n4rKMOs"; // Replace with your actual Supabase Key
-
-  const supabase = createClient(supabaseUrl, supabaseAnonKey);
-  // console.log("Supabase Initialized:", supabase);
-
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const handleSubmit = async () => {
-    let newErrors = {};
+  const supabaseUrl = "https://ggyhxnroyusijbjhcfap.supabase.co";
+  const supabaseAnonKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdneWh4bnJveXVzaWpiamhjZmFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIxMTAwMjcsImV4cCI6MjA1NzY4NjAyN30.ayiA8ax3cj93dOXBBtj2sha0jnnjYPu4jM3DaTtPQxk";
 
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+  useEffect(() => {
+    let index = 0;
+    setTypedText("");
+    const interval = setInterval(() => {
+      if (index <= fullText.length) {
+        setTypedText(fullText.slice(0, index));
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 150);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const maxWords = 300;
+  const wordCount = message
+    .trim()
+    .split(/\s+/)
+    .filter((word) => word.length > 0).length;
+
+  const handleMessageChange = (e) => {
+    const words = e.target.value.trim().split(/\s+/);
+    if (words.length <= maxWords) {
+      setMessage(e.target.value);
+    }
+  };
+
+  const handleSubmit = async () => {
+    // Basic validation
+    let newErrors = {};
     if (!name) newErrors.name = "Full name is required.";
     if (!email) newErrors.email = "Email is required.";
     if (!phone) newErrors.phone = "Phone number is required.";
@@ -54,8 +82,8 @@ const Inquiry = () => {
           name,
           email,
           phone,
-          checkInDate,
-          checkOutDate,
+          checkInDate: checkInDate ? checkInDate.toISOString() : null,
+          checkOutDate: checkOutDate ? checkOutDate.toISOString() : null,
           numRooms,
           numAdults,
           numChildren,
@@ -64,61 +92,30 @@ const Inquiry = () => {
       ]);
 
       if (error) {
-        console.error("Error inserting data:", error);
+        console.error("🚨 Error inserting data:", error);
+        alert(`Error submitting inquiry: ${error.message}`);
       } else {
-        console.log("Success:", data);
+        console.log("✅ Inquiry submitted successfully!", data);
+        setShowSuccessModal(true); // ✅ Show success modal
+        setTimeout(() => setShowSuccessModal(false), 3000); // ✅ Hide after 3 sec
 
-        // Show success modal
-        setShowSuccessModal(true);
-
-        // Hide modal after 3 seconds
-        setTimeout(() => {
-          setShowSuccessModal(false);
-        }, 3000);
+        // Clear form fields after submission
+        setName("");
+        setEmail("");
+        setPhone("");
+        setCheckInDate(null);
+        setCheckOutDate(null);
+        setNumRooms(1);
+        setNumAdults(1);
+        setNumChildren(0);
+        setMessage("");
+        setErrors({});
       }
     } catch (err) {
       console.error("Unexpected error:", err);
+      alert("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    let index = 0;
-    setTypedText("");
-    const interval = setInterval(() => {
-      if (index <= fullText.length) {
-        setTypedText(fullText.slice(0, index));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 150);
-    return () => clearInterval(interval);
-    async function testSupabase() {
-      const { data, error } = await supabase
-        .from("your-table-name")
-        .select("*")
-        .limit(1);
-      console.log("Test Data:", data);
-      console.log("Test Error:", error);
-    }
-    testSupabase();
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  const maxWords = 300;
-  const wordCount = message
-    .trim()
-    .split(/\s+/)
-    .filter((word) => word.length > 0).length;
-
-  const handleMessageChange = (e) => {
-    const words = e.target.value.trim().split(/\s+/);
-    if (words.length <= maxWords) {
-      setMessage(e.target.value);
     }
   };
 
@@ -218,11 +215,27 @@ const Inquiry = () => {
                 placeholder="Full Name"
                 value={name}
                 onChange={(e) => {
-                  setName(e.target.value);
-                  if (errors.name) {
-                    setErrors((prevErrors) => ({ ...prevErrors, name: "" }));
+                  const value = e.target.value;
+                  setName(value);
+
+                  // ✅ Validate: Minimum 3 characters, only letters and spaces allowed
+                  if (!/^[a-zA-Z\s]+$/.test(value)) {
+                    setErrors((prevErrors) => ({
+                      ...prevErrors,
+                      name: "Only letters are allowed.",
+                    }));
+                  } else if (value.length < 3) {
+                    setErrors((prevErrors) => ({
+                      ...prevErrors,
+                      name: "Name must be at least 3 characters long.",
+                    }));
+                  } else {
+                    setErrors((prevErrors) => ({ ...prevErrors, name: "" })); // ✅ Clears error if valid
                   }
                 }}
+                onFocus={() =>
+                  setErrors((prevErrors) => ({ ...prevErrors, name: "" }))
+                } // ✅ Clears error on focus
                 className={`px-4 py-2 rounded-lg border focus:outline-none ${
                   darkMode
                     ? "border-gray-600 bg-gray-700 text-white"
@@ -238,18 +251,30 @@ const Inquiry = () => {
                 placeholder="Email Address"
                 value={email}
                 onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (errors.email) {
-                    setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
+                  const value = e.target.value;
+                  setEmail(value);
+
+                  // ✅ Validate: Basic email pattern check
+                  const emailRegex =
+                    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                  if (!emailRegex.test(value)) {
+                    setErrors((prevErrors) => ({
+                      ...prevErrors,
+                      email: "Enter a valid email address.",
+                    }));
+                  } else {
+                    setErrors((prevErrors) => ({ ...prevErrors, email: "" })); // ✅ Clears error if valid
                   }
                 }}
+                onFocus={() =>
+                  setErrors((prevErrors) => ({ ...prevErrors, email: "" }))
+                } // ✅ Clears error on focus
                 className={`px-4 py-2 rounded-lg border focus:outline-none ${
                   darkMode
                     ? "border-gray-600 bg-gray-700 text-white"
                     : "border-gray-300 bg-transparent"
                 }`}
               />
-
               {errors.email && (
                 <p className="text-red-500 text-sm">{errors.email}</p>
               )}
@@ -259,18 +284,32 @@ const Inquiry = () => {
                 placeholder="Phone Number"
                 value={phone}
                 onChange={(e) => {
-                  setPhone(e.target.value);
-                  if (errors.phone) {
-                    setErrors((prevErrors) => ({ ...prevErrors, phone: "" }));
+                  const value = e.target.value;
+
+                  // ✅ Allow only digits (0-9)
+                  if (!/^\d*$/.test(value)) return; // Prevents non-numeric input
+
+                  setPhone(value);
+
+                  // ✅ Validate: Must be exactly 10 digits
+                  if (value.length !== 10) {
+                    setErrors((prevErrors) => ({
+                      ...prevErrors,
+                      phone: "Phone number must be 10 digits.",
+                    }));
+                  } else {
+                    setErrors((prevErrors) => ({ ...prevErrors, phone: "" })); // ✅ Clears error if valid
                   }
                 }}
+                onFocus={() =>
+                  setErrors((prevErrors) => ({ ...prevErrors, phone: "" }))
+                } // ✅ Clears error on focus
                 className={`px-4 py-2 rounded-lg border focus:outline-none ${
                   darkMode
                     ? "border-gray-600 bg-gray-700 text-white"
                     : "border-gray-300 bg-transparent"
                 }`}
               />
-
               {errors.phone && (
                 <p className="text-red-500 text-sm">{errors.phone}</p>
               )}
@@ -281,22 +320,21 @@ const Inquiry = () => {
                   <label className="text-sm">Check-in Date</label>
                   <DatePicker
                     selected={checkInDate}
-                    onChange={(date) => {
-                      setCheckInDate(date);
-                      if (errors.checkInDate) {
-                        setErrors((prevErrors) => ({
-                          ...prevErrors,
-                          checkInDate: "",
-                        }));
-                      }
-                    }}
+                    onChange={(date) => setCheckInDate(date)}
+                    onFocus={() =>
+                      setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        checkInDate: "",
+                      }))
+                    }
                     minDate={new Date()}
                     className={`w-full px-4 py-2 rounded-lg border ${
                       darkMode
                         ? "border-gray-600 bg-gray-700 text-white"
                         : "border-gray-300 bg-transparent"
                     }`}
-                  />{" "}
+                    calendarClassName={darkMode ? "dark-datepicker" : ""} // ✅ Apply dark mode styles
+                  />
                   {errors.checkInDate && (
                     <p className="text-red-500 text-sm">{errors.checkInDate}</p>
                   )}
@@ -318,7 +356,7 @@ const Inquiry = () => {
                         : "border-gray-300 bg-transparent"
                     }`}
                     disabled={!checkInDate}
-                    calendarClassName="custom-datepicker"
+                    calendarClassName={darkMode ? "dark-datepicker" : ""} // ✅ Apply dark mode styles
                   />
                   {errors.checkOutDate && (
                     <p className="text-red-500 text-sm">
@@ -379,10 +417,10 @@ const Inquiry = () => {
                 <textarea
                   placeholder="Enter your message..."
                   value={message}
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                    setErrors((prev) => ({ ...prev, message: "" }));
-                  }}
+                  onChange={handleMessageChange}
+                  onFocus={() =>
+                    setErrors((prevErrors) => ({ ...prevErrors, message: "" }))
+                  } // ✅ Clears error on focus
                   className={`px-4 py-2 rounded-lg border h-[100px] resize-none focus:outline-none w-full ${
                     darkMode
                       ? "border-gray-600 bg-gray-700 text-white"
@@ -392,6 +430,7 @@ const Inquiry = () => {
                 {errors.message && (
                   <p className="text-red-500 text-sm mt-1">{errors.message}</p>
                 )}
+
                 <span className="absolute bottom-2 right-3 text-xs text-gray-400">
                   {wordCount} / {maxWords} words
                 </span>
