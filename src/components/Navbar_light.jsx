@@ -99,7 +99,7 @@ const Navbar = () => {
       {/* Logo with Homepage Link */}
       <Link to="/" className="h-[75px] flex items-center md:ml-[80px]">
         <img
-          src={`${process.env.PUBLIC_URL}/logo.png`}
+          src="/logo.png"
           alt="Phoenix Logo"
           className="h-full object-contain"
         />
