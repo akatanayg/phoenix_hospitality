@@ -2,31 +2,10 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../DarkModeContext"; // Import global dark mode state
-
-const redSubtext =
-  "8 bedrooms villa with a private pool. Perfect for family gatherings, parties and team buildings.";
+import { TypeAnimation } from "react-type-animation"; // Import typing animation
 
 const HeroSection = () => {
   const { darkMode } = useDarkMode(); // Get dark mode state directly
-  const [typedText, setTypedText] = React.useState("");
-  const [animationComplete, setAnimationComplete] = React.useState(false);
-
-  React.useEffect(() => {
-    let currentIndex = 0;
-    setTypedText("");
-
-    const interval = setInterval(() => {
-      setTypedText((prev) => prev + redSubtext[currentIndex]);
-      currentIndex++;
-
-      if (currentIndex === redSubtext.length) {
-        clearInterval(interval);
-        setAnimationComplete(true);
-      }
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div
@@ -61,13 +40,27 @@ const HeroSection = () => {
 
         {/* Left Section */}
         <div className="flex flex-col justify-center mt-2 md:mt-40 text-center md:text-left px-4 md:px-0">
-          <p
+          <motion.div
             className={`mt-6 text-lg md:text-xl font-semibold ${
               darkMode ? "text-red-400" : "text-[#E63946]"
-            } min-h-[28px]`}
+            }`}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            {typedText || (animationComplete ? redSubtext : "")}
-          </p>
+            <p className="block"> <br />
+              Experience Comfort, Care, and Connection
+            </p>
+            <TypeAnimation
+              sequence={[
+                " in Every Moment at Phoenix Hospitality", // Typing starts here
+              ]}
+              speed={50} // Typing speed
+              cursor={false} // No blinking cursor
+              wrapper="p"
+              className="block"
+            />
+          </motion.div>
 
           <div
             className={`mt-4 text-sm md:text-base ${
@@ -75,12 +68,14 @@ const HeroSection = () => {
             }`}
           >
             <p>
-              Located in Veliki Preslav, 12 km from Shumen, Mutafova Guest House
-              offers rooms with free WiFi and a common lounge area.
+              Experience the best of Gurgaon at Phoenix Hospitality. We
+              prioritize your comfort with warm hospitality, modern amenities,
+              and a convenient location near DLF Phase II.
             </p>
             <p className="mt-2">
-              Guests can find a small museum on the premises of the house with a
-              workshop. Breakfast can also be arranged.
+              Savor delicious meals at Gravy Gram - our in-house Cloud Kitchen
+              and unwind in our cozy atmosphere. Whether for business or
+              leisure, we invite you to experience the best of Gurgaon with us.
             </p>
           </div>
 

@@ -31,19 +31,20 @@ const AboutUs = () => {
             }`}
           >
             <p>
-              A flat screen TV with satellite channels is featured in each of
-              the rooms. Some units include a seating area for your convenience.
+            Inspired by the phoenix, a mythical bird that rises from the ashes and comes back stronger, we take guest feedback seriously and continuously improve to enhance your experience. Known for its meticulous vision, the phoenix reflects our commitment to paying attention to every detail, ensuring your stay is seamless and memorable.
+
             </p>
             <p>
-              Guests can find a small museum on the premises of the house with a
-              workshop. Breakfast can also be arranged at a surcharge.
+            Located in the heart of DLF Phase II, Gurgaon, Phoenix Hospitality offers a convenient stay for both business and leisure travelers. Our proximity to key business districts and attractions ensures that guests can easily explore all that Gurgaon has to offer.
+
+
             </p>
             <p>
-              Veliki Preslav Archaeological Reserve can be reached within 6 km
-              from Mutafova Guest House. The town center is 3 km away.
+            Our mission is to provide a warm, welcoming environment where every guest feels valued and cared for. We believe that hospitality is not just about offering a place to stay, but about crafting moments that leave lasting impressions
+
             </p>
             <p className="mt-0">
-              This property is rated for the best value in Veliki Preslav!
+              This property is rated for the best value in DLF Phase II!
               Guests are getting more for their money compared to other
               properties.
               <br />

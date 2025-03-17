@@ -8,7 +8,7 @@ import { useDarkMode } from "../DarkModeContext";
 const blogs = [
   {
     id: "unveiling-hidden-gems",
-    title: "Unveiling Hidden Gems: The Best Offbeat Travel Destinations",
+    title: "Bleisure for Everyone: Redefining Travel with Comfort and Affordability",
     description:
       "Explore the most underrated travel spots that offer unique experiences and breathtaking views.",
     image: "/images/blog1.jpg",
@@ -17,7 +17,7 @@ const blogs = [
   },
   {
     id: "luxury-vs-budget",
-    title: "Luxury vs. Budget Stays: What's Worth Your Money?",
+    title: "Why Choose Phoenix Hospitality for Your Stay in Gurgaon",
     description:
       "A deep dive into what makes a hotel worth the price and whether budget stays can match luxury.",
     image: "/images/blog2.jpg",
@@ -26,7 +26,7 @@ const blogs = [
   },
   {
     id: "hotel-hacks",
-    title: "Top 5 Hotel Hacks to Elevate Your Stay Experience",
+    title: "Why Phoenix Hospitality is Your Ideal Choice for Long Stays in Gurgaon",
     description:
       "From free upgrades to secret amenities, discover how to make the most of your hotel stay.",
     image: "/images/blog3.jpg",

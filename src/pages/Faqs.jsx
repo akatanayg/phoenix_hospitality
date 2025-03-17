@@ -6,28 +6,28 @@ import { useDarkMode } from "../DarkModeContext";
 
 const faqs = [
   {
-    question: "What amenities are included in the villa?",
+    question: "How do I book a room?",
     answer:
-      "The villa includes a private pool, fully-equipped kitchen, spacious living areas, WiFi, and daily housekeeping services.",
+      "You can book a room by directly contacting us at [+91 number] or by sending an inquiry through our website. Our team will be happy to assist you with your booking.",
   },
   {
-    question: "Can I book the entire villa for private events?",
+    question: "Is there a gym or fitness center?",
     answer:
-      "Yes, you can book the entire villa for events like family gatherings, corporate retreats, and celebrations.",
+      "Yes, we provide a fully equipped gym for our guests.",
   },
   {
     question: "What are the check-in and check-out times?",
     answer:
-      "Check-in is from 3 PM onwards, and check-out is by 11 AM. Early check-in and late check-out are subject to availability.",
+      "Check-in is typically at 12 PM, and check-out is at 11 AM. However, we can accommodate early check-in or late check-out based on availability.",
   },
   {
     question: "Is breakfast included in the stay?",
     answer: "Breakfast can be arranged upon request at an additional cost.",
   },
   {
-    question: "What is the cancellation policy?",
+    question: "Do you offer any special packages or discounts?",
     answer:
-      "Cancellations made at least 7 days before arrival will receive a full refund. Cancellations made within 7 days will be partially refunded.",
+      "Yes, we offer special packages for corporate bookings and events. Please contact us directly to inquire about our customized offers and discounts tailored to your needs.",
   },
 ];
 
