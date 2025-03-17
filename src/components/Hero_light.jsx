@@ -115,7 +115,7 @@ const HeroSection = () => {
           </motion.h1>
 
           <motion.img
-            src="/c3.jpg"
+            src={`${process.env.PUBLIC_URL}/c3.jpg`}
             alt="Vertical Scenic"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}

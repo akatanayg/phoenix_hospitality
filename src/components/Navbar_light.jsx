@@ -99,7 +99,7 @@ const Navbar = () => {
       {/* Logo with Homepage Link */}
       <Link to="/" className="h-[75px] flex items-center md:ml-[80px]">
         <img
-          src="/logo.png"
+          src={`${process.env.PUBLIC_URL}/logo.png`}
           alt="Phoenix Logo"
           className="h-full object-contain"
         />
@@ -109,72 +109,73 @@ const Navbar = () => {
       <ul className="hidden md:flex space-x-10 font-medium text-base tracking-wide">
         {menuLinks.map((link) => (
           <li
-          key={link.label}
-          className="relative group cursor-pointer hover:scale-105 transition-transform duration-300"
-          onMouseEnter={() => setOpenMenus({ [link.label]: true })}
-          onMouseLeave={() => setOpenMenus({ [link.label]: false })}
-        >
-          {link.submenu ? (
-            <div className="group relative">
-              {/* Main Menu Item with Hoverable Dropdown */}
-              <div
-                className="flex items-center gap-1 cursor-pointer relative hover:text-[#E63946] transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#E63946] after:transition-all after:duration-300 group-hover:after:w-full"
+            key={link.label}
+            className="relative group cursor-pointer hover:scale-105 transition-transform duration-300"
+            onMouseEnter={() => setOpenMenus({ [link.label]: true })}
+            onMouseLeave={() => setOpenMenus({ [link.label]: false })}
+          >
+            {link.submenu ? (
+              <div className="group relative">
+                {/* Main Menu Item with Hoverable Dropdown */}
+                <div className="flex items-center gap-1 cursor-pointer relative hover:text-[#E63946] transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#E63946] after:transition-all after:duration-300 group-hover:after:w-full">
+                  {link.label}
+                  {/* Arrow Icon with Animation */}
+                  <motion.div
+                    animate={{ rotate: openMenus[link.label] ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <FaChevronDown />
+                  </motion.div>
+                </div>
+
+                {/* Submenu Dropdown */}
+                {openMenus[link.label] && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className={`absolute top-full left-0 w-[280px] shadow-lg rounded-lg p-4 z-50 opacity-100 translate-y-0 transition-all duration-300 backdrop-blur-md bg-opacity-80 ${
+                      darkMode
+                        ? "bg-gray-800 text-white"
+                        : "bg-white text-black"
+                    }`}
+                  >
+                    <h3 className="text-lg font-bold text-[#E63946] mb-2">
+                      {link.label}
+                    </h3>
+                    {link.submenu.map((item, index) => (
+                      <Link
+                        key={index}
+                        to={item.link}
+                        className="flex items-center space-x-3 py-2 border-b last:border-none relative hover:text-[#E63946] transition-colors duration-300"
+                      >
+                        <div className="text-[#E63946] text-xl">
+                          {item.icon}
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold">{item.title}</p>
+                          <p
+                            className={`text-xs ${
+                              darkMode ? "text-gray-400" : "text-gray-500"
+                            }`}
+                          >
+                            {item.subtext}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </div>
+            ) : (
+              <a
+                href={link.href}
+                className="relative hover:text-[#E63946] transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#E63946] after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
-                {/* Arrow Icon with Animation */}
-                <motion.div
-                  animate={{ rotate: openMenus[link.label] ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <FaChevronDown />
-                </motion.div>
-              </div>
-        
-              {/* Submenu Dropdown */}
-              {openMenus[link.label] && (
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className={`absolute top-full left-0 w-[280px] shadow-lg rounded-lg p-4 z-50 opacity-100 translate-y-0 transition-all duration-300 backdrop-blur-md bg-opacity-80 ${
-                    darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
-                  }`}
-                >
-                  <h3 className="text-lg font-bold text-[#E63946] mb-2">
-                    {link.label}
-                  </h3>
-                  {link.submenu.map((item, index) => (
-                    <Link
-                      key={index}
-                      to={item.link}
-                      className="flex items-center space-x-3 py-2 border-b last:border-none relative hover:text-[#E63946] transition-colors duration-300"
-                    >
-                      <div className="text-[#E63946] text-xl">{item.icon}</div>
-                      <div>
-                        <p className="text-sm font-semibold">{item.title}</p>
-                        <p
-                          className={`text-xs ${
-                            darkMode ? "text-gray-400" : "text-gray-500"
-                          }`}
-                        >
-                          {item.subtext}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </div>
-          ) : (
-            <a
-              href={link.href}
-              className="relative hover:text-[#E63946] transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#E63946] after:transition-all after:duration-300 hover:after:w-full"
-            >
-              {link.label}
-            </a>
-          )}
-        </li>
-        
+              </a>
+            )}
+          </li>
         ))}
       </ul>
 
