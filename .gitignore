@@ -1,0 +1,19 @@
+# Node modules and dependencies
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# Build artifacts
+build/
+dist/
+.cache/
+
+# Environment variables (if any)
+.env
+.env.local
+
+# Miscellaneous
+.DS_Store
+.vscode/
+.idea/
