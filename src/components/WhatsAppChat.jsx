@@ -40,7 +40,7 @@ export default function WhatsAppChat() {
 
             {/* WhatsApp Button */}
             <a
-              href="https://wa.me/919876543210" // ✅ Replace with actual number
+              href="https://wa.me/918586877995" // ✅ Replace with actual number
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 flex items-center justify-center bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg font-semibold transition-transform transform hover:scale-105 shadow-md"

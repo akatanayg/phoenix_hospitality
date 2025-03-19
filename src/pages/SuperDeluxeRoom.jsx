@@ -8,12 +8,14 @@ import {
   FaWifi,
   FaTv,
   FaCoffee,
-  FaShower,
-  FaConciergeBell,
-  FaDumbbell,
+  FaHandsWash,
+  FaBroom,
+  FaCreditCard,
   FaLaptop,
+  FaConciergeBell,
 } from "react-icons/fa";
 import { useDarkMode } from "../DarkModeContext";
+import { FaBroomBall, FaCableCar, FaDownLeftAndUpRightToCenter, FaLaptopCode } from "react-icons/fa6";
 
 const images = [
   "/images/super-deluxe-1.jpg",
@@ -122,24 +124,16 @@ const SuperDeluxeRoom = () => {
               {[
                 {
                   icon: FaBed,
-                  text: "Extra-Large King Bed with Luxury Linens",
+                  text: "King-size Bed with Luxury Linens",
                 },
-                { icon: FaWifi, text: "Ultra-Fast Wi-Fi Connection" },
-                { icon: FaTv, text: '55" 4K Smart TV with Premium Channels' },
-                { icon: FaLaptop, text: "Spacious Executive Work Desk" },
-                { icon: FaCoffee, text: "In-Room Espresso Machine" },
-                {
-                  icon: FaShower,
-                  text: "Deluxe Bathroom with Jacuzzi & Rain Shower",
-                },
-                {
-                  icon: FaConciergeBell,
-                  text: "Personalized 24/7 Butler Service",
-                },
-                {
-                  icon: FaDumbbell,
-                  text: "Private Access to VIP Fitness & Spa",
-                },
+                { icon: FaWifi, text: "Free High-Speed Wi-Fi" },
+                { icon: FaTv, text: "Multi-Channels Color TV" },
+                { icon: FaDownLeftAndUpRightToCenter, text: "Added Balcony" },
+                { icon: FaCoffee, text: "Mini Refrigerator & In-room Coffee Maker" },
+                { icon: FaHandsWash, text: "Laundry Services" },
+                { icon: FaConciergeBell, text: "Room Service" },
+                { icon: FaBroom, text: "Housekeeping" },
+                { icon: FaCreditCard, text: "All major credit cards accepted" },
               ].map(({ icon: Icon, text }, index) => (
                 <li key={index} className="flex items-center gap-3">
                   <Icon className="text-[#DD2476]" size={20} />

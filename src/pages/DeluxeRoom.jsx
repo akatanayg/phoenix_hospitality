@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
 import { Link } from "react-router-dom";
-import { FaBed, FaWifi, FaTv, FaCoffee, FaShower, FaConciergeBell, FaDumbbell, FaLaptop } from "react-icons/fa";
+import { FaBed, FaWifi, FaTv, FaCoffee, FaShower, FaConciergeBell, FaDumbbell, FaLaptop, FaCreditCard, FaBroom, FaHandsWash } from "react-icons/fa";
 import { useDarkMode } from "../DarkModeContext";
+import { FaBowlRice } from "react-icons/fa6";
 
 const images = [
   "/c1.jpg",
@@ -67,12 +68,13 @@ const DeluxeRoom = () => {
               {[
                 { icon: FaBed, text: "King-size Bed with Premium Linens" },
                 { icon: FaWifi, text: "Free High-Speed Wi-Fi" },
-                { icon: FaTv, text: "Smart TV with Streaming Services" },
-                { icon: FaLaptop, text: "Spacious Work Desk" },
+                { icon: FaTv, text: "Multi-Channels Color TV" },
+                { icon: FaBowlRice, text: "Complimentary Breakfast" },
                 { icon: FaCoffee, text: "Mini Refrigerator & Coffee Maker" },
-                { icon: FaShower, text: "Luxurious Ensuite Bathroom with Rain Shower" },
-                { icon: FaConciergeBell, text: "24/7 Room Service & Housekeeping" },
-                { icon: FaDumbbell, text: "Complimentary Fitness Center Access" }
+                { icon: FaHandsWash, text: "Laundry Services" },
+                { icon: FaConciergeBell, text: "Room Service" },
+                { icon: FaBroom, text: "Housekeeping" },
+                { icon: FaCreditCard, text: "All major credit cards accepted" },
               ].map(({ icon: Icon, text }, index) => (
                 <li key={index} className="flex items-center gap-3">
                   <Icon className="text-[#12C2E9]" size={20} />
