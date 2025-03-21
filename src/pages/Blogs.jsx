@@ -35,27 +35,27 @@ const blogs = [
   },
   {
     id: "hotel-history",
-    title: "The History Behind Our Boutique Hotel",
+    title: "The Ultimate Guide to Planning a Stress-Free Stay in Gurgaon",
     description:
-      "Learn about the rich history of our hotel and how it has evolved into a luxurious retreat.",
+      "Learn about Gurgaon, a bustling city near New Delhi, offers a mix of business hubs, leisure spots, and cultural attractions.",
     image: "/images/blog4.jpg",
     date: "February 20, 2025",
     author: "Michael Carter",
   },
   {
     id: "wellness-travel",
-    title: "Wellness Travel: How to Relax and Recharge on Your Trip",
+    title: "How Phoenix Hospitality Caters to Business Travelers: A Perfect Stay for Professionals",
     description:
-      "Tips and tricks to make the most of your travels while keeping wellness in mind.",
+      "It is designed with professionals in mind, offering everything you need for a seamless and stress-free stay.",
     image: "/images/blog5.jpg",
     date: "February 10, 2025",
     author: "Sophia Lee",
   },
   {
     id: "choosing-perfect-hotel",
-    title: "A Guide to Choosing the Perfect Hotel for Your Vacation",
+    title: "Why Boutique Hotels Are the Future of Hospitality: A Look at Phoenix Hospitality",
     description:
-      "Factors to consider when booking a hotel to ensure the best experience possible.",
+      "The hospitality industry is undergoing a transformation, with boutique hotels emerging as a preferred choice for modern travelers.",
     image: "/images/blog6.jpg",
     date: "January 28, 2025",
     author: "David Wilson",
