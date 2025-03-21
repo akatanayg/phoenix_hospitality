@@ -172,8 +172,11 @@ const Inquiry = () => {
               <br />
               <br />
               <br />
-              Experience the finest hospitality with our comfortable and
-              luxurious rooms.
+              Have questions or need assistance? We're here to help! Fill out
+              the form below with your details, and our team will get back to
+              you promptly. Whether you're looking for information about our
+              accommodations, special packages, or planning an event, we’re just
+              a message away.
             </p>
             <p className="text-lg font-medium">
               For inquiries, contact us 24/7:
@@ -183,14 +186,14 @@ const Inquiry = () => {
                 darkMode ? "text-red-400" : "text-[#E63946]"
               }`}
             >
-              📞 +91 98765 43210
+              📞 +91 85868 77995
             </p>
             <p
               className={`text-xl font-bold flex items-center gap-2 ${
                 darkMode ? "text-red-400" : "text-[#E63946]"
               }`}
             >
-              📞 +91 91234 56789
+              📞 +91 96502 08395
             </p>
           </div>
 
