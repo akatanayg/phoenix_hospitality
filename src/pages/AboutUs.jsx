@@ -66,19 +66,24 @@ const AboutUs = () => {
           }`}
         >
           <p>
-            Our journey started with a simple idea—creating a space where
-            comfort meets elegance. Over the years, we have built a reputation
-            for delivering exceptional hospitality experiences.
+            Phoenix Hospitality was established with a vision to redefine
+            comfort and personalized service in the hospitality industry.
+            Located in the heart of Gurgaon, we began as a small guest house
+            catering to business travelers and have since grown into a preferred
+            choice for both corporate and leisure guests. Over the years, we
+            have expanded our offerings to include modern amenities, an in-house
+            dining experience, and a serene outdoor lounge. Our journey is
+            rooted in providing exceptional care and creating memorable stays
+            for every guest.
           </p>
           <p>
-            With a vision to redefine luxury and personalized service, we have
-            carefully crafted every detail of our hotel to offer guests a unique
-            and memorable stay.
+            Our mission is to provide a warm, welcoming environment where every
+            guest feels valued and cared for. We believe that hospitality is not
+            just about offering a place to stay, but about crafting moments that
+            leave lasting impressions
           </p>
-          <p>
-            We believe in blending tradition with modernity, ensuring that every
-            guest experiences a perfect balance of warmth and sophistication.
-          </p>
+          {/* <p>
+          </p> */}
         </motion.div>
 
         {/* Image Carousel Section */}
