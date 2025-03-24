@@ -17,6 +17,8 @@ import {
 } from "react-icons/fa";
 import { useDarkMode } from "../DarkModeContext";
 import { FaBroom } from "react-icons/fa6";
+import { Helmet } from "react-helmet-async";
+
 
 const images = [
   "/images/suite-1.jpg",
@@ -45,6 +47,17 @@ const SuiteRoom = () => {
   }, []);
 
   return (
+    <>
+      <Helmet>
+        <title>Suite Room - Phoenix Hospitality</title>
+        <meta name="description" content="Experience ultimate luxury in our Suite Room at Phoenix Hospitality. The perfect blend of elegance and comfort for an unforgettable stay in Gurgaon." />
+        <meta name="keywords" content="Suite Room, Phoenix Hospitality, best hotel suites, luxury stay, Gurgaon premium hotel" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Suite Room - Phoenix Hospitality" />
+        <meta property="og:description" content="Stay in our beautifully designed Suite Room for a lavish and premium experience. Book your luxury stay today!" />
+        <meta property="og:image" content="https://thephoenixhospitality.com/images/suite-room.jpg" />
+        <meta property="og:url" content="https://thephoenixhospitality.com/suiteroom" />
+      </Helmet>
     <div
       className={`min-h-screen flex flex-col transition-colors duration-300 ${
         darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
@@ -190,6 +203,7 @@ const SuiteRoom = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 

@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
 import { useDarkMode } from "../DarkModeContext";
+import { Helmet } from "react-helmet-async";
+
 
 const faqs = [
   {
@@ -57,6 +59,17 @@ const FAQPage = () => {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>FAQs - Phoenix Hospitality</title>
+        <meta name="description" content="Find answers to frequently asked questions about Phoenix Hospitality, booking, check-in, amenities, and more." />
+        <meta name="keywords" content="Phoenix Hospitality FAQs, hotel check-in, booking process, hotel policies, Gurgaon hotel FAQs" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="FAQs - Phoenix Hospitality" />
+        <meta property="og:description" content="Got questions? Find answers to frequently asked queries at Phoenix Hospitality." />
+        <meta property="og:image" content="https://thephoenixhospitality.com/images/faqs.jpg" />
+        <meta property="og:url" content="https://thephoenixhospitality.com/faq" />
+      </Helmet>
     <div
       className={`min-h-screen flex flex-col transition-colors duration-300 ${
         darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
@@ -144,6 +157,7 @@ const FAQPage = () => {
       {/* Footer */}
       <Footer />
     </div>
+    </>
   );
 };
 

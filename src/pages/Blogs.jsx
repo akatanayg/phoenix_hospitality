@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
 import { useDarkMode } from "../DarkModeContext";
+import { Helmet } from "react-helmet-async";
+
 
 const blogs = [
   {
@@ -83,6 +85,17 @@ const Blogs = () => {
   }, []);
 
   return (
+    <>
+    <Helmet>
+      <title>Blogs - Phoenix Hospitality</title>
+      <meta name="description" content="Read the latest travel and hospitality blogs from Phoenix Hospitality. Get travel tips, hotel insights, and exclusive experiences." />
+      <meta name="keywords" content="Phoenix Hospitality Blogs, travel tips, best hotels, luxury stay, Gurgaon travel guide" />
+      <meta name="robots" content="index, follow" />
+      <meta property="og:title" content="Blogs - Phoenix Hospitality" />
+      <meta property="og:description" content="Explore our latest blogs on travel and hospitality trends at Phoenix Hospitality." />
+      <meta property="og:image" content="https://thephoenixhospitality.com/images/blog-cover.jpg" />
+      <meta property="og:url" content="https://thephoenixhospitality.com/blogs" />
+    </Helmet>
     <div
       className={`min-h-screen flex flex-col transition-colors duration-300 ${
         darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
@@ -163,6 +176,7 @@ const Blogs = () => {
       </motion.section>
       <Footer />
     </div>
+    </>
   );
 };
 

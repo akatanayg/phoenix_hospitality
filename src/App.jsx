@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar_light.jsx";
-
 import Home from "./pages/Home_light";
 import InquiryPage from "./pages/Inquiry";
 import FAQPage from "./pages/Faqs";
@@ -13,7 +12,8 @@ import SuitRoom_light from "./pages/SuitRoom";
 import AboutUs from "./pages/AboutUs";
 import { DarkModeProvider, useDarkMode } from "./DarkModeContext.jsx";
 import BlogPage from "./pages/BlogPage.jsx";
-import WhatsAppChat from "./components/WhatsAppChat"; // ✅ Import WhatsApp Chat
+import WhatsAppChat from "./components/WhatsAppChat";
+import { HelmetProvider } from "react-helmet-async"; // ✅ Import HelmetProvider
 
 function AppContent() {
   const { darkMode } = useDarkMode(); // Ensure darkMode is accessed
@@ -48,9 +48,11 @@ function AppContent() {
 function App() {
   return (
     <DarkModeProvider>
-      <Router>
-        <AppContent />
-      </Router>
+      <HelmetProvider> {/* ✅ Wrap your app with HelmetProvider */}
+        <Router>
+          <AppContent />
+        </Router>
+      </HelmetProvider>
     </DarkModeProvider>
   );
 }

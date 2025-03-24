@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useDarkMode } from "../DarkModeContext";
-import { Link } from "react-router-dom"; // Import global dark mode state
+import { Link } from "react-router-dom"; 
 
 const AboutUs = () => {
   const { darkMode } = useDarkMode(); // Get dark mode state directly

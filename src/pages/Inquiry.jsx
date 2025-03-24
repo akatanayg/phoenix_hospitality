@@ -6,6 +6,8 @@ import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
 import { useDarkMode } from "../DarkModeContext";
 import { createClient } from "@supabase/supabase-js";
+import { Helmet } from "react-helmet-async";
+
 
 const Inquiry = () => {
   const { darkMode } = useDarkMode();
@@ -120,6 +122,17 @@ const Inquiry = () => {
   };
 
   return (
+    <>
+    <Helmet>
+  <title>Inquiry - Phoenix Hospitality</title>
+  <meta name="description" content="Have questions or want to book your stay? Contact Phoenix Hospitality for inquiries and reservations." />
+  <meta name="keywords" content="Phoenix Hospitality inquiry, hotel booking, contact us, luxury stay reservations" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Inquiry - Phoenix Hospitality" />
+  <meta property="og:description" content="Get in touch with Phoenix Hospitality for booking inquiries and hotel reservations." />
+  <meta property="og:image" content="https://thephoenixhospitality.com/images/inquiry-header.jpg" />
+  <meta property="og:url" content="https://thephoenixhospitality.com/inquiry" />
+</Helmet>
     <div
       className={`relative min-h-screen flex flex-col transition-colors duration-300 ${
         darkMode ? "bg-gray-900 text-white" : "bg-[#f8f9fa] text-black"
@@ -475,6 +488,7 @@ const Inquiry = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 

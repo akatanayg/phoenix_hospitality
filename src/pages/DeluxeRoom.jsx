@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { FaBed, FaWifi, FaTv, FaCoffee, FaShower, FaConciergeBell, FaDumbbell, FaLaptop, FaCreditCard, FaBroom, FaHandsWash } from "react-icons/fa";
 import { useDarkMode } from "../DarkModeContext";
 import { FaBowlRice } from "react-icons/fa6";
+import { Helmet } from "react-helmet-async";
 
 const images = [
   "/c1.jpg",
@@ -33,6 +34,17 @@ const DeluxeRoom = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
+    <>
+    <Helmet>
+        <title>Deluxe Room - Phoenix Hospitality</title>
+        <meta name="description" content="Experience comfort and sophistication in our Deluxe Room at Phoenix Hospitality. Book now for a luxurious stay in Gurgaon." />
+        <meta name="keywords" content="Deluxe Room, Phoenix Hospitality, luxury hotel, Gurgaon stay, best hotel in DLF Phase II" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Deluxe Room - Phoenix Hospitality" />
+        <meta property="og:description" content="Enjoy a premium experience in our Deluxe Room with top-class amenities. Book now!" />
+        <meta property="og:image" content="https://thephoenixhospitality.com/images/deluxe-room.jpg" />
+        <meta property="og:url" content="https://thephoenixhospitality.com/deluxeroom" />
+      </Helmet>
     <div
       className={`min-h-screen flex flex-col transition-colors duration-300 ${
         darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
@@ -108,6 +120,7 @@ const DeluxeRoom = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 

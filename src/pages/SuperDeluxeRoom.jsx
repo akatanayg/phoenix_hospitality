@@ -16,6 +16,8 @@ import {
 } from "react-icons/fa";
 import { useDarkMode } from "../DarkModeContext";
 import { FaBroomBall, FaCableCar, FaDownLeftAndUpRightToCenter, FaLaptopCode } from "react-icons/fa6";
+import { Helmet } from "react-helmet-async";
+
 
 const images = [
   "/images/super-deluxe-1.jpg",
@@ -44,6 +46,17 @@ const SuperDeluxeRoom = () => {
   }, []);
 
   return (
+    <>
+      <Helmet>
+        <title>Super Deluxe Room - Phoenix Hospitality</title>
+        <meta name="description" content="Indulge in luxury with our Super Deluxe Room at Phoenix Hospitality. Spacious, elegant, and fully equipped for a premium stay in Gurgaon." />
+        <meta name="keywords" content="Super Deluxe Room, Phoenix Hospitality, best luxury hotel, premium stay, Gurgaon hotel" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Super Deluxe Room - Phoenix Hospitality" />
+        <meta property="og:description" content="Enjoy a high-end stay in our Super Deluxe Room with modern amenities and a luxurious ambiance. Book now!" />
+        <meta property="og:image" content="https://thephoenixhospitality.com/images/super-deluxe-room.jpg" />
+        <meta property="og:url" content="https://thephoenixhospitality.com/superdeluxeroom" />
+      </Helmet>
     <div
       className={`min-h-screen flex flex-col transition-colors duration-300 ${
         darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
@@ -185,6 +198,7 @@ const SuperDeluxeRoom = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 

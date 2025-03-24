@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar_light";
 import Footer from "../components/Footer_light";
 import { useDarkMode } from "../DarkModeContext";
 import { FaArrowLeft } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 // Blog data with flexible structure
 const blogs = [
@@ -136,90 +137,89 @@ const blogs = [
     content: [
       {
         type: "paragraph",
-        data: "When planning an extended stay in Gurgaon, selecting the right accommodation is crucial for ensuring comfort, convenience, and value. While traditional hotels offer short-term solutions, Phoenix Hospitality stands out as an exceptional option for those seeking a home away from home. "
+        data: "When planning an extended stay in Gurgaon, selecting the right accommodation is crucial for ensuring comfort, convenience, and value. While traditional hotels offer short-term solutions, Phoenix Hospitality stands out as an exceptional option for those seeking a home away from home. ",
       },
       {
         type: "paragraph",
-        data: "Here’s why Phoenix Hospitality is the ideal choice for long stays in Gurgaon:"
+        data: "Here’s why Phoenix Hospitality is the ideal choice for long stays in Gurgaon:",
       },
       {
         type: "subheading",
-        data: "Home-Like Comfort and Convenience"
+        data: "Home-Like Comfort and Convenience",
       },
       {
         type: "paragraph",
-        data: "Phoenix Hospitality provides a warm and inviting atmosphere, designed to make you feel at home. Unlike typical hotel rooms, our accommodations offer spacious layouts and comfortable furnishings, providing a relaxing environment for extended stays."
+        data: "Phoenix Hospitality provides a warm and inviting atmosphere, designed to make you feel at home. Unlike typical hotel rooms, our accommodations offer spacious layouts and comfortable furnishings, providing a relaxing environment for extended stays.",
       },
       {
         type: "subheading",
-        data: "Cost-Effective Solution"
+        data: "Cost-Effective Solution",
       },
       {
         type: "paragraph",
-        data: "Opting for a long stay at Phoenix Hospitality can be more cost-effective than traditional hotels. With competitive long-term rates, you can enjoy premium amenities and services without exceeding your budget."
+        data: "Opting for a long stay at Phoenix Hospitality can be more cost-effective than traditional hotels. With competitive long-term rates, you can enjoy premium amenities and services without exceeding your budget.",
       },
       {
         type: "subheading",
-        data: "Prime Location in Gurgaon"
+        data: "Prime Location in Gurgaon",
       },
       {
         type: "paragraph",
-        data: "Located in the heart of DLF Phase II, Gurgaon, Phoenix Hospitality offers easy access to major business hubs, entertainment centers, and essential amenities. Whether you're here for work or leisure, our strategic location ensures you're never far from where you need to be."
+        data: "Located in the heart of DLF Phase II, Gurgaon, Phoenix Hospitality offers easy access to major business hubs, entertainment centers, and essential amenities. Whether you're here for work or leisure, our strategic location ensures you're never far from where you need to be.",
       },
       {
         type: "subheading",
-        data: "Personalized Service and Hospitality"
+        data: "Personalized Service and Hospitality",
       },
       {
         type: "paragraph",
-        data: "At Phoenix Hospitality, we pride ourselves on delivering personalized service to every guest. Our dedicated staff is committed to ensuring your stay is comfortable and memorable, catering to your specific needs and preferences."
+        data: "At Phoenix Hospitality, we pride ourselves on delivering personalized service to every guest. Our dedicated staff is committed to ensuring your stay is comfortable and memorable, catering to your specific needs and preferences.",
       },
       {
         type: "subheading",
-        data: "Fully Equipped for Extended Living"
+        data: "Fully Equipped for Extended Living",
       },
       {
         type: "paragraph",
-        data: "Our accommodations are designed to meet the needs of long-term guests. With amenities such as complimentary Wi-Fi, in-house dining options at Gravy Gram, and access to a gym facility, Phoenix Hospitality offers everything you need for a seamless and enjoyable stay."
+        data: "Our accommodations are designed to meet the needs of long-term guests. With amenities such as complimentary Wi-Fi, in-house dining options at Gravy Gram, and access to a gym facility, Phoenix Hospitality offers everything you need for a seamless and enjoyable stay.",
       },
       {
         type: "subheading",
-        data: "A Community Away From Home"
+        data: "A Community Away From Home",
       },
       {
         type: "paragraph",
-        data: "Staying at Phoenix Hospitality means becoming part of a welcoming community. Connect with fellow guests, share experiences, and create lasting memories in a supportive and friendly environment."
+        data: "Staying at Phoenix Hospitality means becoming part of a welcoming community. Connect with fellow guests, share experiences, and create lasting memories in a supportive and friendly environment.",
       },
       {
         type: "paragraph",
-        data: "Choosing Phoenix Hospitality for your long stay in Gurgaon means opting for comfort, convenience, and value. Experience the difference and make Phoenix Hospitality your home  away from home."
+        data: "Choosing Phoenix Hospitality for your long stay in Gurgaon means opting for comfort, convenience, and value. Experience the difference and make Phoenix Hospitality your home  away from home.",
       },
-    ]
+    ],
   },
   {
     id: "hotel-history",
-    title:
-      "The Ultimate Guide to Planning a Stress-Free Stay in Gurgaon",
+    title: "The Ultimate Guide to Planning a Stress-Free Stay in Gurgaon",
     content: [
       {
         type: "paragraph",
-        data: "Gurgaon, a bustling city near New Delhi, offers a mix of business hubs, leisure spots, and cultural attractions. Whether you're visiting for work or relaxation, here’s how to plan a stress-free stay in this vibrant city: "
+        data: "Gurgaon, a bustling city near New Delhi, offers a mix of business hubs, leisure spots, and cultural attractions. Whether you're visiting for work or relaxation, here’s how to plan a stress-free stay in this vibrant city: ",
       },
       {
         type: "subheading",
-        data: "1. Choose the Right Accommodation"
+        data: "1. Choose the Right Accommodation",
       },
       {
         type: "paragraph",
-        data: "Opt for boutique hotels like Phoenix Hospitality for personalized service, comfortable rooms, and convenient amenities such as Wi-Fi and room service. Its prime location ensures easy access to business districts and local attractions."
+        data: "Opt for boutique hotels like Phoenix Hospitality for personalized service, comfortable rooms, and convenient amenities such as Wi-Fi and room service. Its prime location ensures easy access to business districts and local attractions.",
       },
       {
         type: "subheading",
-        data: "2. Plan Your Transportation"
+        data: "2. Plan Your Transportation",
       },
       {
         type: "paragraph",
-        data: "Getting around Gurgaon is easy with multiple options:"
+        data: "Getting around Gurgaon is easy with multiple options:",
       },
       {
         type: "list",
@@ -231,11 +231,11 @@ const blogs = [
       },
       {
         type: "subheading",
-        data: "3. Explore Local Attractions"
+        data: "3. Explore Local Attractions",
       },
       {
         type: "paragraph",
-        data: "Gurgaon boasts a variety of leisure activities:"
+        data: "Gurgaon boasts a variety of leisure activities:",
       },
       {
         type: "list",
@@ -247,31 +247,31 @@ const blogs = [
       },
       {
         type: "subheading",
-        data: "4. Indulge in Relaxation and Wellness"
+        data: "4. Indulge in Relaxation and Wellness",
       },
       {
         type: "paragraph",
-        data: "Unwind at our serene outdoor lounge, perfect for small gatherings or relaxation. We also host BBQ nights, offering a delightful way to connect with fellow travelers or enjoy a casual evening under the stars."
+        data: "Unwind at our serene outdoor lounge, perfect for small gatherings or relaxation. We also host BBQ nights, offering a delightful way to connect with fellow travelers or enjoy a casual evening under the stars.",
       },
       {
         type: "subheading",
-        data: "5. Shop and Dine Like a Local"
+        data: "5. Shop and Dine Like a Local",
       },
       {
         type: "paragraph",
-        data: "Explore malls like Ambience Mall or visit Banjara Market for unique finds. For dining, enjoy a delightful experience at Gravy Gram, our in-house restaurant offering a diverse menu with local flavors. Gravy Gram provides a convenient and satisfying dining option right at your doorstep."
+        data: "Explore malls like Ambience Mall or visit Banjara Market for unique finds. For dining, enjoy a delightful experience at Gravy Gram, our in-house restaurant offering a diverse menu with local flavors. Gravy Gram provides a convenient and satisfying dining option right at your doorstep.",
       },
       {
         type: "subheading",
-        data: "6. Best Time to Visit Gurgaon"
+        data: "6. Best Time to Visit Gurgaon",
       },
       {
         type: "paragraph",
-        data: "Plan your trip between November and February for pleasant weather perfect for sightseeing or relaxing walks."
+        data: "Plan your trip between November and February for pleasant weather perfect for sightseeing or relaxing walks.",
       },
       {
         type: "paragraph",
-        data: "Additional Tips for a Stress-Free Stay:"
+        data: "Additional Tips for a Stress-Free Stay:",
       },
       {
         type: "list",
@@ -283,9 +283,9 @@ const blogs = [
       },
       {
         type: "paragraph",
-        data: "With thoughtful planning and the right choices, your stay in Gurgaon can be both productive and rejuvenating. Let Phoenix Hospitality enhance your experience with its exceptional service and comfort!"
+        data: "With thoughtful planning and the right choices, your stay in Gurgaon can be both productive and rejuvenating. Let Phoenix Hospitality enhance your experience with its exceptional service and comfort!",
       },
-    ]
+    ],
   },
   {
     id: "wellness-travel",
@@ -294,69 +294,69 @@ const blogs = [
     content: [
       {
         type: "paragraph",
-        data: "In the fast-paced world of business travel, finding accommodations that balance comfort, convenience, and productivity is essential. Phoenix Hospitality in Gurgaon is designed with professionals in mind, offering everything you need for a seamless and stress-free stay. Here’s how we cater to business travelers:"
+        data: "In the fast-paced world of business travel, finding accommodations that balance comfort, convenience, and productivity is essential. Phoenix Hospitality in Gurgaon is designed with professionals in mind, offering everything you need for a seamless and stress-free stay. Here’s how we cater to business travelers:",
       },
       {
         type: "subheading",
-        data: "1. Prime Location for Easy Connectivityn"
+        data: "1. Prime Location for Easy Connectivityn",
       },
       {
         type: "paragraph",
-        data: "Phoenix Hospitality is strategically located in Gurgaon, close to major business hubs like Cyber City and Udyog Vihar. With easy access to metro stations, corporate offices, and the airport, our location ensures you spend less time commuting and more time focusing on what matters"
+        data: "Phoenix Hospitality is strategically located in Gurgaon, close to major business hubs like Cyber City and Udyog Vihar. With easy access to metro stations, corporate offices, and the airport, our location ensures you spend less time commuting and more time focusing on what matters",
       },
       {
         type: "subheading",
-        data: "2. Work-Friendly Spaces"
+        data: "2. Work-Friendly Spaces",
       },
       {
         type: "paragraph",
-        data: "Our rooms are thoughtfully designed with ergonomic workspaces and high-speed Wi-Fi, allowing you to stay productive without interruptions. Whether you need to prepare for a meeting or catch up on emails, we provide the perfect environment for work."
+        data: "Our rooms are thoughtfully designed with ergonomic workspaces and high-speed Wi-Fi, allowing you to stay productive without interruptions. Whether you need to prepare for a meeting or catch up on emails, we provide the perfect environment for work.",
       },
       {
         type: "subheading",
-        data: "3. Meeting and Event Support"
+        data: "3. Meeting and Event Support",
       },
       {
         type: "paragraph",
-        data: "Planning a team meeting or a small corporate event? Phoenix Hospitality offers versatile spaces, including a fully equipped conference room, to ensure your gathering is a success. From setting up the space to providing catering services, we handle all the details so you can focus on your agenda. Our conference room is designed to accommodate professional meetings with modern amenities, high-speed Wi-Fi, and seamless support for presentations or discussions."
+        data: "Planning a team meeting or a small corporate event? Phoenix Hospitality offers versatile spaces, including a fully equipped conference room, to ensure your gathering is a success. From setting up the space to providing catering services, we handle all the details so you can focus on your agenda. Our conference room is designed to accommodate professional meetings with modern amenities, high-speed Wi-Fi, and seamless support for presentations or discussions.",
       },
       {
         type: "subheading",
-        data: "4. Relaxation After Work"
+        data: "4. Relaxation After Work",
       },
       {
         type: "paragraph",
-        data: "We understand that business trips can be demanding. That’s why we offer a serene outdoor lounge where you can unwind after a long day. Enjoy BBQ nights or simply relax in a peaceful setting that helps you recharge for the next day."
+        data: "We understand that business trips can be demanding. That’s why we offer a serene outdoor lounge where you can unwind after a long day. Enjoy BBQ nights or simply relax in a peaceful setting that helps you recharge for the next day.",
       },
       {
         type: "subheading",
-        data: "5. In-House Dining at Gravy Gram"
+        data: "5. In-House Dining at Gravy Gram",
       },
       {
         type: "paragraph",
-        data: "Forget the hassle of searching for restaurants after a busy day. Our in-house restaurant, Gravy Gram, serves delicious meals with a variety of options to suit every palate. Whether it’s breakfast before an early meeting or dinner after a long day, we’ve got you covered."
+        data: "Forget the hassle of searching for restaurants after a busy day. Our in-house restaurant, Gravy Gram, serves delicious meals with a variety of options to suit every palate. Whether it’s breakfast before an early meeting or dinner after a long day, we’ve got you covered.",
       },
       {
         type: "subheading",
-        data: "6. Personalized Service"
+        data: "6. Personalized Service",
       },
       {
         type: "paragraph",
-        data: "At Phoenix Hospitality, we pride ourselves on providing personalized service tailored to your needs as a professional traveler. From flexible check-in/check-out options to assisting with transportation arrangements, our team is here to make your stay as smooth as possible."
+        data: "At Phoenix Hospitality, we pride ourselves on providing personalized service tailored to your needs as a professional traveler. From flexible check-in/check-out options to assisting with transportation arrangements, our team is here to make your stay as smooth as possible.",
       },
       {
         type: "subheading",
-        data: "7. Special Packages for Corporate Stays"
+        data: "7. Special Packages for Corporate Stays",
       },
       {
         type: "paragraph",
-        data: "We offer exclusive packages for corporate bookings and long stays, ensuring affordability without compromising on quality. Reach out to us directly through our inquiry page [attach link] to learn more about our tailored solutions for businesses."
+        data: "We offer exclusive packages for corporate bookings and long stays, ensuring affordability without compromising on quality. Reach out to us directly through our inquiry page [attach link] to learn more about our tailored solutions for businesses.",
       },
       {
         type: "paragraph",
-        data: "Phoenix Hospitality is more than just a place to stay - it’s your partner in creating a productive and comfortable business trip experience. Let us take care of the details so you can focus on achieving your goals during your time in Gurgaon"
+        data: "Phoenix Hospitality is more than just a place to stay - it’s your partner in creating a productive and comfortable business trip experience. Let us take care of the details so you can focus on achieving your goals during your time in Gurgaon",
       },
-    ]
+    ],
   },
   {
     id: "choosing-perfect-hotel",
@@ -365,62 +365,62 @@ const blogs = [
     content: [
       {
         type: "paragraph",
-        data: "The hospitality industry is undergoing a transformation, with boutique hotels emerging as a preferred choice for modern travelers. These establishments offer a unique blend of personalized service, stylish design, and local charm that sets them apart from traditional hotel chains. Phoenix Hospitality in Gurgaon is a shining example of how boutique hotels are redefining the guest experience. Here’s why boutique hotels like Phoenix Hospitality are the future of hospitality:"
+        data: "The hospitality industry is undergoing a transformation, with boutique hotels emerging as a preferred choice for modern travelers. These establishments offer a unique blend of personalized service, stylish design, and local charm that sets them apart from traditional hotel chains. Phoenix Hospitality in Gurgaon is a shining example of how boutique hotels are redefining the guest experience. Here’s why boutique hotels like Phoenix Hospitality are the future of hospitality:",
       },
       {
         type: "subheading",
-        data: "1. Personalized Service That Feels Like Home"
+        data: "1. Personalized Service That Feels Like Home",
       },
       {
         type: "paragraph",
-        data: "Boutique hotels excel in providing tailored experiences, and Phoenix Hospitality is no exception. With fewer rooms than large hotel chains, we focus on understanding and catering to each guest’s unique needs. From flexible check-in options to customized room preferences, our attentive staff ensures that every stay feels personal and welcoming."
+        data: "Boutique hotels excel in providing tailored experiences, and Phoenix Hospitality is no exception. With fewer rooms than large hotel chains, we focus on understanding and catering to each guest’s unique needs. From flexible check-in options to customized room preferences, our attentive staff ensures that every stay feels personal and welcoming.",
       },
       {
         type: "subheading",
-        data: "2. Thoughtful Design"
+        data: "2. Thoughtful Design",
       },
       {
         type: "paragraph",
-        data: "Unlike standardized chain hotels, boutique hotels prioritize individuality and character in their design. At Phoenix Hospitality, our interiors reflect a blend of modern aesthetics with Indian heritage, creating a unique and inviting ambiance for every guest. Every detail, from the furniture to the décor, is thoughtfully curated to enhance your stay."
+        data: "Unlike standardized chain hotels, boutique hotels prioritize individuality and character in their design. At Phoenix Hospitality, our interiors reflect a blend of modern aesthetics with Indian heritage, creating a unique and inviting ambiance for every guest. Every detail, from the furniture to the décor, is thoughtfully curated to enhance your stay.",
       },
       {
         type: "subheading",
-        data: "3. A Strong Connection to Local Culture"
+        data: "3. A Strong Connection to Local Culture",
       },
       {
         type: "paragraph",
-        data: "Boutique hotels often serve as a gateway to the local culture, and Phoenix Hospitality embraces this philosophy. Our property not only reflects the vibrant spirit of Gurgaon but also offers guests insights into the city’s unique character. Whether it’s through locally inspired cuisine at our in-house restaurant, Gravy Gram, or recommendations for nearby attractions, we ensure an authentic experience."
+        data: "Boutique hotels often serve as a gateway to the local culture, and Phoenix Hospitality embraces this philosophy. Our property not only reflects the vibrant spirit of Gurgaon but also offers guests insights into the city’s unique character. Whether it’s through locally inspired cuisine at our in-house restaurant, Gravy Gram, or recommendations for nearby attractions, we ensure an authentic experience.",
       },
       {
         type: "subheading",
-        data: "4. A Focus on Community and Gathering Spaces"
+        data: "4. A Focus on Community and Gathering Spaces",
       },
       {
         type: "paragraph",
-        data: "Boutique hotels foster a sense of community by offering intimate spaces where guests can connect and unwind. At Phoenix Hospitality, our outdoor lounge provides the perfect setting for casual gatherings or quiet relaxation after a busy day. We also host BBQ nights to bring guests together in a warm and friendly environment."
+        data: "Boutique hotels foster a sense of community by offering intimate spaces where guests can connect and unwind. At Phoenix Hospitality, our outdoor lounge provides the perfect setting for casual gatherings or quiet relaxation after a busy day. We also host BBQ nights to bring guests together in a warm and friendly environment.",
       },
       {
         type: "subheading",
-        data: "5. Ideal for Business Travelers" 
+        data: "5. Ideal for Business Travelers",
       },
       {
         type: "paragraph",
-        data: "Phoenix Hospitality seamlessly blends boutique charm with business convenience. Our fully equipped conference room caters to professionals seeking a productive space for meetings or events. Combined with high-speed Wi-Fi and work-friendly rooms, we provide an ideal environment for corporate travelers."
+        data: "Phoenix Hospitality seamlessly blends boutique charm with business convenience. Our fully equipped conference room caters to professionals seeking a productive space for meetings or events. Combined with high-speed Wi-Fi and work-friendly rooms, we provide an ideal environment for corporate travelers.",
       },
       {
         type: "subheading",
-        data: "6. The Future is Boutique: Why Travelers Prefer Us"
+        data: "6. The Future is Boutique: Why Travelers Prefer Us",
       },
       {
         type: "paragraph",
-        data: "Today’s travelers value experiences over standardization, making boutique hotels the go-to choice for those seeking something special. At Phoenix Hospitality, we embody this trend by offering personalized care, unique design, and an authentic connection to Gurgaon’s culture - all while maintaining affordability."
+        data: "Today’s travelers value experiences over standardization, making boutique hotels the go-to choice for those seeking something special. At Phoenix Hospitality, we embody this trend by offering personalized care, unique design, and an authentic connection to Gurgaon’s culture - all while maintaining affordability.",
       },
       {
         type: "paragraph",
-        data: "Boutique hotels like Phoenix Hospitality are reshaping the hospitality landscape by prioritizing individuality and guest satisfaction over mass-market appeal. Whether you’re traveling for business or leisure, our property offers a refreshing alternative to traditional accommodations. Experience the future of hospitality with us - where every stay is as unique as you are!"
+        data: "Boutique hotels like Phoenix Hospitality are reshaping the hospitality landscape by prioritizing individuality and guest satisfaction over mass-market appeal. Whether you’re traveling for business or leisure, our property offers a refreshing alternative to traditional accommodations. Experience the future of hospitality with us - where every stay is as unique as you are!",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 const BlogPage = () => {
@@ -450,100 +450,129 @@ const BlogPage = () => {
   }
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-300 ${
-        darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
-      }`}
-    >
-      <Navbar /> <br />
-      <br />
-      <br />
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="max-w-4xl mx-auto px-6 py-16"
+    <>
+      <Helmet>
+        <title>{blog.title} - Phoenix Hospitality</title>
+        <meta
+          name="description"
+          content={blog.content[0].data.substring(0, 150) + "..."}
+        />
+        <meta
+          name="keywords"
+          content="Phoenix Hospitality blogs, travel tips, hospitality, hotel industry, {blog.title}"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          property="og:title"
+          content={blog.title + " - Phoenix Hospitality"}
+        />
+        <meta
+          property="og:description"
+          content={blog.content[0].data.substring(0, 150) + "..."}
+        />
+        <meta
+          property="og:image"
+          content="https://thephoenixhospitality.com/images/blog-thumbnail.jpg"
+        />
+        <meta
+          property="og:url"
+          content={`https://thephoenixhospitality.com/blog/${blog.id}`}
+        />
+      </Helmet>
+      <div
+        className={`min-h-screen transition-colors duration-300 ${
+          darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
+        }`}
       >
-        {/* Back Button */}
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition mb-6"
+        <Navbar /> <br />
+        <br />
+        <br />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="max-w-4xl mx-auto px-6 py-16"
         >
-          <FaArrowLeft /> Back to Blogs
-        </button>
-
-        {/* Blog Heading */}
-        <motion.h1
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="text-4xl md:text-5xl font-extrabold leading-tight"
-        >
-          {blog.title.split(" ").slice(0, -1).join(" ")}{" "}
-          <span className="bg-gradient-to-r from-[#FF5733] via-[#EC2D70] to-[#8B0000] text-transparent bg-clip-text">
-            {blog.title.split(" ").slice(-1)}
-          </span>
-        </motion.h1>
-
-        {/* Date & Author */}
-        <div className="flex justify-between items-center mt-4 text-gray-500 italic">
-          <p>{blog.date}</p>
-          <p>{blog.author}</p>
-        </div>
-
-        {/* Dynamic Blog Content */}
-        <div className="mt-6 space-y-6 text-lg leading-relaxed">
-          {blog.content.map((item, index) => {
-            if (item.type === "paragraph") {
-              return (
-                <motion.p
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                >
-                  {item.data}
-                </motion.p>
-              );
-            } else if (item.type === "subheading") {
-              return (
-                <motion.h2
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="text-2xl font-semibold text-white"
-                >
-                  {item.data}
-                </motion.h2>
-              );
-            } else if (item.type === "list") {
-              return (
-                <motion.ul
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="list-disc list-inside space-y-2"
-                >
-                  {item.data.map((point, i) => (
-                    <li key={i}>{point}</li>
-                  ))}
-                </motion.ul>
-              );
-            }
-            return null;
-          })}
-        </div>
-        <motion.hr
-        initial={{ opacity: 0, scaleX: 0 }}
-        animate={{ opacity: 1, scaleX: 1 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="mt-10 border-t border-white-400/50 w-1/2 mx-auto"
-      /> <br /><br />
-      </motion.div>
-      <Footer />
-    </div>
+          {/* Back Button */}
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition mb-6"
+          >
+            <FaArrowLeft /> Back to Blogs
+          </button>
+          {/* Blog Heading */}
+          <motion.h1
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-4xl md:text-5xl font-extrabold leading-tight"
+          >
+            {blog.title.split(" ").slice(0, -1).join(" ")}{" "}
+            <span className="bg-gradient-to-r from-[#FF5733] via-[#EC2D70] to-[#8B0000] text-transparent bg-clip-text">
+              {blog.title.split(" ").slice(-1)}
+            </span>
+          </motion.h1>
+          {/* Date & Author */}
+          <div className="flex justify-between items-center mt-4 text-gray-500 italic">
+            <p>{blog.date}</p>
+            <p>{blog.author}</p>
+          </div>
+          {/* Dynamic Blog Content */}
+          <div className="mt-6 space-y-6 text-lg leading-relaxed">
+            {blog.content.map((item, index) => {
+              if (item.type === "paragraph") {
+                return (
+                  <motion.p
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                  >
+                    {item.data}
+                  </motion.p>
+                );
+              } else if (item.type === "subheading") {
+                return (
+                  <motion.h2
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                    className="text-2xl font-semibold text-white"
+                  >
+                    {item.data}
+                  </motion.h2>
+                );
+              } else if (item.type === "list") {
+                return (
+                  <motion.ul
+                    key={index}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                    className="list-disc list-inside space-y-2"
+                  >
+                    {item.data.map((point, i) => (
+                      <li key={i}>{point}</li>
+                    ))}
+                  </motion.ul>
+                );
+              }
+              return null;
+            })}
+          </div>
+          <motion.hr
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-10 border-t border-white-400/50 w-1/2 mx-auto"
+          />{" "}
+          <br />
+          <br />
+        </motion.div>
+        <Footer />
+      </div>
+    </>
   );
 };
 

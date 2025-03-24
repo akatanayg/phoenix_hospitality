@@ -5,6 +5,7 @@ import Footer from "../components/Footer_light";
 import { FaStar, FaUsers, FaBullseye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../DarkModeContext";
+import { Helmet } from "react-helmet-async";
 
 const AboutUs = () => {
   const { darkMode } = useDarkMode();
@@ -15,6 +16,29 @@ const AboutUs = () => {
   }, []);
 
   return (
+    <>
+    <Helmet>
+        <title>About Us - Phoenix Hospitality</title>
+        <meta
+          name="description"
+          content="Discover Phoenix Hospitality, a premium stay in DLF Phase II, Gurgaon. Inspired by the mythical phoenix, we ensure a seamless and memorable experience."
+        />
+        <meta
+          name="keywords"
+          content="Phoenix Hospitality, best hotel in Gurgaon, DLF Phase II stay, luxury hotel, business travel, budget hotel"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="About Us - Phoenix Hospitality" />
+        <meta
+          property="og:description"
+          content="Phoenix Hospitality is located in DLF Phase II, offering premium stays for business and leisure travelers."
+        />
+        <meta
+          property="og:image"
+          content="https://thephoenixhospitality.com/image1.jpg"
+        />
+        <meta property="og:url" content="https://thephoenixhospitality.com/aboutus" />
+      </Helmet>
     <div
       className={`min-h-screen flex flex-col transition-colors duration-300 ${
         darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
@@ -137,6 +161,7 @@ const AboutUs = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 
