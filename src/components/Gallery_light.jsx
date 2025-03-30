@@ -3,12 +3,12 @@ import { motion, useAnimation } from "framer-motion";
 import { useDarkMode } from "../DarkModeContext";
 
 const images = [
-  "/c1.jpg",
-  "/c3.jpg",
-  "/c5.jpg",
-  "/c3.jpg",
-  "/c1.jpg",
-  "/c3.jpg",
+  "/Outdoor.png",
+  "/Room Overview.jpg",
+  "/Reception.jpg",
+  "/Reception Lounge.jpg",
+  "/Room Bed.jpg",
+  "/Suit Lounge.jpg",
 ];
 const infiniteImages = [...images, ...images];
 

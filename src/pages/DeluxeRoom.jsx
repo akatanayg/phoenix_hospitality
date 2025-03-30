@@ -17,7 +17,7 @@ import { useDarkMode } from "../DarkModeContext";
 import { FaBowlRice } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
 
-const images = ["/c1.jpg", "/c3.jpg", "/c5.jpg", "/c3.jpg"];
+const images = ["/Room Overview.jpg", "/Room Bed.jpg", "/Room Bed 2.jpg", "/Room Overview Side.jpg"];
 
 const DeluxeRoom = () => {
   const { darkMode } = useDarkMode();
@@ -57,7 +57,7 @@ const DeluxeRoom = () => {
         />
         <meta
           property="og:image"
-          content="https://thephoenixhospitality.com/images/deluxe-room.jpg"
+          content="https://thephoenixhospitality.com/images/Room Bed.jpg"
         />
         <meta
           property="og:url"
@@ -69,10 +69,10 @@ const DeluxeRoom = () => {
           darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
         }`}
       >
-        <Navbar />
-        <div className="relative w-full h-[300px]">
+        <Navbar /><br /><br />
+        {/* <div className="relative w-full h-[300px]">
           <img
-            src="/c1.jpg"
+            src="/Suit Lounge.png"
             alt="Deluxe Room at Phoenix Hospitality"
             className="w-full h-full object-cover"
           />
@@ -81,7 +81,7 @@ const DeluxeRoom = () => {
               darkMode ? "bg-gray-900 opacity-70" : "bg-black opacity-40"
             }`}
           ></div>
-        </div>
+        </div> */}
 
         <motion.section
           initial={{ opacity: 0, y: 30 }}

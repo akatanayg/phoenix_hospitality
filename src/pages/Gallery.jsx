@@ -9,31 +9,26 @@ const sections = [
   {
     title: "Exterior",
     images: [
-      "https://source.unsplash.com/500x300/?hotel,exterior",
-      "https://source.unsplash.com/500x300/?resort,view",
-      "https://source.unsplash.com/500x300/?villa,architecture",
-      "https://source.unsplash.com/500x300/?hotel,sunset",
-      "https://source.unsplash.com/500x300/?hotel,design",
+      "Outdoor.png",
+      "Front.jpg",
     ],
   },
   {
     title: "Rooms",
     images: [
-      "https://source.unsplash.com/500x300/?hotel,room",
-      "https://source.unsplash.com/500x300/?bedroom,luxury",
-      "https://source.unsplash.com/500x300/?hotel,suite",
-      "https://source.unsplash.com/500x300/?hotel,comfort",
-      "https://source.unsplash.com/500x300/?hotel,interior",
+      "Room Overview.jpg",
+      "Room Bed 2.jpg",
+      "Suit Lounge.png",
+      "Room Overview Side.jpg",
+      "Room Bed.jpg",
     ],
   },
   {
     title: "Lobby",
     images: [
-      "https://source.unsplash.com/500x300/?hotel,lobby",
-      "https://source.unsplash.com/500x300/?hotel,entrance",
-      "https://source.unsplash.com/500x300/?hotel,reception",
-      "https://source.unsplash.com/500x300/?hotel,lounge",
-      "https://source.unsplash.com/500x300/?hotel,waiting",
+      "Reception.jpg",
+      "Lobby Stair 1.jpg",
+      "Reception Lounge.jpg",
     ],
   },
 ];
@@ -96,7 +91,7 @@ const GalleryPage = () => {
         }`}
       >
         {/* Navbar */}
-        <Navbar /> <br />
+        <Navbar /> <br /><br />
         <br />
         {/* Centered Heading with Typing Effect */}
         <motion.div

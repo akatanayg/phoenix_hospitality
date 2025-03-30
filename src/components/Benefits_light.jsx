@@ -8,28 +8,28 @@ const amenities = [
     description: [
       "At Phoenix Hospitality, we understand the importance of staying active while traveling. Our on-site gym offers a convenient space for guests to maintain their fitness routine. Featuring a selection of essential fitness equipment, our gym allows you to work out at your own pace. Whether you're a fitness enthusiast or just looking to stay energized, our gym facility is designed to enhance your overall wellness experience, ensuring you feel refreshed and revitalized during your stay with us in Gurgaon."
     ],
-    image: "/c1.jpg",
+    image: "/Gym.jpg",
   },
   {
     title: "Gravy Gram",
     description: [
       "Indulge in the flavors of India at Gravy Gram, our in-house restaurant, specializing in authentic North Indian cuisine with a diverse menu to suit every taste. Enjoy a warm and inviting atmosphere, perfect for both casual dining and business meals. Our chefs craft each dish with precision and passion, ensuring a truly satisfying dining experience. Let Gravy Gram be your go-to destination for a delicious meal in Gurgaon."
     ],
-    image: "/c3.jpg",
+    image: "/Food 2.jpg",
   },
   {
     title: "Outdoor Lounge",
     description: [
       "Our outdoor lounge is a lovely spot to relax and socialize. Perfect for small gatherings or casual get-togethers, it offers a peaceful atmosphere that's just right for unwinding with friends or colleagues. Whether you're hosting a kitty party or simply enjoying some fresh air, this cozy space feels like a tranquil retreat. We've designed it to be a comfortable place to connect with others and make the most of your stay in Gurgaon."
     ],
-    image: "/c5.jpg",
+    image: "/Reception Lounge.jpg",
   },
   {
     title: "Conference Room",
     description: [
       "Host your business meetings and events in style at our well-equipped conference room. Nestled in the vibrant hub of Gurgaon, our conference room provides a sophisticated setting equipped with modern amenities, ensuring productive meetings and presentations. Whether you're conducting a corporate meeting or a team workshop, our dedicated staff will ensure everything runs smoothly. Enjoy a productive and comfortable environment that fosters collaboration and success."
     ],
-    image: "/c3.jpg",
+    image: "/a.jpg",
   },
 ];
 

@@ -67,7 +67,7 @@ const AboutUs = () => {
             viewport={{ once: true }}
             className="flex gap-4 justify-center md:justify-start"
           >
-            {["/c1.jpg", "/c5.jpg", "/c3.jpg", "/c5.jpg", "/c3.jpg"].map(
+            {["/Suit Lounge.png", "/Room Overview.jpg", "/Room Bed.jpg", "/Gym.jpg", "/Reception.jpg"].map(
               (src, index) => (
                 <img
                   key={index}
@@ -93,7 +93,7 @@ const AboutUs = () => {
             className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] overflow-hidden rounded-full shadow-2xl relative md:-left-[115px]"
           >
             <img
-              src="/image1.jpg"
+              src="/Front.jpg"
               alt="about circle"
               className="w-full h-full object-cover"
             />

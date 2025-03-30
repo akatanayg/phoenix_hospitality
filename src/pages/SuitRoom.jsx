@@ -18,10 +18,7 @@ import { FaBroom } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
 
 const images = [
-  "/images/suite-1.jpg",
-  "/images/suite-2.jpg",
-  "/images/suite-3.jpg",
-  "/images/suite-4.jpg",
+  "/Suit Lounge.png","/Room Overview.jpg", "/Room Bed.jpg", "/Room Bed 2.jpg", "/Room Overview Side.jpg",
 ];
 
 const SuiteRoom = () => {
@@ -63,7 +60,7 @@ const SuiteRoom = () => {
         />
         <meta
           property="og:image"
-          content="https://thephoenixhospitality.com/images/suite-room.jpg"
+          content="https://thephoenixhospitality.com/images/Suit Lounge.png"
         />
         <meta
           property="og:url"
@@ -75,10 +72,10 @@ const SuiteRoom = () => {
           darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
         }`}
       >
-        <Navbar />
-        <div className="relative w-full h-[300px]">
+        <Navbar /><br /><br />
+        {/* <div className="relative w-full h-[300px]">
           <img
-            src="/images/suite-bg.jpg"
+            src="/Suit Lounge.png"
             alt="Suite Room at Phoenix Hospitality"
             className="w-full h-full object-cover"
           />
@@ -87,7 +84,7 @@ const SuiteRoom = () => {
               darkMode ? "bg-gray-900 opacity-70" : "bg-black opacity-40"
             }`}
           ></div>
-        </div>
+        </div> */}
 
         <motion.section
           initial={{ opacity: 0, y: 30 }}

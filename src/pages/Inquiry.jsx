@@ -95,9 +95,9 @@ const Inquiry = () => {
 
       if (error) {
         console.error("🚨 Error inserting data:", error);
-        alert(`Error submitting inquiry: ${error.message}`);
+        alert(`Error submitting Enquiry: ${error.message}`);
       } else {
-        console.log("✅ Inquiry submitted successfully!", data);
+        console.log("✅ Enquiry submitted successfully!", data);
         setShowSuccessModal(true); // ✅ Show success modal
         setTimeout(() => setShowSuccessModal(false), 3000); // ✅ Hide after 3 sec
 
@@ -124,14 +124,14 @@ const Inquiry = () => {
   return (
     <>
     <Helmet>
-  <title>Inquiry - Phoenix Hospitality</title>
+  <title>Enquiry - Phoenix Hospitality</title>
   <meta name="description" content="Have questions or want to book your stay? Contact Phoenix Hospitality for inquiries and reservations." />
-  <meta name="keywords" content="Phoenix Hospitality inquiry, hotel booking, contact us, luxury stay reservations" />
+  <meta name="keywords" content="Phoenix Hospitality Enquiry, hotel booking, contact us, luxury stay reservations" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Inquiry - Phoenix Hospitality" />
+  <meta property="og:title" content="Enquiry - Phoenix Hospitality" />
   <meta property="og:description" content="Get in touch with Phoenix Hospitality for booking inquiries and hotel reservations." />
-  <meta property="og:image" content="https://thephoenixhospitality.com/images/inquiry-header.jpg" />
-  <meta property="og:url" content="https://thephoenixhospitality.com/inquiry" />
+  <meta property="og:image" content="https://thephoenixhospitality.com/images/Enquiry-header.jpg" />
+  <meta property="og:url" content="https://thephoenixhospitality.com/Enquiry" />
 </Helmet>
     <div
       className={`relative min-h-screen flex flex-col transition-colors duration-300 ${
@@ -175,7 +175,7 @@ const Inquiry = () => {
           </span>
         </motion.h1>
 
-        {/* Inquiry Form */}
+        {/* Enquiry Form */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Contact Details */}
           <div className="flex flex-col gap-4">
@@ -187,12 +187,14 @@ const Inquiry = () => {
               <br />
               Have questions or need assistance? We're here to help! Fill out
               the form below with your details, and our team will get back to
-              you promptly. Whether you're looking for information about our
+              you promptly. </p>
+              <p className="text-lg font-medium">
+              Whether you're looking for information about our
               accommodations, special packages, or planning an event, we’re just
               a message away.
             </p>
             <p className="text-lg font-medium">
-              For inquiries, contact us 24/7:
+              For Enquiries, Contact Us 24/7:
             </p>
             <p
               className={`text-xl font-bold flex items-center gap-2 ${
@@ -210,7 +212,7 @@ const Inquiry = () => {
             </p>
           </div>
 
-          {/* Inquiry Fields */}
+          {/* Enquiry Fields */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -468,7 +470,7 @@ const Inquiry = () => {
                     : "bg-[#E63946] text-white hover:bg-[#C72F3C]"
                 }`}
               >
-                {loading ? "Submitting..." : "Submit Inquiry"}
+                {loading ? "Submitting..." : "Submit Enquiry"}
               </motion.button>
             </div>
           </motion.div>
@@ -478,7 +480,7 @@ const Inquiry = () => {
       {showSuccessModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white text-black w-96 p-8 rounded-lg shadow-xl text-center">
-            <h2 className="text-xl font-bold">✅ Inquiry Submitted!</h2>
+            <h2 className="text-xl font-bold">✅ Enquiry Submitted!</h2>
             <p className="text-gray-600 mt-3 text-lg">
               We'll get back to you soon.
             </p>

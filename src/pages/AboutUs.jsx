@@ -9,7 +9,12 @@ import { Helmet } from "react-helmet-async";
 
 const AboutUs = () => {
   const { darkMode } = useDarkMode();
-  const images = ["/c1.jpg", "/c3.jpg", "/c5.jpg", "/c1.jpg"];
+  const images = ["/Outdoor.png",
+  "/Room Overview.jpg",
+  "/Reception.jpg",
+  "/Reception Lounge.jpg",
+  "/Room Bed.jpg",
+  "/Suit Lounge.jpg",];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -17,7 +22,7 @@ const AboutUs = () => {
 
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>About Us - Phoenix Hospitality</title>
         <meta
           name="description"
@@ -35,132 +40,135 @@ const AboutUs = () => {
         />
         <meta
           property="og:image"
-          content="https://thephoenixhospitality.com/image1.jpg"
+          content="https://thephoenixhospitality.com/Outdoor.jpg"
         />
-        <meta property="og:url" content="https://thephoenixhospitality.com/aboutus" />
+        <meta
+          property="og:url"
+          content="https://thephoenixhospitality.com/aboutus"
+        />
       </Helmet>
-    <div
-      className={`min-h-screen flex flex-col transition-colors duration-300 ${
-        darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
-      }`}
-    >
-      <Navbar />
-
-      {/* Hero Section */}
-      <div className="relative w-full h-[300px]">
-        <img
-          src="/image1.jpg"
-          alt="About Us Background"
-          className="w-full h-full object-cover"
-        />
-        <div
-          className={`absolute inset-0 ${
-            darkMode ? "bg-gray-900 opacity-70" : "bg-black opacity-40"
-          }`}
-        ></div>
-      </div>
-
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="max-w-6xl mx-auto px-6 py-16"
+      <div
+        className={`min-h-screen flex flex-col transition-colors duration-300 ${
+          darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
+        }`}
       >
-        {/* Heading */}
-        <motion.h1
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="text-left text-[50px] md:text-[70px] font-extrabold leading-[1.1] font-sans"
-        >
-          Get to Know <br />
-          <span className="bg-gradient-to-r from-[#FF7E5F] via-[#FF3F81] to-[#FC6076] text-transparent bg-clip-text">
-            <TypingEffect text="About Us" />
-          </span>
-        </motion.h1>
+        <Navbar /><br /><br />
 
-        {/* Our History Section */}
-        <AnimatedSubheading text="Our History" />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className={`mt-6 text-lg leading-relaxed ${
-            darkMode ? "text-gray-300" : "text-gray-700"
-          }`}
-        >
-          <p>
-            Phoenix Hospitality was established with a vision to redefine
-            comfort and personalized service in the hospitality industry.
-            Located in the heart of Gurgaon, we began as a small guest house
-            catering to business travelers and have since grown into a preferred
-            choice for both corporate and leisure guests. Over the years, we
-            have expanded our offerings to include modern amenities, an in-house
-            dining experience, and a serene outdoor lounge. Our journey is
-            rooted in providing exceptional care and creating memorable stays
-            for every guest.
-          </p>
-          <p>
-            Our mission is to provide a warm, welcoming environment where every
-            guest feels valued and cared for. We believe that hospitality is not
-            just about offering a place to stay, but about crafting moments that
-            leave lasting impressions
-          </p>
-          {/* <p>
-          </p> */}
-        </motion.div>
+        {/* Hero Section */}
+        {/* <div className="relative w-full h-[300px]">
+          <img
+            src="/Outdoor.png"
+            alt="About Us Background"
+            className="w-full h-full object-cover"
+          />
+          <div
+            className={`absolute inset-0 ${
+              darkMode ? "bg-gray-900 opacity-70" : "bg-black opacity-40"
+            }`}
+          ></div>
+        </div> */}
 
-        {/* Image Carousel Section */}
-        <motion.div
+        <motion.section
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mt-10 flex justify-center"
+          transition={{ duration: 1 }}
+          className="max-w-6xl mx-auto px-6 py-16"
         >
-          <ImageCarousel images={images} />
-        </motion.div>
+          {/* Heading */}
+          <motion.h1
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-left text-[50px] md:text-[70px] font-extrabold leading-[1.1] font-sans"
+          >
+            Get to Know <br />
+            <span className="bg-gradient-to-r from-[#FF7E5F] via-[#FF3F81] to-[#FC6076] text-transparent bg-clip-text">
+              <TypingEffect text="About Us" />
+            </span>
+          </motion.h1>
 
-        {/* Core Values Section */}
-        <AnimatedSubheading text="Our Core Values" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10">
-          {values.map((value, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className={`flex flex-col items-center p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ${
-                darkMode
-                  ? "bg-gray-800 text-white shadow-gray-700"
-                  : "bg-white text-black"
-              }`}
-            >
-              <value.icon className="text-[#FC6076] text-4xl mb-4" />
-              <h3 className="text-xl font-bold">{value.title}</h3>
-              <p className="mt-2 text-center">{value.description}</p>
-            </motion.div>
-          ))}
-        </div>
+          {/* Our History Section */}
+          <AnimatedSubheading text="Our History" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className={`mt-6 text-lg leading-relaxed ${
+              darkMode ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
+            <p>
+              Phoenix Hospitality was established with a vision to redefine
+              comfort and personalized service in the hospitality industry.
+              Located in the heart of Gurgaon, we began as a small guest house
+              catering to business travelers and have since grown into a
+              preferred choice for both corporate and leisure guests. Over the
+              years, we have expanded our offerings to include modern amenities,
+              an in-house dining experience, and a serene outdoor lounge. Our
+              journey is rooted in providing exceptional care and creating
+              memorable stays for every guest.
+            </p>
+            <p>
+              Our mission is to provide a warm, welcoming environment where
+              every guest feels valued and cared for. We believe that
+              hospitality is not just about offering a place to stay, but about
+              crafting moments that leave lasting impressions
+            </p>
+            {/* <p>
+          </p> */}
+          </motion.div>
 
-        {/* Inquiry CTA */}
-        <div className="flex justify-center mt-16">
-          <Link to="/inquiry">
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0px 0px 10px rgba(252, 96, 118, 0.8)",
-              }}
-              transition={{ duration: 0.3 }}
-              className="px-6 py-3 bg-[#FC6076] text-white font-bold rounded-lg hover:bg-[#FF3F81] transition duration-300"
-            >
-              Contact Us
-            </motion.button>
-          </Link>
-        </div>
-      </motion.section>
+          {/* Image Carousel Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="mt-10 flex justify-center"
+          >
+            <ImageCarousel images={images} />
+          </motion.div>
 
-      <Footer />
-    </div>
+          {/* Core Values Section */}
+          <AnimatedSubheading text="Our Core Values" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10">
+            {values.map((value, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className={`flex flex-col items-center p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ${
+                  darkMode
+                    ? "bg-gray-800 text-white shadow-gray-700"
+                    : "bg-white text-black"
+                }`}
+              >
+                <value.icon className="text-[#FC6076] text-4xl mb-4" />
+                <h3 className="text-xl font-bold">{value.title}</h3>
+                <p className="mt-2 text-center">{value.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Inquiry CTA */}
+          <div className="flex justify-center mt-16">
+            <Link to="/inquiry">
+              <motion.button
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0px 0px 10px rgba(252, 96, 118, 0.8)",
+                }}
+                transition={{ duration: 0.3 }}
+                className="px-6 py-3 bg-[#FC6076] text-white font-bold rounded-lg hover:bg-[#FF3F81] transition duration-300"
+              >
+                Contact Us
+              </motion.button>
+            </Link>
+          </div>
+        </motion.section>
+
+        <Footer />
+      </div>
     </>
   );
 };

@@ -5,28 +5,28 @@ import { useDarkMode } from "../DarkModeContext";
 
 const blogs = [
   {
-    image: "/c1.jpg",
+    image: "/B1.png",
     title: "Bleisure for Everyone: Redefining Travel with Comfort and Affordability",
     description:
       "Discover the hidden gems of our heritage property, blending history with modern comforts.",
     date: "March 5, 2025",
   },
   {
-    image: "/c3.jpg",
+    image: "/B3.png",
     title: "Why Choose Phoenix Hospitality for Your Stay in Gurgaon",
     description:
       "Explore the authentic cuisine crafted from locally sourced ingredients, served with elegance.",
     date: "February 28, 2025",
   },
   {
-    image: "/c5.jpg",
+    image: "/B4.png",
     title: "Why Phoenix Hospitality is Your Ideal Choice for Long Stays in Gurgaon",
     description:
       "From lush gardens to charming courtyards, our property offers tranquility like no other.",
     date: "February 15, 2025",
   },
   {
-    image: "/c1.jpg",
+    image: "/B6.png",
     title: "Our Story: From Past to Present",
     description:
       "Learn about the rich history behind this beautiful property and how it evolved over time.",

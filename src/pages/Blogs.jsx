@@ -13,7 +13,7 @@ const blogs = [
     title: "Bleisure for Everyone: Redefining Travel with Comfort and Affordability",
     description:
       "Explore the most underrated travel spots that offer unique experiences and breathtaking views.",
-    image: "/images/blog1.jpg",
+    image: "/B1.png",
     date: "March 9, 2025",
     author: "John Doe",
   },
@@ -22,7 +22,7 @@ const blogs = [
     title: "Why Choose Phoenix Hospitality for Your Stay in Gurgaon",
     description:
       "A deep dive into what makes a hotel worth the price and whether budget stays can match luxury.",
-    image: "/images/blog2.jpg",
+    image: "/B2.png",
     date: "March 5, 2025",
     author: "Jane Smith",
   },
@@ -31,7 +31,7 @@ const blogs = [
     title: "Why Phoenix Hospitality is Your Ideal Choice for Long Stays in Gurgaon",
     description:
       "From free upgrades to secret amenities, discover how to make the most of your hotel stay.",
-    image: "/images/blog3.jpg",
+    image: "/B3.png",
     date: "March 1, 2025",
     author: "Emily Brown",
   },
@@ -40,7 +40,7 @@ const blogs = [
     title: "The Ultimate Guide to Planning a Stress-Free Stay in Gurgaon",
     description:
       "Learn about Gurgaon, a bustling city near New Delhi, offers a mix of business hubs, leisure spots, and cultural attractions.",
-    image: "/images/blog4.jpg",
+    image: "/B4.png ",
     date: "February 20, 2025",
     author: "Michael Carter",
   },
@@ -49,7 +49,7 @@ const blogs = [
     title: "How Phoenix Hospitality Caters to Business Travelers: A Perfect Stay for Professionals",
     description:
       "It is designed with professionals in mind, offering everything you need for a seamless and stress-free stay.",
-    image: "/images/blog5.jpg",
+    image: "/B5.png",
     date: "February 10, 2025",
     author: "Sophia Lee",
   },
@@ -58,7 +58,7 @@ const blogs = [
     title: "Why Boutique Hotels Are the Future of Hospitality: A Look at Phoenix Hospitality",
     description:
       "The hospitality industry is undergoing a transformation, with boutique hotels emerging as a preferred choice for modern travelers.",
-    image: "/images/blog6.jpg",
+    image: "/B6.png",
     date: "January 28, 2025",
     author: "David Wilson",
   },

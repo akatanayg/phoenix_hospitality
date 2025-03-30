@@ -18,10 +18,7 @@ import { FaDownLeftAndUpRightToCenter } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
 
 const images = [
-  "/images/super-deluxe-1.jpg",
-  "/images/super-deluxe-2.jpg",
-  "/images/super-deluxe-3.jpg",
-  "/images/super-deluxe-4.jpg",
+  "/Room Overview.jpg", "/Room Bed.jpg", "/Room Bed 2.jpg", "/Room Overview Side.jpg",
 ];
 
 const SuperDeluxeRoom = () => {
@@ -66,7 +63,7 @@ const SuperDeluxeRoom = () => {
         />
         <meta
           property="og:image"
-          content="https://thephoenixhospitality.com/images/super-deluxe-room.jpg"
+          content="https://thephoenixhospitality.com/images/Room Bed.jpg"
         />
         <meta
           property="og:url"
@@ -78,10 +75,10 @@ const SuperDeluxeRoom = () => {
           darkMode ? "bg-gray-900 text-white" : "bg-[#FAF1EB] text-black"
         }`}
       >
-        <Navbar />
-        <div className="relative w-full h-[300px]">
+        <Navbar /><br /><br />
+        {/* <div className="relative w-full h-[300px]">
           <img
-            src="/images/super-deluxe-bg.jpg"
+            src="/Suit Lounge.png"
             alt="Super Deluxe Room at Phoenix Hospitality"
             className="w-full h-full object-cover"
           />
@@ -90,7 +87,7 @@ const SuperDeluxeRoom = () => {
               darkMode ? "bg-gray-900 opacity-70" : "bg-black opacity-40"
             }`}
           ></div>
-        </div>
+        </div> */}
 
         <motion.section
           initial={{ opacity: 0, y: 30 }}
