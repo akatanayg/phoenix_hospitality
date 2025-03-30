@@ -130,7 +130,7 @@ const Inquiry = () => {
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Enquiry - Phoenix Hospitality" />
   <meta property="og:description" content="Get in touch with Phoenix Hospitality for booking inquiries and hotel reservations." />
-  <meta property="og:image" content="https://thephoenixhospitality.com/images/Enquiry-header.jpg" />
+  <meta property="og:image" content="https://thephoenixhospitality.com/Enquiry_BG.jpg" />
   <meta property="og:url" content="https://thephoenixhospitality.com/Enquiry" />
 </Helmet>
     <div
@@ -141,7 +141,7 @@ const Inquiry = () => {
       {/* Background Image */}
       <div
         className="absolute top-0 left-0 w-full h-[400px] bg-cover bg-center opacity-50"
-        style={{ backgroundImage: "url('/enbg_1.jpg')" }}
+        style={{ backgroundImage: "url('/Enquiry_BG.jpg')" }}
       >
         <div
           className={`absolute inset-0 ${
